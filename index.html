@@ -1,256 +1,209 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ROYAL WUNDERKIND MODEL SCHOOL - CRS EXAM 2025/2026</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 900px;
-      margin: 30px auto;
-      padding: 20px;
-      line-height: 1.6;
-      background: #f9f9f9;
-    }
-    h1, h2 { text-align: center; color: #2c3e50; }
-    .header { margin-bottom: 30px; }
-    .timer {
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #d32f2f;
-      text-align: center;
-      margin: 20px 0;
-      padding: 12px;
-      background: #ffebee;
-      border-radius: 8px;
-    }
-    .question {
-      margin: 25px 0;
-      padding: 18px;
-      background: white;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    }
-    .question h3 { margin-top: 0; color: #34495e; }
-    label {
-      display: block;
-      margin: 10px 0;
-      cursor: pointer;
-    }
-    input[type="radio"] { margin-right: 10px; }
-    button {
-      display: block;
-      margin: 40px auto;
-      padding: 14px 40px;
-      font-size: 1.2em;
-      background: #27ae60;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover { background: #219653; }
-    #result {
-      display: none;
-      margin-top: 40px;
-      padding: 25px;
-      background: #e8f5e9;
-      border: 2px solid #27ae60;
-      border-radius: 10px;
-    }
-    .score { font-size: 2em; text-align: center; margin: 20px 0; }
-    .correct { color: #27ae60; font-weight: bold; }
-    .wrong   { color: #e74c3c; }
-    .revealed-correct {
-      background: #d4edda;
-      padding: 4px 8px;
-      border-radius: 4px;
-      margin-left: 10px;
-    }
-    .option-row { display: flex; align-items: center; margin: 8px 0; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWMS - CRS EXAMINATION</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f7f9fc;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            border-top: 10px solid #1565c0;
+        }
+        h1 { color: #1565c0; margin: 0; font-size: 1.8em; }
+        .timer-container {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        #timer {
+            background: #d32f2f;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.4em;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .q-container {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 6px solid #1565c0;
+        }
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            background: #f1f3f4;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .options label:hover { background: #e3f2fd; }
+        input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
+        
+        .ans-reveal {
+            margin-top: 15px;
+            padding: 12px;
+            background: #e8f5e9;
+            color: #2e7d32;
+            font-weight: bold;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        button#submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            padding: 18px;
+            background: #1565c0;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 40px auto;
+            font-weight: bold;
+        }
+        button#submit-btn:disabled { background: #90a4ae; cursor: not-allowed; }
+        
+        #result-box {
+            display: none;
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid #1565c0;
+            margin-top: 30px;
+        }
+        .score-text { font-size: 3em; color: #1565c0; font-weight: bold; }
+    </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-  <h2>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-  <p style="text-align:center; font-size:1.1em;">
-    Class: Key Stage 2 (Year 2)<br>
-    Subject: CHRISTIAN RELIGIOUS STUDIES<br>
-    Duration: 45 minutes (CBT version)
-  </p>
-  <div class="timer" id="timer">Time remaining: 45:00</div>
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <p><strong>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</strong></p>
+    <p>Class: Key Stage 1 (Year 2) | Subject: CHRISTIAN RELIGIOUS STUDIES</p>
+    <p>Duration: 45 Minutes</p>
 </div>
 
-<form id="examForm">
-  <!-- Questions inserted by JS -->
-</form>
+<div class="timer-container">
+    <div id="timer">45:00</div>
+</div>
 
-<button id="submitBtn">Submit Exam</button>
+<form id="crsForm"></form>
 
-<div id="result">
-  <h2>Your Result</h2>
-  <div class="score" id="scoreText"></div>
-  <div id="detailedAnswers"></div>
+<button id="submit-btn" onclick="processCrsExam()">Submit Examination</button>
+
+<div id="result-box">
+    <h2>Exam Results</h2>
+    <div class="score-text" id="finalScore">0 / 30</div>
+    <p id="percentage" style="font-size: 1.2em;"></p>
+    <p>Scroll down to review correct answers.</p>
 </div>
 
 <script>
-// Correct answers array (letter only: A/B/C)
-const correctAnswers = [
-  "B", // 1. brother     (Jesus is our brother – common teaching: we are joint-heirs)
-  "B", // 2. God
-  "B", // 3. believe
-  "C", // 4. home
-  "A", // 5. washing plates
-  "B", // 6. save
-  "A", // 7. do wrong
-  "A", // 8. shelter
-  "B", // 9. like
-  "B", //10. friend
-  "B", //11. twelve
-  "A", //12. Matthew    (one of the twelve apostles)
-  "B", //13. love
-  "B", //14. David      (Jonathan and David were close friends)
-  "A", //15. Lazarus
-  "B", //16. wept       (John 11:35 – Jesus wept)
-  "B", //17. kind
-  "C", //18. truth
-  "B", //19. fish       (feeding of the 5,000 – five loaves and two fish)
-  "A", //20. God
-  "B", //21. doing
-  "B", //22. God
-  "B", //23. Adam
-  "C", //24. Eve
-  "B", //25. Samuel
-  "B", //26. Joseph and Mary
-  "B", //27. protected
-  "B", //28. wisdom     (Luke 2:52 – grew in wisdom)
-  "A", //29. obey
-  "B"  //30. love
+const crsData = [
+    { q: "Jesus was baptised in River ______.", o: ["Nile", "Jordan", "Tigris", "Euphrates"], c: 1, text: "Jordan" },
+    { q: "Jesus was baptised by ______.", o: ["Moses", "John the Baptist", "Peter", "Elijah"], c: 1, text: "John the Baptist" },
+    { q: "The Holy Spirit descended like a ______.", o: ["eagle", "dove", "bird", "cloud"], c: 1, text: "dove" },
+    { q: "Jesus fasted for ______ days.", o: ["seven", "twelve", "forty", "thirty"], c: 2, text: "forty" },
+    { q: "The devil asked Jesus to turn stones into ______.", o: ["fish", "bread", "gold", "water"], c: 1, text: "bread" },
+    { q: "Jesus overcame temptation by using the ______ of God.", o: ["sword", "money", "Word", "stone"], c: 2, text: "Word" },
+    { q: "Jesus said, “Peace be ______.”", o: ["strong", "still", "fast", "calm"], c: 1, text: "still" },
+    { q: "Peter caught many fish because he ______ Jesus.", o: ["ignored", "obeyed", "left", "forgot"], c: 1, text: "obeyed" },
+    { q: "Jesus turned water into ______.", o: ["milk", "wine", "oil", "juice"], c: 1, text: "wine" },
+    { q: "Lazarus had been in the grave for ______ days.", o: ["two", "three", "four", "five"], c: 2, text: "four" },
+    { q: "The paralysed man was lowered through the ______.", o: ["door", "window", "roof", "gate"], c: 2, text: "roof" },
+    { q: "Jesus raised the widow’s son in ______.", o: ["Cana", "Nain", "Egypt", "Jerusalem"], c: 1, text: "Nain" },
+    { q: "The prodigal son wasted his ______.", o: ["inheritance", "money", "clothes", "farm"], c: 0, text: "inheritance" },
+    { q: "The father ______ the prodigal son.", o: ["punished", "forgave", "chased", "rejected"], c: 1, text: "forgave" },
+    { q: "Zacchaeus climbed a ______ to see Jesus.", o: ["mountain", "tree", "house", "wall"], c: 1, text: "tree" },
+    { q: "The seed in the parable represents God’s ______.", o: ["house", "money", "Word", "land"], c: 2, text: "Word" },
+    { q: "The good soil represents people who ______ God’s Word.", o: ["ignore", "obey", "forget", "reject"], c: 1, text: "obey" },
+    { q: "Five maidens were called ______.", o: ["foolish", "wise", "lazy", "wicked"], c: 1, text: "wise" },
+    { q: "Love means having deep ______.", o: ["anger", "affection", "fear", "hatred"], c: 1, text: "affection" },
+    { q: "God created us in His ______.", o: ["house", "image", "garden", "temple"], c: 1, text: "image" },
+    { q: "The father sent his sons to work in the ______.", o: ["vineyard", "market", "river", "farm"], c: 0, text: "vineyard" },
+    { q: "Lazarus was a ______ man.", o: ["rich", "poor", "king", "priest"], c: 1, text: "poor" },
+    { q: "The Good Samaritan helped a wounded ______.", o: ["animal", "man", "child", "woman"], c: 1, text: "man" },
+    { q: "To be merciful means to ______.", o: ["ignore", "help others", "shout", "complain"], c: 1, text: "help others" },
+    { q: "A peacemaker helps people to ______.", o: ["fight", "quarrel", "settle", "argue"], c: 2, text: "settle" },
+    { q: "Good behaviour makes God ______.", o: ["angry", "sad", "happy", "afraid"], c: 2, text: "happy" },
+    { q: "When we forgive others, God will ______ us.", o: ["punish", "forgive", "ignore", "hate"], c: 1, text: "forgive" },
+    { q: "Jesus chose ______ disciples.", o: ["ten", "twelve", "twenty", "thirty"], c: 1, text: "twelve" },
+    { q: "The Kingdom of God means living the way ______ wants.", o: ["man", "God", "friends", "teachers"], c: 1, text: "God" },
+    { q: "Jesus has power over ______.", o: ["nothing", "natural forces only", "sickness only", "natural forces, sickness and death"], c: 3, text: "natural forces, sickness and death" }
 ];
 
-const questions = [
-  { q: "1. Jesus is our _______.", opts: ["A. father", "B. brother", "C. uncle"] },
-  { q: "2. Jesus is the Son of _______.", opts: ["A. man", "B. God", "C. angel"] },
-  { q: "3. We become children of God when we _______ in Jesus.", opts: ["A. sleep", "B. believe", "C. play"] },
-  { q: "4. Brothers and sisters help one another at _______.", opts: ["A. school", "B. market", "C. home"] },
-  { q: "5. One duty we do at home is _______.", opts: ["A. washing plates", "B. driving cars", "C. flying planes"] },
-  { q: "6. Jesus gave His life to _______ us.", opts: ["A. punish", "B. save", "C. chase"] },
-  { q: "7. Jesus forgives us when we _______.", opts: ["A. do wrong", "B. eat food", "C. play games"] },
-  { q: "8. Jesus gives us food, clothes and _______.", opts: ["A. shelter", "B. toys", "C. bags"] },
-  { q: "9. A friend is someone you ______ very much.", opts: ["A. hate", "B. like", "C. fear"] },
-  { q: "10. Jesus is our ______.", opts: ["A. enemy", "B. friend", "C. fighter"] },
-  { q: "11. Jesus had ______ apostles.", opts: ["A. ten", "B. twelve", "C. twenty"] },
-  { q: "12. One of Jesus’ apostles was ______.", opts: ["A. Matthew", "B. Moses", "C. Elijah"] },
-  { q: "13. Jesus wants us to ______ one another.", opts: ["A. hate", "B. love", "C. push"] },
-  { q: "14. Jonathan was a friend of ______.", opts: ["A. Moses", "B. David", "C. Peter"] },
-  { q: "15. Jesus had a friend called ______.", opts: ["A. Lazarus", "B. Pharaoh", "C. Herod"] },
-  { q: "16. When Lazarus died, Jesus ______.", opts: ["A. laughed", "B. wept", "C. ran away"] },
-  { q: "17. Love means being ______.", opts: ["A. wicked", "B. kind", "C. proud"] },
-  { q: "18. A good friend tells the ______.", opts: ["A. lie", "B. story", "C. truth"] },
-  { q: "19. The little boy shared five loaves and two ______.", opts: ["A. apples", "B. fish", "C. eggs"] },
-  { q: "20. Jesus thanked ______ before sharing the food.", opts: ["A. God", "B. people", "C. angels"] },
-  { q: "21. Obedience means ______ what you are told.", opts: ["A. ignoring", "B. doing", "C. refusing"] },
-  { q: "22. Jesus obeyed ______.", opts: ["A. Satan", "B. God", "C. soldiers"] },
-  { q: "23. The first man God created was ______.", opts: ["A. Abraham", "B. Adam", "C. Samuel"] },
-  { q: "24. The first woman God created was ______.", opts: ["A. Ruth", "B. Mary", "C. Eve"] },
-  { q: "25. Hannah’s son was called ______.", opts: ["A. David", "B. Samuel", "C. Joseph"] },
-  { q: "26. Jesus’ parents are ______.", opts: ["A. Peter and John", "B. Joseph and Mary", "C. Simeon and Anna"] },
-  { q: "27. God ______ Jesus.", opts: ["A. forgot", "B. protected", "C. left"] },
-  { q: "28. Jesus grew in ______.", opts: ["A. anger", "B. wisdom", "C. fighting"] },
-  { q: "29. Jesus wants us to ______ God.", opts: ["A. obey", "B. fight", "C. ignore"] },
-  { q: "30. We should ______ others.", opts: ["A. hate", "B. love", "C. push"] }
-];
-
-// Render questions
-const form = document.getElementById("examForm");
-
-questions.forEach((item, index) => {
-  const div = document.createElement("div");
-  div.className = "question";
-  div.innerHTML = `<h3>${item.q}</h3>`;
-
-  item.opts.forEach((opt, i) => {
-    const letter = String.fromCharCode(65 + i);
-    const id = `q${index+1}_${letter}`;
-    const row = document.createElement("div");
-    row.className = "option-row";
-    row.innerHTML = `
-      <input type="radio" name="q${index+1}" id="${id}" value="${letter}">
-      <label for="${id}">${opt}</label>
+const form = document.getElementById('crsForm');
+crsData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-container';
+    div.innerHTML = `
+        <h3>${i + 1}. ${item.q}</h3>
+        <div class="options">
+            ${item.o.map((opt, idx) => `
+                <label><input type="radio" name="crs${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
+            `).join('')}
+        </div>
+        <div class="ans-reveal" id="reveal-${i}">Correct Answer: "${item.text}"</div>
     `;
-    div.appendChild(row);
-  });
-
-  form.appendChild(div);
+    form.appendChild(div);
 });
 
-// Timer: 45 minutes
 let timeLeft = 45 * 60;
-const timerDisplay = document.getElementById("timer");
-let timerInterval;
+const timerDisplay = document.getElementById('timer');
+const clock = setInterval(() => {
+    let m = Math.floor(timeLeft / 60);
+    let s = timeLeft % 60;
+    timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+    if (timeLeft <= 0) {
+        clearInterval(clock);
+        processCrsExam();
+    }
+    timeLeft--;
+}, 1000);
 
-function updateTimer() {
-  const min = Math.floor(timeLeft / 60);
-  const sec = timeLeft % 60;
-  timerDisplay.textContent = `Time remaining: ${min}:${sec.toString().padStart(2,'0')}`;
+function processCrsExam() {
+    clearInterval(clock);
+    document.getElementById('submit-btn').disabled = true;
+    let score = 0;
 
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    timerDisplay.textContent = "Time's up!";
-    submitExam();
-  }
-  timeLeft--;
-}
+    crsData.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="crs${i}"]:checked`);
+        document.getElementById(`reveal-${i}`).style.display = 'block';
+        if (selected && parseInt(selected.value) === item.c) {
+            score++;
+        }
+    });
 
-timerInterval = setInterval(updateTimer, 1000);
-updateTimer();
-
-// Submit logic
-document.getElementById("submitBtn").addEventListener("click", submitExam);
-
-function submitExam() {
-  clearInterval(timerInterval);
-  document.getElementById("submitBtn").disabled = true;
-
-  let score = 0;
-  let html = "";
-
-  questions.forEach((qItem, i) => {
-    const qNum = i + 1;
-    const selected = document.querySelector(`input[name="q${qNum}"]:checked`);
-    const userAns = selected ? selected.value : null;
-    const correct = correctAnswers[i];
-
-    let mark = userAns === correct
-      ? `<span class="correct">✅ Correct</span>`
-      : `<span class="wrong">❌ Wrong</span>`;
-
-    const correctIdx = correct.charCodeAt(0) - 65;
-    const correctText = qItem.opts[correctIdx].substring(3).trim();
-
-    html += `
-      <div class="question">
-        <h3>${qItem.q}</h3>
-        <p>Your answer: ${userAns || "—"} ${mark}</p>
-        <p>Correct answer: <span class="revealed-correct">${correct}. ${correctText}</span></p>
-      </div>
-    `;
-
-    if (userAns === correct) score++;
-  });
-
-  const percent = ((score / 30) * 100).toFixed(1);
-  document.getElementById("scoreText").innerHTML = `You scored <strong>${score} / 30</strong> (${percent}%)`;
-  document.getElementById("detailedAnswers").innerHTML = html;
-  document.getElementById("result").style.display = "block";
-  document.getElementById("result").scrollIntoView({ behavior: "smooth" });
+    document.getElementById('result-box').style.display = 'block';
+    document.getElementById('finalScore').innerText = `${score} / 30`;
+    document.getElementById('percentage').innerText = "Score: " + Math.round((score/30)*100) + "%";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
-
 </body>
-
 </html>

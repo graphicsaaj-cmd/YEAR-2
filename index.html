@@ -3,100 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RWMS - CRS EXAMINATION</title>
+    <title>RWMS - CCA EXAMINATION</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
             max-width: 850px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #f7f9fc;
-            color: #333;
+            background-color: #fff9f0;
+            color: #4e342e;
         }
         .header {
             text-align: center;
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
             margin-bottom: 30px;
-            border-top: 10px solid #1565c0;
+            border: 5px solid #ff9800;
         }
-        h1 { color: #1565c0; margin: 0; font-size: 1.8em; }
+        h1 { color: #e65100; margin: 0; font-size: 1.8em; }
         .timer-container {
             position: sticky;
             top: 10px;
             z-index: 1000;
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         #timer {
-            background: #d32f2f;
+            background: #f44336;
             color: white;
-            padding: 12px 30px;
+            padding: 12px 40px;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 1.4em;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-size: 1.5em;
+            box-shadow: 0 4px 15px rgba(244, 67, 54, 0.4);
         }
-        .q-container {
+        .q-card {
             background: white;
             padding: 25px;
             margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 6px solid #1565c0;
+            border-radius: 15px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+            border-left: 10px solid #ffb74d;
         }
         .options label {
             display: block;
-            margin: 10px 0;
-            padding: 12px;
-            background: #f1f3f4;
-            border: 1px solid #ddd;
-            border-radius: 8px;
+            margin: 12px 0;
+            padding: 15px;
+            background: #fff3e0;
+            border: 2px solid #ffe0b2;
+            border-radius: 10px;
             cursor: pointer;
-            transition: 0.2s;
+            transition: 0.3s;
         }
-        .options label:hover { background: #e3f2fd; }
-        input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
+        .options label:hover { background: #ffe0b2; }
+        input[type="radio"] { margin-right: 15px; transform: scale(1.5); }
         
         .ans-reveal {
             margin-top: 15px;
             padding: 12px;
-            background: #e8f5e9;
+            background: #c8e6c9;
             color: #2e7d32;
             font-weight: bold;
-            border-radius: 6px;
+            border-radius: 8px;
             display: none;
+            border: 2px dashed #4caf50;
         }
         
         button#submit-btn {
             display: block;
             width: 100%;
-            max-width: 300px;
-            padding: 18px;
-            background: #1565c0;
+            max-width: 350px;
+            padding: 20px;
+            background: #ff9800;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.2em;
+            border-radius: 15px;
+            font-size: 1.4em;
             cursor: pointer;
             margin: 40px auto;
             font-weight: bold;
+            box-shadow: 0 5px 0 #e65100;
         }
-        button#submit-btn:disabled { background: #90a4ae; cursor: not-allowed; }
+        button#submit-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #e65100; }
+        button#submit-btn:disabled { background: #bdbdbd; box-shadow: none; cursor: not-allowed; }
         
         #result-box {
             display: none;
             text-align: center;
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            border: 4px solid #1565c0;
+            padding: 40px;
+            border-radius: 20px;
+            border: 6px solid #ff9800;
             margin-top: 30px;
         }
-        .score-text { font-size: 3em; color: #1565c0; font-weight: bold; }
+        .score-text { font-size: 4em; color: #e65100; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -104,7 +107,7 @@
 <div class="header">
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
     <p><strong>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</strong></p>
-    <p>Class: Key Stage 2 (Year 2) | Subject: CHRISTIAN RELIGIOUS STUDIES</p>
+    <p>Class: Key Stage 1 (Year 2) | Subject: CULTURAL AND CREATIVE ART</p>
     <p>Duration: 45 Minutes</p>
 </div>
 
@@ -112,63 +115,63 @@
     <div id="timer">45:00</div>
 </div>
 
-<form id="crsForm"></form>
+<form id="ccaForm"></form>
 
-<button id="submit-btn" onclick="processCrsExam()">Submit Examination</button>
+<button id="submit-btn" onclick="submitCcaExam()">I am Finished!</button>
 
 <div id="result-box">
-    <h2>Exam Results</h2>
+    <h2>🎨 Examination Finished! 🎨</h2>
     <div class="score-text" id="finalScore">0 / 30</div>
-    <p id="percentage" style="font-size: 1.2em;"></p>
-    <p>Scroll down to review correct answers.</p>
+    <p id="percentage" style="font-size: 1.5em;"></p>
+    <p>Check your answers below to see how you did!</p>
 </div>
 
 <script>
-const crsData = [
-    { q: "Jesus was baptised in River ______.", o: ["Nile", "Jordan", "Tigris", "Euphrates"], c: 1, text: "Jordan" },
-    { q: "Jesus was baptised by ______.", o: ["Moses", "John the Baptist", "Peter", "Elijah"], c: 1, text: "John the Baptist" },
-    { q: "The Holy Spirit descended like a ______.", o: ["eagle", "dove", "bird", "cloud"], c: 1, text: "dove" },
-    { q: "Jesus fasted for ______ days.", o: ["seven", "twelve", "forty", "thirty"], c: 2, text: "forty" },
-    { q: "The devil asked Jesus to turn stones into ______.", o: ["fish", "bread", "gold", "water"], c: 1, text: "bread" },
-    { q: "Jesus overcame temptation by using the ______ of God.", o: ["sword", "money", "Word", "stone"], c: 2, text: "Word" },
-    { q: "Jesus said, “Peace be ______.”", o: ["strong", "still", "fast", "calm"], c: 1, text: "still" },
-    { q: "Peter caught many fish because he ______ Jesus.", o: ["ignored", "obeyed", "left", "forgot"], c: 1, text: "obeyed" },
-    { q: "Jesus turned water into ______.", o: ["milk", "wine", "oil", "juice"], c: 1, text: "wine" },
-    { q: "Lazarus had been in the grave for ______ days.", o: ["two", "three", "four", "five"], c: 2, text: "four" },
-    { q: "The paralysed man was lowered through the ______.", o: ["door", "window", "roof", "gate"], c: 2, text: "roof" },
-    { q: "Jesus raised the widow’s son in ______.", o: ["Cana", "Nain", "Egypt", "Jerusalem"], c: 1, text: "Nain" },
-    { q: "The prodigal son wasted his ______.", o: ["inheritance", "money", "clothes", "farm"], c: 0, text: "inheritance" },
-    { q: "The father ______ the prodigal son.", o: ["punished", "forgave", "chased", "rejected"], c: 1, text: "forgave" },
-    { q: "Zacchaeus climbed a ______ to see Jesus.", o: ["mountain", "tree", "house", "wall"], c: 1, text: "tree" },
-    { q: "The seed in the parable represents God’s ______.", o: ["house", "money", "Word", "land"], c: 2, text: "Word" },
-    { q: "The good soil represents people who ______ God’s Word.", o: ["ignore", "obey", "forget", "reject"], c: 1, text: "obey" },
-    { q: "Five maidens were called ______.", o: ["foolish", "wise", "lazy", "wicked"], c: 1, text: "wise" },
-    { q: "Love means having deep ______.", o: ["anger", "affection", "fear", "hatred"], c: 1, text: "affection" },
-    { q: "God created us in His ______.", o: ["house", "image", "garden", "temple"], c: 1, text: "image" },
-    { q: "The father sent his sons to work in the ______.", o: ["vineyard", "market", "river", "farm"], c: 0, text: "vineyard" },
-    { q: "Lazarus was a ______ man.", o: ["rich", "poor", "king", "priest"], c: 1, text: "poor" },
-    { q: "The Good Samaritan helped a wounded ______.", o: ["animal", "man", "child", "woman"], c: 1, text: "man" },
-    { q: "To be merciful means to ______.", o: ["ignore", "help others", "shout", "complain"], c: 1, text: "help others" },
-    { q: "A peacemaker helps people to ______.", o: ["fight", "quarrel", "settle", "argue"], c: 2, text: "settle" },
-    { q: "Good behaviour makes God ______.", o: ["angry", "sad", "happy", "afraid"], c: 2, text: "happy" },
-    { q: "When we forgive others, God will ______ us.", o: ["punish", "forgive", "ignore", "hate"], c: 1, text: "forgive" },
-    { q: "Jesus chose ______ disciples.", o: ["ten", "twelve", "twenty", "thirty"], c: 1, text: "twelve" },
-    { q: "The Kingdom of God means living the way ______ wants.", o: ["man", "God", "friends", "teachers"], c: 1, text: "God" },
-    { q: "Jesus has power over ______.", o: ["nothing", "natural forces only", "sickness only", "natural forces, sickness and death"], c: 3, text: "natural forces, sickness and death" }
+const ccaData = [
+    { q: "A pattern is made by repeating", o: ["shapes", "animals", "food", "trees"], c: 0, t: "shapes" },
+    { q: "Which of these is a geometric shape?", o: ["ball", "circle", "leaf", "fruit"], c: 1, t: "circle" },
+    { q: "A triangle has", o: ["two sides", "three sides", "four sides", "five sides"], c: 1, t: "three sides" },
+    { q: "Repeating shapes makes a", o: ["mess", "pattern", "story", "drawing"], c: 1, t: "pattern" },
+    { q: "A square has", o: ["four equal sides", "two equal sides", "five sides", "three sides"], c: 0, t: "four equal sides" },
+    { q: "An inanimate object is something that has no", o: ["colour", "life", "shape", "design"], c: 1, t: "life" },
+    { q: "A bag is an example of an", o: ["animal", "inanimate object", "plant", "living thing"], c: 1, t: "inanimate object" },
+    { q: "We use a pencil to", o: ["draw", "cook", "wash", "eat"], c: 0, t: "draw" },
+    { q: "Paper craft means making objects from", o: ["paper", "iron", "stone", "wood"], c: 0, t: "paper" },
+    { q: "We use ______ to join paper.", o: ["glue", "sand", "dust", "stone"], c: 0, t: "glue" },
+    { q: "A kite is a type of", o: ["plastic craft", "paper craft", "iron craft", "wood craft"], c: 1, t: "paper craft" },
+    { q: "Rhymes are", o: ["short songs", "long stories", "plays", "speeches"], c: 0, t: "short songs" },
+    { q: "Rhymes help us pronounce words", o: ["wrongly", "properly", "slowly", "badly"], c: 1, t: "properly" },
+    { q: "“The More We Are Together” is a", o: ["rhyme", "book", "story", "lesson"], c: 0, t: "rhyme" },
+    { q: "Role-play means", o: ["reading a story", "acting a part", "drawing pictures", "singing songs"], c: 1, t: "acting a part" },
+    { q: "Role-play helps us become", o: ["lazy", "creative", "careless", "weak"], c: 1, t: "creative" },
+    { q: "Storytelling tells about events in the", o: ["future", "past", "sky", "road"], c: 1, t: "past" },
+    { q: "Mr Pablo in the story was a", o: ["lion", "monkey", "goat", "dog"], c: 3, t: "dog" },
+    { q: "King Sulan was a", o: ["monkey", "lion", "goat", "bird"], c: 1, t: "lion" },
+    { q: "Because of greed the calabash", o: ["grew", "broke", "shone", "melted"], c: 1, t: "broke" },
+    { q: "Stories teach good", o: ["behaviour", "laziness", "noise", "fear"], c: 0, t: "behaviour" },
+    { q: "A ceremony is a gathering of people to", o: ["fight", "celebrate", "hide", "run"], c: 1, t: "celebrate" },
+    { q: "Rice and chicken are examples of", o: ["tools", "food", "clothes", "machines"], c: 1, t: "food" },
+    { q: "A wedding is a type of", o: ["game", "ceremony", "lesson", "sport"], c: 1, t: "ceremony" },
+    { q: "Christmas is a", o: ["religious ceremony", "traditional ceremony", "carnival", "school event"], c: 0, t: "religious ceremony" },
+    { q: "Nigeria celebrates Independence Day on", o: ["1st October", "25th December", "29th May", "1st January"], c: 0, t: "1st October" },
+    { q: "A naming ceremony is when a baby receives a", o: ["shoe", "name", "drum", "hat"], c: 1, t: "name" },
+    { q: "Ceremonies help to", o: ["divide people", "unite people", "scatter people", "separate people"], c: 1, t: "unite people" },
+    { q: "Ceremonies promote our", o: ["culture", "fighting", "sadness", "anger"], c: 0, t: "culture" },
+    { q: "One value of ceremonies is", o: ["unity", "jealousy", "laziness", "hatred"], c: 0, t: "unity" }
 ];
 
-const form = document.getElementById('crsForm');
-crsData.forEach((item, i) => {
+const form = document.getElementById('ccaForm');
+ccaData.forEach((item, i) => {
     const div = document.createElement('div');
-    div.className = 'q-container';
+    div.className = 'q-card';
     div.innerHTML = `
         <h3>${i + 1}. ${item.q}</h3>
         <div class="options">
             ${item.o.map((opt, idx) => `
-                <label><input type="radio" name="crs${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
+                <label><input type="radio" name="cca${i}" value="${idx}"> ${String.fromCharCode(65 + idx)}. ${opt}</label>
             `).join('')}
         </div>
-        <div class="ans-reveal" id="reveal-${i}">Correct Answer: "${item.text}"</div>
+        <div class="ans-reveal" id="ans-${i}">The correct answer is: "${item.t}"</div>
     `;
     form.appendChild(div);
 });
@@ -181,19 +184,19 @@ const clock = setInterval(() => {
     timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
     if (timeLeft <= 0) {
         clearInterval(clock);
-        processCrsExam();
+        submitCcaExam();
     }
     timeLeft--;
 }, 1000);
 
-function processCrsExam() {
+function submitCcaExam() {
     clearInterval(clock);
     document.getElementById('submit-btn').disabled = true;
     let score = 0;
 
-    crsData.forEach((item, i) => {
-        const selected = document.querySelector(`input[name="crs${i}"]:checked`);
-        document.getElementById(`reveal-${i}`).style.display = 'block';
+    ccaData.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="cca${i}"]:checked`);
+        document.getElementById(`ans-${i}`).style.display = 'block';
         if (selected && parseInt(selected.value) === item.c) {
             score++;
         }
@@ -201,10 +204,9 @@ function processCrsExam() {
 
     document.getElementById('result-box').style.display = 'block';
     document.getElementById('finalScore').innerText = `${score} / 30`;
-    document.getElementById('percentage').innerText = "Score: " + Math.round((score/30)*100) + "%";
+    document.getElementById('percentage').innerText = "Result: " + Math.round((score/30)*100) + "%";
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
 </html>
-

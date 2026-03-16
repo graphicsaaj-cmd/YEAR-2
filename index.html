@@ -3,188 +3,334 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CBT - Mathematics Exam</title>
+    <title>ROYAL WUNDERKIND MODEL SCHOOL - ENGLISH CBT - Year 2</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px; }
-        .container { max-width: 800px; background: white; margin: auto; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        .header { text-align: center; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 20px; }
-        .info-bar { display: flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px; color: #d9534f; }
-        .question-card { display: none; }
-        .active { display: block; }
-        .options { margin-top: 15px; }
-        .option { display: block; padding: 10px; background: #e9ecef; margin-bottom: 5px; border-radius: 4px; cursor: pointer; }
-        .option:hover { background: #dee2e6; }
-        input[type="radio"] { margin-right: 10px; }
-        .nav-btns { margin-top: 20px; display: flex; justify-content: space-between; }
-        button { padding: 10px 20px; cursor: pointer; border: none; border-radius: 4px; background: #007bff; color: white; }
-        button:disabled { background: #ccc; }
-        #result-area { display: none; margin-top: 20px; }
-        .review-item { border-bottom: 1px solid #eee; padding: 10px 0; }
-        .correct-text { color: green; font-weight: bold; }
-        #login-section { text-align: center; padding: 50px 0; }
-        input[type="text"] { padding: 10px; width: 250px; margin-bottom: 10px; }
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Arial:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background: #4a90e2;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        /* STICKY STUDENT INFO BAR */
+        .student-info {
+            background: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid #4a90e2;
+        }
+
+        .timer {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            background: #fff;
+            padding: 5px 15px;
+            border-radius: 50px;
+            border: 2px solid #e74c3c;
+        }
+
+        /* LOGIN OVERLAY */
+        #loginOverlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(74, 144, 226, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .login-box input {
+            padding: 12px;
+            width: 250px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        .quiz-area { padding: 25px; min-height: 380px; }
+        .question-header { font-size: 1.3em; font-weight: bold; margin-bottom: 15px; color: #2c3e50; }
+        .question-text { font-size: 1.15em; margin-bottom: 20px; line-height: 1.6; }
+        
+        .option {
+            background: #f1f7ff;
+            padding: 14px 18px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        .option:hover { background: #e3f0ff; border-color: #4a90e2; }
+        .text-input { width: 95%; padding: 14px; font-size: 1.1em; border: 2px solid #4a90e2; border-radius: 8px; }
+        
+        .reference-table {
+            background: #fff9e6;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #f39c12;
+        }
+        .reference-table table { width: 100%; border-collapse: collapse; background: white; }
+        .reference-table td { padding: 8px; text-align: center; border: 1px solid #ddd; font-weight: bold; }
+
+        .nav-buttons { padding: 20px; display: flex; justify-content: space-between; background: #f8f9fa; border-top: 2px solid #eee; }
+        
+        button { padding: 12px 30px; font-size: 1.1em; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
+        #startBtn { background: #27ae60; color: white; width: 100%; }
+        #prevBtn { background: #95a5a6; color: white; }
+        #nextBtn { background: #4a90e2; color: white; }
+        #submitBtn { background: #27ae60; color: white; display: none; }
+        
+        .progress { height: 8px; background: #27ae60; width: 0%; transition: width 0.4s; }
+        .results { display: none; padding: 30px; }
+        .result-item { margin: 15px 0; padding: 15px; border-radius: 10px; border-left: 6px solid #27ae60; background: #f9f9f9; }
+        .wrong { border-left-color: #e74c3c; background: #fdf2f2; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div id="login-section">
-        <h2>ROYAL WUNDERKIND MODEL SCHOOL</h2>
-        <p>TERM TWO EXAMINATION, 2025/2026 SESSION</p>
-        <p>Subject: MATHEMATICS | Year: 2</p>
-        <input type="text" id="candidateName" placeholder="Enter Your Full Name" required><br>
-        <button onclick="startExam()">Start Examination</button>
-    </div>
-
-    <div id="exam-section" style="display:none;">
-        <div class="header">
-            <h3>ROYAL WUNDERKIND MODEL SCHOOL</h3>
-            <p>Mathematics - Key Stage 1 (Year 2)</p>
-        </div>
-
-        <div class="info-bar">
-            <span>Name: <span id="display-name"></span></span>
-            <span>Time Left: <span id="timer">45:00</span></span>
-        </div>
-
-        <div id="question-container"></div>
-
-        <div class="nav-btns">
-            <button id="prevBtn" onclick="changeQuestion(-1)">Previous</button>
-            <span id="q-number">Question 1 of 40</span>
-            <button id="nextBtn" onclick="changeQuestion(1)">Next</button>
-            <button id="submitBtn" onclick="submitExam()" style="display:none; background: #28a745;">Submit Exam</button>
+    <div id="loginOverlay">
+        <div class="login-box">
+            <h2>Royal Wunderkind Model School</h2>
+             <h3>Subject: English Langauge | Year 2</h3>
+            <p>Please enter your full name to begin the exam.</p>
+            <input type="text" id="studentNameInput" placeholder="Enter Full Name...">
+            <br>
+            <button id="startBtn" onclick="startExam()">Start Exam</button>
         </div>
     </div>
 
-    <div id="result-area">
-        <h2 id="score-display"></h2>
-        <hr>
-        <h3>Review Correct Answers:</h3>
-        <div id="review-list"></div>
-        <button onclick="location.reload()" style="margin-top:20px;">Restart</button>
+    <div class="header">
+        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+        <p>TERM TWO EXAMINATION 2025/2026 • ENGLISH LANGUAGE • YEAR 2</p>
     </div>
-</div>
 
-<script>
-    const questions = [
-        { q: "3 × 6 = ______", a: "18", options: ["15", "18", "21", "24"] },
-        { q: "4 × 7 = ______", a: "28", options: ["24", "26", "28", "30"] },
-        { q: "5 × 8 = ______", a: "40", options: ["35", "40", "45", "50"] },
-        { q: "6 × 7 = ______", a: "42", options: ["36", "40", "42", "48"] },
-        { q: "8 × 4 = ______", a: "32", options: ["28", "30", "32", "36"] },
-        { q: "7 × 5 = ______", a: "35", options: ["30", "32", "35", "40"] },
-        { q: "4 × 6 = ______", a: "24", options: ["20", "22", "24", "26"] },
-        { q: "8 × 7 = ______", a: "56", options: ["54", "56", "58", "60"] },
-        { q: "3 × 9 = ______", a: "27", options: ["24", "27", "30", "33"] },
-        { q: "6 × 8 = ______", a: "48", options: ["46", "48", "50", "52"] },
-        { q: "245 + 130 = ______", a: "375", options: ["365", "375", "385", "395"] },
-        { q: "520 + 280 = ______", a: "800", options: ["700", "750", "800", "820"] },
-        { q: "684 − 235 = ______", a: "449", options: ["439", "449", "459", "469"] },
-        { q: "900 − 475 = ______", a: "425", options: ["415", "425", "435", "445"] },
-        { q: "350 + 275 = ______", a: "625", options: ["615", "620", "625", "630"] },
-        { q: "780 − 260 = ______", a: "520", options: ["510", "520", "530", "540"] },
-        { q: "72 ÷ 8 = ______", a: "9", options: ["7", "8", "9", "10"] },
-        { q: "63 ÷ 7 = ______", a: "9", options: ["7", "8", "9", "10"] },
-        { q: "48 ÷ 6 = ______", a: "8", options: ["6", "7", "8", "9"] },
-        { q: "56 ÷ 7 = ______", a: "8", options: ["6", "7", "8", "9"] },
-        { q: "Find the missing number: 5 + ___ = 18", a: "13", options: ["11", "12", "13", "14"] },
-        { q: "Find the missing number: ___ − 15 = 20", a: "35", options: ["30", "35", "40", "45"] },
-        { q: "₦200 + ₦150 = ______", a: "₦350", options: ["₦320", "₦330", "₦350", "₦360"] },
-        { q: "₦500 − ₦250 = ______", a: "₦250", options: ["₦200", "₦230", "₦250", "₦270"] },
-        { q: "₦100 + ₦450 = ______", a: "₦550", options: ["₦530", "₦540", "₦550", "₦560"] },
-        { q: "How many days are in a week?", a: "7", options: ["5", "6", "7", "8"] },
-        { q: "How many months are in a year?", a: "12", options: ["10", "11", "12", "13"] },
-        { q: "Which month has 28 or 29 days?", a: "February", options: ["February", "March", "April", "June"] },
-        { q: "How many days are in April?", a: "30", options: ["28", "29", "30", "31"] },
-        { q: "How many days are in January?", a: "31", options: ["28", "29", "30", "31"] },
-        { q: "½ of 20 = ______", a: "10", options: ["5", "10", "15", "20"] },
-        { q: "⅓ of 30 = ______", a: "10", options: ["8", "9", "10", "12"] },
-        { q: "2/3 of 30 = ______", a: "20", options: ["10", "15", "20", "25"] },
-        { q: "¼ of 40 = ______", a: "10", options: ["5", "8", "10", "12"] },
-        { q: "¾ of 20 = ______", a: "15", options: ["10", "12", "15", "18"] },
-        { q: "Write in figures: Twenty-five", a: "25", options: ["15", "20", "25", "30"] },
-        { q: "Write in figures: Forty-two", a: "42", options: ["24", "32", "42", "52"] },
-        { q: "Write in figures: One hundred and ten", a: "110", options: ["100", "101", "110", "120"] },
-        { q: "Write in figures: Seventy-five", a: "75", options: ["65", "70", "75", "85"] },
-        { q: "Write in figures: Ninety-nine", a: "99", options: ["89", "90", "95", "99"] }
-    ];
+    <div class="student-info">
+        <div><strong>Student:</strong> <span id="displayName">---</span></div>
+        <div><strong>Time Left:</strong> <span class="timer" id="timer">45:00</span></div>
+        <div><strong>Question:</strong> <span id="qNum">1</span> / 40</div>
+    </div>
 
-    let currentQ = 0;
-    let timer;
-    let timeLeft = 45 * 60; // 45 minutes
+    <div class="container" id="mainQuiz" style="opacity: 0.3; pointer-events: none;">
+        <div class="progress" id="progressBar"></div>
 
-    function startExam() {
-        const name = document.getElementById('candidateName').value;
-        if(!name) return alert("Please enter your name");
-        document.getElementById('display-name').innerText = name;
-        document.getElementById('login-section').style.display = 'none';
-        document.getElementById('exam-section').style.display = 'block';
-        loadQuestions();
-        startTimer();
-    }
+        <div class="quiz-area">
+            <div id="numberTable" class="reference-table" style="display:none;">
+                <strong>NUMBER CODES REFERENCE</strong>
+                <table>
+                    <tr><td>a-1</td><td>b-2</td><td>c-3</td><td>d-4</td><td>e-5</td><td>f-6</td><td>g-7</td><td>h-8</td><td>i-9</td><td>j-10</td></tr>
+                    <tr><td>k-11</td><td>l-12</td><td>m-13</td><td>n-14</td><td>o-15</td><td>p-16</td><td>q-17</td><td>r-18</td><td>s-19</td><td>t-20</td></tr>
+                    <tr><td>u-21</td><td>v-22</td><td>w-23</td><td>x-24</td><td>y-25</td><td>z-26</td><td colspan="4">Ex: Nest = 14 5 19 20</td></tr>
+                </table>
+            </div>
 
-    function loadQuestions() {
-        const container = document.getElementById('question-container');
-        questions.forEach((item, index) => {
-            let qDiv = document.createElement('div');
-            qDiv.className = `question-card ${index === 0 ? 'active' : ''}`;
-            qDiv.id = `q-${index}`;
-            qDiv.innerHTML = `<p><strong>Question ${index + 1}:</strong> ${item.q}</p>
-                <div class="options">
-                    ${item.options.map(opt => `
-                        <label class="option">
-                            <input type="radio" name="q${index}" value="${opt}"> ${opt}
-                        </label>
-                    `).join('')}
-                </div>`;
-            container.appendChild(qDiv);
-        });
-    }
+            <div id="wordBankTable" class="reference-table" style="display:none;">
+                <strong>WORD BANK REFERENCE</strong>
+                <table>
+                    <tr><td>Father</td><td>Long</td><td>Sister</td><td>Woman</td><td>Queen</td></tr>
+                </table>
+            </div>
 
-    function changeQuestion(dir) {
-        document.getElementById(`q-${currentQ}`).classList.remove('active');
-        currentQ += dir;
-        document.getElementById(`q-${currentQ}`).classList.add('active');
-        
-        document.getElementById('prevBtn').disabled = currentQ === 0;
-        document.getElementById('nextBtn').style.display = currentQ === questions.length - 1 ? 'none' : 'inline-block';
-        document.getElementById('submitBtn').style.display = currentQ === questions.length - 1 ? 'inline-block' : 'none';
-        document.getElementById('q-number').innerText = `Question ${currentQ + 1} of ${questions.length}`;
-    }
+            <div class="question-header" id="questionHeader">Question 1</div>
+            <div class="question-text" id="questionText"></div>
+            <div id="optionsContainer"></div>
+        </div>
 
-    function startTimer() {
-        timer = setInterval(() => {
-            let mins = Math.floor(timeLeft / 60);
-            let secs = timeLeft % 60;
-            document.getElementById('timer').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-            if(timeLeft <= 0) { clearInterval(timer); submitExam(); }
-            timeLeft--;
-        }, 1000);
-    }
+        <div class="nav-buttons">
+            <button id="prevBtn" onclick="prevQuestion()">Previous</button>
+            <button id="nextBtn" onclick="nextQuestion()">Next</button>
+            <button id="submitBtn" onclick="submitExam()">Submit Exam</button>
+        </div>
+    </div>
 
-    function submitExam() {
-        clearInterval(timer);
-        let score = 0;
-        const reviewList = document.getElementById('review-list');
-        
-        questions.forEach((item, index) => {
-            const selected = document.querySelector(`input[name="q${index}"]:checked`);
-            if(selected && selected.value === item.a) score++;
+    <div id="resultsScreen" class="container results">
+        <h2 style="text-align:center;">Exam Results</h2>
+        <div id="finalStudentName" style="text-align:center; font-weight:bold; font-size:1.2em;"></div>
+        <div id="scoreCard" style="text-align:center; font-size:2em; margin: 20px 0;"></div>
+        <div id="resultsList"></div>
+    </div>
+
+    <script>
+        const questions = [
+            { num: 1, text: "An adverb tells us more about a __________.", type: "mcq", options: ["noun", "verb", "pronoun", "adjective"], correct: "verb" },
+            { num: 2, text: "An adverb can describe __________ an action happens.", type: "mcq", options: ["who", "why", "how", "whose"], correct: "how" },
+            { num: 3, text: "In the sentence “He drives carefully”, the adverb is __________.", type: "mcq", options: ["drives", "he", "carefully", "car"], correct: "carefully" },
+            { num: 4, text: "In the sentence “He will go soon”, the adverb is __________.", type: "mcq", options: ["go", "he", "soon", "will"], correct: "soon" },
+            { num: 5, text: "The word “usually” shows __________.", type: "mcq", options: ["how often", "where", "who", "what"], correct: "how often" },
+            { num: 6, text: "In the sentence “I am going downstairs”, the adverb tells us __________.", type: "mcq", options: ["when", "how", "where", "why"], correct: "where" },
+            { num: 7, text: "Tim did his homework yesterday. The adverb is __________.", type: "mcq", options: ["did", "homework", "yesterday", "Tim"], correct: "yesterday" },
+            { num: 8, text: "The children visit their grandparents regularly. The adverb is __________.", type: "mcq", options: ["children", "regularly", "visit", "grandparents"], correct: "regularly" },
+            { num: 9, text: "In the story “Hard work always pays”, the word always shows __________.", type: "mcq", options: ["time", "place", "frequency", "person"], correct: "frequency" },
+            { num: 10, text: "The lazy man drank and sang __________ all day.", type: "mcq", options: ["slowly", "happily", "badly", "sadly"], correct: "happily" },
+            { num: 11, text: "Mr Prudence worked __________.", type: "mcq", options: ["lazily", "constantly", "weakly", "badly"], correct: "constantly" },
+            { num: 12, text: "Soon, hard times __________.", type: "mcq", options: ["went", "came", "stopped", "ran"], correct: "came" },
+            { num: 13, text: "The poor lazy man watched __________.", type: "mcq", options: ["happily", "sadly", "slowly", "loudly"], correct: "sadly" },
+            { num: 14, text: "Herbal medicine is made from __________.", type: "mcq", options: ["metals", "stones", "plants", "sand"], correct: "plants" },
+            { num: 15, text: "The children are __________ in the playground.", type: "mcq", options: ["crying", "playing", "sleeping", "hiding"], correct: "playing" },
+            { num: 16, text: "The mechanic is __________ the car.", type: "mcq", options: ["repairing", "eating", "washing", "carrying"], correct: "repairing" },
+            { num: 17, text: "The trader is __________ oranges.", type: "mcq", options: ["buying", "selling", "washing", "cooking"], correct: "selling" },
+            { num: 18, text: "We use a broom to __________.", type: "mcq", options: ["cook", "sweep", "wash", "drink"], correct: "sweep" },
+            { num: 19, text: "We use a rake to __________.", type: "mcq", options: ["gather leaves", "cook food", "wash clothes", "cut grass"], correct: "gather leaves" },
+            { num: 20, text: "We use a cutlass to __________.", type: "mcq", options: ["write", "cut grass", "eat food", "carry water"], correct: "cut grass" },
+            { num: 21, text: "An adverb describes __________.", type: "mcq", options: ["a noun", "a verb", "a chair", "a book"], correct: "a verb" },
+            { num: 22, text: "The word “carefully” describes __________.", type: "mcq", options: ["how it happens", "where it happens", "who did it", "what is happening"], correct: "how it happens" },
+            { num: 23, text: "“Yesterday” tells us __________ an action happened.", type: "mcq", options: ["when", "how", "where", "who"], correct: "when" },
+            { num: 24, text: "“Regularly” tells us __________ an action happens.", type: "mcq", options: ["how often", "who", "where", "why"], correct: "how often" },
+            { num: 25, text: "The sentence “She left her book at home” shows __________.", type: "mcq", options: ["place", "time", "person", "food"], correct: "place" },
+            { num: 26, text: "In the sentence “He always comes to school”, the adverb is __________.", type: "mcq", options: ["comes", "always", "school", "he"], correct: "always" },
+            { num: 27, text: "The word “soon” tells us about __________.", type: "mcq", options: ["place", "time", "person", "object"], correct: "time" },
+            { num: 28, text: "In the sentence “He drives carefully”, the verb is __________.", type: "mcq", options: ["drives", "carefully", "he", "car"], correct: "drives" },
+            { num: 29, text: "“Usually” shows __________.", type: "mcq", options: ["frequency", "place", "person", "object"], correct: "frequency" },
+            { num: 30, text: "Adverbs describe __________ an action happens.", type: "mcq", options: ["how", "who", "which", "whose"], correct: "how" },
+            { num: 31, text: "knife =", type: "text", correct: "11 14 9 6 5" },
+            { num: 32, text: "bee =", type: "text", correct: "2 5 5" },
+            { num: 33, text: "ant =", type: "text", correct: "1 14 20" },
+            { num: 34, text: "3 18 1 22 5 =", type: "text", correct: "crave" },
+            { num: 35, text: "13 1 4 5 =", type: "text", correct: "made" },
+            { num: 36, text: "King is to __________.", type: "text", correct: "Queen" },
+            { num: 37, text: "Mother is to __________.", type: "text", correct: "Father" },
+            { num: 38, text: "Brother is to __________.", type: "text", correct: "Sister" },
+            { num: 39, text: "Man is to __________.", type: "text", correct: "Woman" },
+            { num: 40, text: "Short is to __________.", type: "text", correct: "Long" }
+        ];
+
+        let currentIndex = 0;
+        let answers = new Array(questions.length).fill(null);
+        let timeLeft = 45 * 60;
+        let studentName = "";
+
+        function startExam() {
+            const nameInput = document.getElementById("studentNameInput").value.trim();
+            if (nameInput === "") {
+                alert("Please enter your name to start!");
+                return;
+            }
+            studentName = nameInput;
+            document.getElementById("displayName").textContent = studentName;
+            document.getElementById("loginOverlay").style.display = "none";
+            document.getElementById("mainQuiz").style.opacity = "1";
+            document.getElementById("mainQuiz").style.pointerEvents = "auto";
             
-            reviewList.innerHTML += `
-                <div class="review-item">
-                    <p>${index + 1}. ${item.q}</p>
-                    <p class="correct-text">Correct Answer: ${item.a}</p>
+            renderQuestion();
+            startTimer();
+        }
+
+        function renderQuestion() {
+            const q = questions[currentIndex];
+            document.getElementById("qNum").textContent = currentIndex + 1;
+            document.getElementById("questionHeader").textContent = `Question ${q.num}`;
+            document.getElementById("questionText").textContent = q.text;
+
+            document.getElementById("numberTable").style.display = (q.num >= 31 && q.num <= 35) ? "block" : "none";
+            document.getElementById("wordBankTable").style.display = (q.num >= 36 && q.num <= 40) ? "block" : "none";
+
+            const container = document.getElementById("optionsContainer");
+            container.innerHTML = "";
+
+            if (q.type === "mcq") {
+                q.options.forEach(opt => {
+                    const div = document.createElement("div");
+                    div.className = "option";
+                    div.innerHTML = `<input type="radio" name="q" value="${opt}" ${answers[currentIndex] === opt ? 'checked' : ''}> ${opt}`;
+                    div.onclick = () => { div.querySelector('input').checked = true; saveAnswer(); };
+                    container.appendChild(div);
+                });
+            } else {
+                container.innerHTML = `<input type="text" id="textAns" class="text-input" value="${answers[currentIndex] || ''}" oninput="saveAnswer()" placeholder="Type your answer here...">`;
+            }
+
+            document.getElementById("prevBtn").style.visibility = currentIndex === 0 ? "hidden" : "visible";
+            document.getElementById("nextBtn").style.display = currentIndex === questions.length - 1 ? "none" : "block";
+            document.getElementById("submitBtn").style.display = currentIndex === questions.length - 1 ? "block" : "none";
+            document.getElementById("progressBar").style.width = `${((currentIndex + 1) / questions.length) * 100}%`;
+        }
+
+        function saveAnswer() {
+            const q = questions[currentIndex];
+            if (q.type === "mcq") {
+                const selected = document.querySelector('input[name="q"]:checked');
+                if (selected) answers[currentIndex] = selected.value;
+            } else {
+                answers[currentIndex] = document.getElementById("textAns").value.trim();
+            }
+        }
+
+        function nextQuestion() { saveAnswer(); currentIndex++; renderQuestion(); window.scrollTo(0,0); }
+        function prevQuestion() { saveAnswer(); currentIndex--; renderQuestion(); window.scrollTo(0,0); }
+
+        function startTimer() {
+            const timerDisplay = document.getElementById("timer");
+            const interval = setInterval(() => {
+                timeLeft--;
+                let mins = Math.floor(timeLeft / 60);
+                let secs = timeLeft % 60;
+                timerDisplay.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+                if (timeLeft <= 0) { clearInterval(interval); submitExam(); }
+            }, 1000);
+        }
+
+        function submitExam() {
+            saveAnswer();
+            document.getElementById("mainQuiz").style.display = "none";
+            document.querySelector(".student-info").style.display = "none";
+            document.getElementById("resultsScreen").style.display = "block";
+            
+            let score = 0;
+            let listHtml = "";
+            questions.forEach((q, i) => {
+                const isCorrect = answers[i]?.toLowerCase() === q.correct.toLowerCase();
+                if (isCorrect) score++;
+                listHtml += `<div class="result-item ${isCorrect ? '' : 'wrong'}">
+                    <strong>Q${q.num}:</strong> ${q.text}<br>
+                    Your Answer: <span style="color: ${isCorrect ? 'green' : 'red'}">${answers[i] || 'No Answer'}</span> | Correct: <b>${q.correct}</b>
                 </div>`;
-        });
-
-        document.getElementById('exam-section').style.display = 'none';
-        document.getElementById('result-area').style.display = 'block';
-        document.getElementById('score-display').innerText = 
-            `${document.getElementById('candidateName').value}, your score is: ${score} / ${questions.length}`;
-    }
-</script>
-
+            });
+            
+            document.getElementById("finalStudentName").textContent = `Student Name: ${studentName}`;
+            document.getElementById("scoreCard").textContent = `Score: ${score} / 40`;
+            document.getElementById("resultsList").innerHTML = listHtml;
+            window.scrollTo(0,0);
+        }
+    </script>
 </body>
 </html>

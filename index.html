@@ -1,327 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Term 2 Examination 2025/2026 Academic session | Key Stage One & Two </title>
-  <style>
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      max-width: 900px;
-      margin: 20px auto;
-      padding: 0 15px;
-      line-height: 1.5;
-    }
-    h1, h2 { text-align: center; color: #2c3e50; }
-    #info, #quiz, #result { margin: 30px 0; }
-    .timer {
-      font-size: 1.4em;
-      font-weight: bold;
-      color: #d32f2f;
-      text-align: center;
-      margin: 15px 0;
-    }
-    .question {
-      margin: 25px 0;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #f9f9f9;
-    }
-    .question h3 {
-      margin-top: 0;
-      color: #34495e;
-    }
-    label {
-      display: block;
-      margin: 8px 0;
-      cursor: pointer;
-    }
-    button {
-      padding: 12px 24px;
-      font-size: 1.1em;
-      margin: 10px;
-      cursor: pointer;
-      border: none;
-      border-radius: 6px;
-      color: white;
-    }
-    #startBtn { background: #27ae60; }
-    #submitBtn { background: #e74c3c; }
-    #downloadBtn { background: #3498db; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 20px 0;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: left;
-    }
-    th { background: #ecf0f1; }
-    .correct { background: #d4edda; color: #155724; }
-    .wrong { background: #f8d7da; color: #721c24; }
-    #nameInput {
-      padding: 10px;
-      font-size: 1.1em;
-      width: 280px;
-      margin: 10px;
-    }
-    .center { text-align: center; }
-    .answer-text {
-      font-weight: bold;
-      color: #1e8449;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RWMS - SOCIAL & CITIZENSHIP STUDIES (YEAR 2)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        .header-panel {
+            text-align: center;
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-top: 8px solid #673ab7;
+        }
+        h1 { color: #4527a0; margin: 0; font-size: 1.7em; }
+        
+        .student-info {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            border: 1px solid #ddd;
+        }
+        .student-info input {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 90%;
+        }
+
+        .timer-bar {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+        #timer {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: white;
+            background: #d32f2f;
+            padding: 10px 40px;
+            border-radius: 50px;
+            box-shadow: 0 4px 12px rgba(211, 47, 47, 0.3);
+        }
+
+        .q-card {
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+            border-left: 6px solid #673ab7;
+        }
+        .q-card h3 { margin-top: 0; color: #311b92; font-size: 1.1em; }
+
+        .options label {
+            display: block;
+            margin: 10px 0;
+            padding: 12px;
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .options label:hover { background: #f3e5f5; border-color: #673ab7; }
+        .options input { margin-right: 12px; transform: scale(1.3); }
+
+        .correct-reveal {
+            margin-top: 12px;
+            padding: 10px;
+            background: #e8f5e9;
+            border: 1px dashed #2e7d32;
+            border-radius: 6px;
+            color: #1b5e20;
+            font-weight: bold;
+            display: none; 
+        }
+
+        #submitBtn {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 40px auto;
+            padding: 18px;
+            font-size: 1.2em;
+            background: #673ab7;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #submitBtn:hover { background: #5e35b1; }
+
+        .results-overlay {
+            display: none;
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border: 5px solid #673ab7;
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+        .score-big { font-size: 4em; color: #2e7d32; display: block; font-weight: 800; }
+    </style>
 </head>
 <body>
-<h1>Term 2 Examination 2025/2026 Academic session | Subject: Digital Art </h1>
-<h2>Objective Questions (30)</h2>
-<h2>Key Stage One & Two</h2>
 
-<div id="info" class="center">
-  <label>Enter your full name:
-    <input type="text" id="nameInput" placeholder="Your Name" required />
-  </label>
-  <button id="startBtn">Start Exam</button>
+<div class="header-panel">
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <p><strong>TERM TWO EXAMINATION, 2025/2026 ACADEMIC SESSION</strong></p>
+    <p>Class: Key Stage 1 (Year 2) | Subject: Social & Citizenship Studies</p>
 </div>
 
-<div id="quiz" style="display:none;">
-  <div class="timer">Time remaining: <span id="time">45:00</span></div>
- 
-  <form id="testForm">
-    <!-- Questions will be inserted here by JavaScript -->
-  </form>
-  <div class="center">
-    <button id="submitBtn">Submit Exam</button>
-  </div>
+<div class="student-info">
+    <div>
+        <label>Name:</label><br>
+        <input type="text" placeholder="Enter full name...">
+    </div>
+    <div>
+        <label>Date:</label><br>
+        <input type="date">
+    </div>
 </div>
 
-<div id="result" style="display:none;">
-  <h2>Examination Result</h2>
-  <div id="summary"></div>
-  <table id="correctionTable">
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Your Answer</th>
-        <th>Correct Answer</th>
-        <th>Status</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <div class="center">
-    <button id="downloadBtn">Download Result (Text)</button>
-  </div>
+<div class="timer-bar">
+    <div id="timer">45:00</div>
+</div>
+
+<form id="socialForm"></form>
+
+<button type="button" id="submitBtn" onclick="gradeCBT()">Submit Final Answers</button>
+
+<div id="resultsOverlay" class="results-overlay">
+    <h2>Examination Finished</h2>
+    <span id="finalScore" class="score-big">0 / 30</span>
+    <p id="gradeComment" style="font-size: 1.4em; color: #555;"></p>
+    <p>Review your answers below. Correct choices are highlighted.</p>
 </div>
 
 <script>
-// ──────────────────────────────────────────────
-// DATA
-// ──────────────────────────────────────────────
 const questions = [
-  { q: "A computer is an ______ device.", opts: ["A. wooden", "B. electronic", "C. plastic", "D. paper"], ans: "B" },
-  { q: "A computer accepts data as ______. ", opts: ["A. output", "B. thinking", "C. input", "D. printing"], ans: "C" },
-  { q: "The result a computer gives after processing is called ______. ", opts: ["A. input", "B. output", "C. typing", "D. drawing"], ans: "B" },
-  { q: "The “brain” of the computer is called the ______. ", opts: ["A. Monitor", "B. Mouse", "C. CPU", "D. Speaker"], ans: "C" },
-  { q: "The part of the computer that shows what we are doing is the ______. ", opts: ["A. Keyboard", "B. Monitor", "C. Mouse", "D. CPU"], ans: "B" },
-  { q: "Which device is used for typing? ", opts: ["A. Mouse", "B. Speaker", "C. Keyboard", "D. Webcam"], ans: "C" },
-  { q: "The mouse is mainly used for ______. ", opts: ["A. cooking", "B. clicking and selecting", "C. printing", "D. charging"], ans: "B" },
-  { q: "Drawing and painting on a computer is done using ______. ", opts: ["A. hardware only", "B. paint apps", "C. cables", "D. printer"], ans: "B" },
-  { q: "Hardware means parts you can ______. ", opts: ["A. eat", "B. see and touch", "C. download", "D. hear only"], ans: "B" },
-  { q: "Which of these is hardware? ", opts: ["A. Windows", "B. Game", "C. Monitor", "D. Paint app"], ans: "C" },
-  { q: "Which of these is software? ", opts: ["A. Mouse", "B. Keyboard", "C. Windows", "D. Speaker"], ans: "C" },
-  { q: "The main program that controls the computer is called ______. ", opts: ["A. App", "B. Game", "C. Operating System", "D. Mouse"], ans: "C" },
-  { q: "An example of an operating system is ______. ", opts: ["A. Speaker", "B. Windows", "C. Mouse", "D. Webcam"], ans: "B" },
-  { q: "Software tells the computer what to ______. ", opts: ["A. eat", "B. draw", "C. do", "D. clean"], ans: "C" },
-  { q: "The long key used for spacing words is the ______. ", opts: ["A. Enter Key", "B. Shift Key", "C. Space Bar", "D. Ctrl Key"], ans: "C" },
-  { q: "The key used to move to a new line is the ______. ", opts: ["A. Backspace", "B. Enter Key", "C. Tab", "D. Alt"], ans: "B" },
-  { q: "The key used to erase letters is the ______. ", opts: ["A. Caps Lock", "B. Shift", "C. Backspace", "D. Ctrl"], ans: "C" },
-  { q: "Arrow keys are also called ______ keys. ", opts: ["A. Function", "B. Numeric", "C. Cursor", "D. Special"], ans: "C" },
-  { q: "The part of the mouse used to move up and down a page is the ______. ", opts: ["A. Cable", "B. Scroll wheel", "C. LED light", "D. Button"], ans: "B" },
-  { q: "The left button of a mouse is used to ______. ", opts: ["A. scroll", "B. left-click", "C. connect", "D. type"], ans: "B" },
-  { q: "Right-clicking is often used to ______. ", opts: ["A. open more options", "B. shut down", "C. print", "D. type"], ans: "A" },
-  { q: "Motion detection helps the mouse to ______. ", opts: ["A. shine", "B. connect", "C. track movement", "D. type"], ans: "C" },
-  { q: "The wire that connects a wired mouse is called the ______. ", opts: ["A. sensor", "B. LED", "C. mouse cable", "D. screen"], ans: "C" },
-  { q: "Computer hygiene means keeping the computer ______. ", opts: ["A. dirty", "B. hidden", "C. clean and safe", "D. open"], ans: "C" },
-  { q: "Before using a computer, you should ______. ", opts: ["A. eat", "B. wash your hands", "C. run", "D. shout"], ans: "B" },
-  { q: "We should not ______ near the computer. ", opts: ["A. type", "B. click", "C. eat or drink", "D. read"], ans: "C" },
-  { q: "To protect the computer from viruses, avoid clicking ______. ", opts: ["A. learning apps", "B. strange links", "C. keyboard", "D. mouse"], ans: "B" },
-  { q: "After using the computer, you should ______. ", opts: ["A. unplug it quickly", "B. hit it", "C. shut it down properly", "D. leave it on"], ans: "C" },
-  { q: "Hardware and software work together like your ______. ", opts: ["A. shoes and socks", "B. body and mind", "C. bag and book", "D. food and plate"], ans: "B" },
-  { q: "Keeping the computer clean helps it to ______. ", opts: ["A. break quickly", "B. last longer", "C. stop working", "D. disappear"], ans: "B" }
+    { q: "Greeting is a way of showing ______.", o: ["anger", "respect", "punishment", "fighting"], c: 1, a: "respect" },
+    { q: "Greeting elders shows good ______.", o: ["manners", "fighting", "shouting", "noise"], c: 0, a: "manners" },
+    { q: "The Hausa people live mainly in the ______ part of Nigeria.", o: ["eastern", "northern", "western", "southern"], c: 1, a: "northern" },
+    { q: "“Ututu oma” is an Igbo greeting for ______.", o: ["morning", "evening", "afternoon", "night"], c: 0, a: "morning" },
+    { q: "Greeting helps us make ______.", o: ["enemies", "friends", "noise", "quarrel"], c: 1, a: "friends" },
+    { q: "Substances are things we take into our ______.", o: ["house", "body", "bag", "pocket"], c: 1, a: "body" },
+    { q: "Food gives us ______.", o: ["sleep", "strength", "sickness", "weakness"], c: 1, a: "strength" },
+    { q: "Smoking is ______ for our health.", o: ["good", "helpful", "harmful", "safe"], c: 2, a: "harmful" },
+    { q: "We should take substances only from ______ adults.", o: ["unknown", "trusted", "angry", "careless"], c: 1, a: "trusted" },
+    { q: "We should not eat in ______ places.", o: ["clean", "dirty", "safe", "good"], c: 1, a: "dirty" },
+    { q: "Overdose means taking too ______.", o: ["little", "much", "slow", "small"], c: 1, a: "much" },
+    { q: "Too much alcohol can lead to ______.", o: ["wisdom", "intoxication", "peace", "happiness"], c: 1, a: "intoxication" },
+    { q: "Smoke can damage the ______.", o: ["legs", "lungs", "hair", "hands"], c: 1, a: "lungs" },
+    { q: "Choking makes it hard to ______.", o: ["breathe", "sleep", "walk", "laugh"], c: 0, a: "breathe" },
+    { q: "A person suffering from overdose should be taken to the ______.", o: ["market", "hospital", "playground", "farm"], c: 1, a: "hospital" },
+    { q: "A clean environment is free from ______.", o: ["dirt", "water", "people", "trees"], c: 0, a: "dirt" },
+    { q: "Refuse should be thrown into a ______.", o: ["bag", "dustbin", "pocket", "plate"], c: 1, a: "dustbin" },
+    { q: "Dirty surroundings can cause ______.", o: ["wealth", "joy", "diseases", "laughter"], c: 2, a: "diseases" },
+    { q: "A sanitary inspector helps to keep the environment ______.", o: ["clean", "noisy", "dark", "rough"], c: 0, a: "clean" },
+    { q: "Stagnant water can cause ______.", o: ["sickness", "happiness", "strength", "laughter"], c: 0, a: "sickness" },
+    { q: "A broom is used for ______.", o: ["cooking", "sweeping", "writing", "washing"], c: 1, a: "sweeping" },
+    { q: "A rake is used to gather ______.", o: ["water", "refuse", "books", "clothes"], c: 1, a: "refuse" },
+    { q: "A cutlass is used to cut ______.", o: ["grass", "paper", "plates", "bread"], c: 0, a: "grass" },
+    { q: "A dustpan is used to collect ______.", o: ["smoke", "dirt", "water", "grass"], c: 1, a: "dirt" },
+    { q: "Food is anything we ______ or drink.", o: ["throw", "eat", "break", "hide"], c: 1, a: "eat" },
+    { q: "Eggs are ______ foods.", o: ["protective", "body-building", "metal", "sand"], c: 1, a: "body-building" },
+    { q: "Fruits and vegetables are ______ foods.", o: ["energy", "protective", "metal", "sand"], c: 1, a: "protective" },
+    { q: "Fish can be gotten from the ______.", o: ["sky", "river", "road", "school"], c: 1, a: "river" },
+    { q: "We eat food to stay ______.", o: ["sick", "healthy", "tired", "weak"], c: 1, a: "healthy" },
+    { q: "Accidents can cause ______.", o: ["happiness", "injury", "laughter", "reward"], c: 1, a: "injury" }
 ];
 
-// Helper to get full answer text (e.g. "B – electronic")
-function getAnswerText(index, letter) {
-  const q = questions[index];
-  const optIndex = letter.charCodeAt(0) - 65; // A→0, B→1, ...
-  if (optIndex >= 0 && optIndex < q.opts.length) {
-    return `${letter} – ${q.opts[optIndex].substring(3)}`; // remove "A. ", "B. " etc.
-  }
-  return letter;
-}
-
-const correctAnswers = questions.map(q => q.ans);
-
-// ──────────────────────────────────────────────
-// DOM Elements
-// ──────────────────────────────────────────────
-const startBtn = document.getElementById("startBtn");
-const submitBtn = document.getElementById("submitBtn");
-const nameInput = document.getElementById("nameInput");
-const infoDiv = document.getElementById("info");
-const quizDiv = document.getElementById("quiz");
-const resultDiv = document.getElementById("result");
-const form = document.getElementById("testForm");
-const timeDisplay = document.getElementById("time");
-const summaryDiv = document.getElementById("summary");
-const tableBody = document.querySelector("#correctionTable tbody");
-
-let timeLeft = 45 * 60; // 45 minutes in seconds
-let timerId = null;
-let studentName = "";
-
-// ──────────────────────────────────────────────
-// Generate questions
-// ──────────────────────────────────────────────
-function generateQuestions() {
-  let html = "";
-  questions.forEach((q, i) => {
-    html += `<div class="question">
-      <h3>${i+1}. ${q.q}</h3>`;
-    q.opts.forEach((opt, j) => {
-      const letter = String.fromCharCode(65 + j);
-      html += `
-        <label>
-          <input type="radio" name="q${i}" value="${letter}" required>
-          ${opt}
-        </label>`;
-    });
-    html += `</div>`;
-  });
-  form.innerHTML = html;
-}
-
-// ──────────────────────────────────────────────
-// Timer
-// ──────────────────────────────────────────────
-function updateTimer() {
-  const min = Math.floor(timeLeft / 60);
-  const sec = timeLeft % 60;
-  timeDisplay.textContent = `${min}:${sec < 10 ? "0" : ""}${sec}`;
-  if (timeLeft <= 0) {
-    clearInterval(timerId);
-    alert("Time is up! Submitting your answers...");
-    submitExam();
-  }
-  timeLeft--;
-}
-
-function startTimer() {
-  if (timerId) clearInterval(timerId);
-  timeLeft = 45 * 60;
-  updateTimer();
-  timerId = setInterval(updateTimer, 1000);
-}
-
-// ──────────────────────────────────────────────
-// Submission & Scoring
-// ──────────────────────────────────────────────
-function submitExam() {
-  clearInterval(timerId);
-  const formData = new FormData(form);
-  let score = 0;
-  const results = [];
-
-  questions.forEach((q, i) => {
-    const selected = formData.get(`q${i}`);
-    const correct = correctAnswers[i];
-    const isCorrect = selected === correct;
-    if (isCorrect) score++;
-
-    results.push({
-      num: i+1,
-      selected: selected || "—",
-      selectedText: selected ? getAnswerText(i, selected) : "—",
-      correct: correct,
-      correctText: getAnswerText(i, correct),
-      status: isCorrect ? "Correct" : "Wrong"
-    });
-  });
-
-  // Show result
-  quizDiv.style.display = "none";
-  resultDiv.style.display = "block";
-
-  summaryDiv.innerHTML = `
-    <p><strong>Candidate:</strong> ${studentName || "—"}</p>
-    <p><strong>Score:</strong> ${score} / 30 (${Math.round(score/30*100)}%)</p>
-  `;
-
-  // Build correction table
-  tableBody.innerHTML = "";
-  results.forEach(r => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
-      <td>${r.num}</td>
-      <td>${r.selectedText}</td>
-      <td class="answer-text">${r.correctText}</td>
-      <td class="${r.status === "Correct" ? "correct" : "wrong"}">${r.status}</td>
+const form = document.getElementById('socialForm');
+questions.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'q-card';
+    div.innerHTML = `
+        <h3>${i + 1}. ${item.q}</h3>
+        <div class="options">
+            ${item.o.map((opt, idx) => `
+                <label><input type="radio" name="sq${i}" value="${idx}"> ${String.fromCharCode(97 + idx)}) ${opt}</label>
+            `).join('')}
+        </div>
+        <div class="correct-reveal" id="ans-${i}">Correct Answer: ${item.a}</div>
     `;
-    tableBody.appendChild(row);
-  });
-}
-
-// ──────────────────────────────────────────────
-// Download simple text result
-// ──────────────────────────────────────────────
-function downloadResult() {
-  const score = tableBody.querySelectorAll("tr .correct").length;
-  let text = `Digital Art – Key Stage 2 | 2nd Term Exam Result\n\n`;
-  text += `Candidate: ${studentName || "Not entered"}\n`;
-  text += `Score: ${score} / 30 (${Math.round(score/30*100)}%)\n\n`;
-  text += `Corrections:\n`;
-  questions.forEach((q, i) => {
-    const row = tableBody.rows[i];
-    const yourAns = row.cells[1].textContent;
-    const corrAns = row.cells[2].textContent;
-    const status = row.cells[3].textContent;
-    text += `${i+1}. ${status} → Your: ${yourAns}   Correct: ${corrAns}\n`;
-  });
-  const blob = new Blob([text], { type: "text/plain" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = `DigitalArt_Exam_${studentName || "result"}.txt`;
-  a.click();
-  URL.revokeObjectURL(url);
-}
-
-// ──────────────────────────────────────────────
-// Event Listeners
-// ──────────────────────────────────────────────
-startBtn.addEventListener("click", () => {
-  studentName = nameInput.value.trim();
-  if (!studentName) {
-    alert("Please enter your name before starting.");
-    return;
-  }
-  infoDiv.style.display = "none";
-  quizDiv.style.display = "block";
-  generateQuestions();
-  startTimer();
+    form.appendChild(div);
 });
 
-submitBtn.addEventListener("click", () => {
-  if (confirm("Are you sure you want to submit?")) {
-    submitExam();
-  }
-});
+let time = 45 * 60;
+const timerDisplay = document.getElementById('timer');
+const clock = setInterval(() => {
+    let m = Math.floor(time / 60);
+    let s = time % 60;
+    timerDisplay.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+    if (time <= 0) { clearInterval(clock); gradeCBT(); }
+    time--;
+}, 1000);
 
-document.getElementById("downloadBtn").addEventListener("click", downloadResult);
+function gradeCBT() {
+    clearInterval(clock);
+    document.getElementById('submitBtn').style.display = 'none';
+    let score = 0;
+    questions.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="sq${i}"]:checked`);
+        document.getElementById(`ans-${i}`).style.display = 'block';
+        if (selected && parseInt(selected.value) === item.c) score++;
+    });
+    document.getElementById('resultsOverlay').style.display = 'block';
+    document.getElementById('finalScore').innerText = `${score} / 30`;
+    document.getElementById('gradeComment').innerText = `You scored ${Math.round((score/30)*100)}%`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 </body>
 </html>

@@ -1,281 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>RWMS - YEAR 2 FRENCH EXAM</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physics Practical Exam - Royal Wunderkind</title>
     <style>
-        :root {
-            --fr-blue: #002395;
-            --fr-red: #ED2939;
-            --fr-bg: #fdfdfd;
-            --accent-green: #2ecc71;
-        }
-
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f0f2f5;
-            color: #2d3436;
-        }
-
-        /* Top French Ribbon */
-        .fr-ribbon {
-            height: 12px;
-            display: flex;
-            position: sticky;
-            top: 0;
-            z-index: 1001;
-        }
-        .fr-ribbon div { flex: 1; }
-        .b { background: var(--fr-blue); }
-        .w { background: white; }
-        .r { background: var(--fr-red); }
-
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { color: var(--fr-blue); font-size: 1.8rem; margin: 0; }
-        .header h2 { color: var(--fr-red); font-size: 1.3rem; margin: 10px 0; }
-
-        /* Welcome Section */
-        .welcome-box { text-align: center; }
-        .input-group { margin: 25px 0; }
-        input[type="text"] {
-            width: 80%;
-            padding: 15px;
-            border: 3px solid #dfe6e9;
-            border-radius: 12px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-        input[type="text"]:focus { border-color: var(--fr-blue); outline: none; }
-
-        /* Sticky Timer */
-        .timer-bar {
-            position: sticky;
-            top: 12px;
-            z-index: 1000;
-            background: rgba(255,255,255,0.9);
-            padding: 10px 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid #ddd;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #e9ecef;
         }
-        .timer-box {
-            font-size: 1.6rem;
-            font-weight: 900;
-            color: var(--fr-blue);
-            border: 3px solid var(--fr-blue);
-            padding: 5px 30px;
-            border-radius: 50px;
-            background: white;
-        }
-        .timer-low { color: var(--fr-red); border-color: var(--fr-red); animation: shake 0.5s infinite; }
-
-        @keyframes shake { 0% {x:0;} 25% {transform:translateX(2px);} 75% {transform:translateX(-2px);} 100% {x:0;} }
-
-        /* Questions */
-        .q-card {
-            margin-bottom: 30px;
-            padding: 25px;
-            border-radius: 15px;
-            border: 2px solid #f1f2f6;
-            background: #fff;
-            transition: 0.3s;
-        }
-        .q-card:hover { border-color: var(--fr-blue); }
-        .q-text { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; display: block;}
-
-        .options label {
-            display: block;
-            padding: 12px 20px;
-            margin: 8px 0;
-            background: #f8f9fa;
-            border-radius: 10px;
-            cursor: pointer;
-            border: 2px solid transparent;
-            font-size: 1.1rem;
-        }
-        .options input { margin-right: 15px; transform: scale(1.3); }
-        .options label:hover { background: #eef2ff; border-color: #ced6e0; }
-        
-        /* Submit Button */
-        .btn {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            padding: 18px;
-            margin: 40px auto;
-            border-radius: 50px;
-            border: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            cursor: pointer;
-            color: white;
-            transition: 0.3s;
-        }
-        #startBtn { background: var(--fr-blue); }
-        #submitBtn { background: var(--accent-green); }
-
-        .hidden { display: none; }
-        .correction { color: var(--fr-blue); margin-top: 10px; font-weight: bold; display: none; }
-        
-        #resultArea {
+        .quiz-container {
             text-align: center;
-            padding: 40px;
-            background: #e8f8f5;
-            border-radius: 20px;
-            border: 3px solid var(--accent-green);
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            max-width: 700px;
+            width: 90%;
+            position: relative;
         }
+        /* Security Input Styling */
+        .security-section {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f1f3f5;
+            border-radius: 8px;
+        }
+        input[type="password"] {
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            font-size: 1em;
+            text-align: center;
+        }
+        #timer {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #dc3545;
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 2px solid #dc3545;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .question {
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            color: #333;
+            font-weight: 600;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            text-align: left;
+        }
+        .options label {
+            cursor: pointer;
+            padding: 12px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+        .options label:hover {
+            background: #e2e6ea;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            padding: 12px 25px;
+            margin: 0 10px;
+            font-size: 1em;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #backBtn { background-color: #6c757d; }
+        #backBtn:hover { background-color: #5a6268; }
+        
+        .hidden { display: none; }
+        #result { font-size: 1.8em; font-weight: bold; color: #007bff; }
     </style>
 </head>
 <body>
-
-<div class="fr-ribbon"><div class="b"></div><div class="w"></div><div class="r"></div></div>
-
-<div id="intro" class="container">
-    <div class="header">
-        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>FRENCH EXAM - YEAR 2</h2>
-        <p>Term Two | 45 Minutes | 30 Questions</p>
-    </div>
-    <div class="welcome-box">
-        <div class="input-group">
-            <p><strong>Bonjour! What is your name?</strong></p>
-            <input type="text" id="studentName" placeholder="Type your name here..." autocomplete="off">
-        </div>
-        <button id="startBtn" class="btn" onclick="beginQuiz()">Commencer (Start)</button>
-    </div>
-</div>
-
-<div id="examArea" class="hidden">
-    <div class="timer-bar">
-        <div id="timer" class="timer-box">45:00</div>
-    </div>
-    <div class="container">
-        <h3 id="displayStudentName" style="color: var(--fr-blue);"></h3>
-        <hr>
-        <form id="frenchQuiz"></form>
-        <button id="submitBtn" class="btn" onclick="showResults()">Submit My Work</button>
-
-        <div id="resultArea" class="hidden">
-            <h1>Bravo!</h1>
-            <p id="finalName"></p>
-            <h2 id="finalScore" style="font-size: 3rem;"></h2>
-            <p id="finalPercent"></p>
-            <p>Look below to see the correct answers!</p>
-        </div>
-    </div>
-</div>
-
-<script>
-const questions = [
-    { q: "How do you say “My name is…” in French?", o: ["Bonjour", "Je m’appelle", "Merci", "Pardon"], a: "B" },
-    { q: "What is the French word for Hello?", o: ["Bonjour", "Au revoir", "Merci", "Pardon"], a: "A" },
-    { q: "When someone asks your name you can say:", o: ["Je m’appelle Paul", "Merci beaucoup", "Bonne nuit", "Pardon"], a: "A" },
-    { q: "What does 'Merci' mean?", o: ["Please", "Thank you", "Sorry", "Goodbye"], a: "B" },
-    { q: "What does 'S’il vous plaît' mean?", o: ["Thank you", "Please", "Sorry", "Good morning"], a: "B" },
-    { q: "What does 'Pardon' mean?", o: ["Excuse me / Sorry", "Please", "Thank you", "Hello"], a: "A" },
-    { q: "What does 'Au revoir' mean?", o: ["Hello", "Goodbye", "Please", "Sorry"], a: "B" },
-    { q: "What is 1 in French?", o: ["Deux", "Un", "Trois", "Cinq"], a: "B" },
-    { q: "What is 2 in French?", o: ["Deux", "Quatre", "Six", "Huit"], a: "A" },
-    { q: "What is 3 in French?", o: ["Trois", "Sept", "Dix", "Neuf"], a: "A" },
-    { q: "What is 5 in French?", o: ["Quatre", "Cinq", "Six", "Deux"], a: "B" },
-    { q: "What is 10 in French?", o: ["Dix", "Huit", "Sept", "Trois"], a: "A" },
-    { q: "What is Red in French?", o: ["Rouge", "Bleu", "Jaune", "Vert"], a: "A" },
-    { q: "What is Blue in French?", o: ["Rouge", "Bleu", "Noir", "Rose"], a: "B" },
-    { q: "What is Yellow in French?", o: ["Blanc", "Jaune", "Vert", "Rouge"], a: "B" },
-    { q: "What is Head in French?", o: ["La tête", "La main", "Le pied", "Le bras"], a: "A" },
-    { q: "What is Hand in French?", o: ["Le pied", "La main", "La tête", "Le bras"], a: "B" },
-    { q: "What is Leg in French?", o: ["Le pied", "La jambe", "La tête", "La bouche"], a: "B" },
-    { q: "What is Father in French?", o: ["Mère", "Père", "Frère", "Oncle"], a: "B" },
-    { q: "What is Mother in French?", o: ["Père", "Mère", "Tante", "Cousin"], a: "B" },
-    { q: "What is Brother in French?", o: ["Frère", "Sœur", "Oncle", "Tante"], a: "A" },
-    { q: "What is Sister in French?", o: ["Frère", "Cousin", "Sœur", "Oncle"], a: "C" },
-    { q: "What is Dog in French?", o: ["Chat", "Chien", "Oiseau", "Poisson"], a: "B" },
-    { q: "What is Cat in French?", o: ["Chat", "Cheval", "Chien", "Lion"], a: "A" },
-    { q: "What is Bird in French?", o: ["Poisson", "Oiseau", "Chat", "Chien"], a: "B" },
-    { q: "What is Monday in French?", o: ["Mardi", "Lundi", "Jeudi", "Samedi"], a: "B" },
-    { q: "What is Tuesday in French?", o: ["Mardi", "Vendredi", "Dimanche", "Jeudi"], a: "A" },
-    { q: "What does Sautez mean?", o: ["Jump", "Eat", "Walk", "Dance"], a: "A" },
-    { q: "What does Dansez mean?", o: ["Dance", "Jump", "Eat", "Go"], a: "A" },
-    { q: "What does Manger mean?", o: ["Walk", "Eat", "Jump", "D. Carry"], a: "B" }
-];
-
-let timeLeft = 45 * 60;
-let clock;
-
-function beginQuiz() {
-    const nameInput = document.getElementById('studentName').value;
-    if(!nameInput) { alert("Please enter your name first!"); return; }
-
-    document.getElementById('intro').classList.add('hidden');
-    document.getElementById('examArea').classList.remove('hidden');
-    document.getElementById('displayStudentName').innerText = "Student: " + nameInput;
-
-    const form = document.getElementById('frenchQuiz');
-    questions.forEach((item, index) => {
-        const qDiv = document.createElement('div');
-        qDiv.className = 'q-card';
-        qDiv.innerHTML = `
-            <span class="q-text">${index + 1}. ${item.q}</span>
-            <div class="options">
-                ${item.o.map((opt, i) => {
-                    const letter = String.fromCharCode(65 + i);
-                    return `<label><input type="radio" name="q${index}" value="${letter}"> ${letter}. ${opt}</label>`;
-                }).join('')}
+    <div class="quiz-container">
+        <div id="intro">
+            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+            <h2 style="color: #007BFF;">PHYSICS PRACTICAL EXAMINATION</h2>
+            <p><strong>Tutor:</strong> Mr. Alade Julius Ayodeji</p>
+            <p><strong>Date:</strong> March, 2026</p>
+            <hr>
+            <p><strong>Instructions:</strong> Attempt All Questions. <br> You have <strong>40 Minutes</strong> to complete this exam.</p>
+            
+            <div class="security-section">
+                <p style="font-weight: bold; color: #495057;">Examiner Access Only:</p>
+                <input type="password" id="accessCode" placeholder="Enter Access Code">
+                <p id="errorMsg" style="color: red; font-size: 0.9em; display: none;">Invalid Access Code!</p>
             </div>
-            <div id="correct-${index}" class="correction">Answer: ${item.a}</div>
-        `;
-        form.appendChild(qDiv);
-    });
 
-    clock = setInterval(updateTimer, 1000);
-}
+            <button onclick="startQuiz()">Start Examination</button>
+        </div>
 
-function updateTimer() {
-    timeLeft--;
-    let mins = Math.floor(timeLeft / 60);
-    let secs = timeLeft % 60;
-    const timerEl = document.getElementById('timer');
-    timerEl.innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        <div id="quiz" class="hidden">
+            <div id="timer">Time Remaining: 40:00</div>
+            <div id="question" class="question"></div>
+            <div id="options" class="options"></div>
+            <div class="buttons">
+                <button id="backBtn" onclick="prevQuestion()">Back</button>
+                <button id="nextBtn" onclick="nextQuestion()">Next</button>
+                <button id="submitBtn" class="hidden" onclick="submitQuiz()">Submit Examination</button>
+            </div>
+        </div>
 
-    if(timeLeft < 300) timerEl.classList.add('timer-low');
-    if(timeLeft <= 0) showResults();
-}
+        <div id="result" class="hidden"></div>
+    </div>
 
-function showResults() {
-    clearInterval(clock);
-    let score = 0;
-    questions.forEach((item, index) => {
-        const selected = document.querySelector(`input[name="q${index}"]:checked`);
-        if(selected && selected.value === item.a) score++;
-        document.getElementById(`correct-${index}`).style.display = 'block';
-        
-        // Disable all inputs
-        const radios = document.getElementsByName(`q${index}`);
-        radios.forEach(r => r.disabled = true);
-    });
+    <script>
+        // Set the required access code here
+        const EXAMINER_CODE = "RWMS2026";
 
-    document.getElementById('submitBtn').classList.add('hidden');
-    document.getElementById('resultArea').classList.remove('hidden');
-    document.getElementById('finalName').innerText = "Candidat: " + document.getElementById('studentName').value;
-    document.getElementById('finalScore').innerText = `${score} / ${questions.length}`;
-    document.getElementById('finalPercent').innerText = "Score: " + Math.round((score/questions.length)*100) + "%";
-    
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-</script>
+        const questions = [
+            { question: "What is physics mainly based on?", options: ["Guessing", "Observation and experiment", "Stories", "Opinions"], correct: "Observation and experiment" },
+            { question: "Which of the following is commonly measured in physics?", options: ["Length", "Mass", "Temperature", "All of the above"], correct: "All of the above" },
+            { question: "What does accuracy mean?", options: ["How fast you measure", "How close a measurement is to the correct value", "The size of the object", "The color of the object"], correct: "How close a measurement is to the correct value" },
+            { question: "What does precision mean?", options: ["The spread of repeated measurements", "The exact value of an object", "The speed of measurement", "The type of instrument used"], correct: "The spread of repeated measurements" },
+            { question: "If three measurements are very close to each other, they are considered:", options: ["Precise", "Incorrect", "Random", "Impossible"], correct: "Precise" },
+            { question: "If measurements are close to the true value, they are:", options: ["Fast", "Accurate", "Precise", "Heavy"], correct: "Accurate" },
+            { question: "Which instrument is used to measure length?", options: ["Thermometer", "Ruler", "Stopwatch", "Scale"], correct: "Ruler" },
+            { question: "What is the SI unit for distance?", options: ["Meter", "Gram", "Second", "Liter"], correct: "Meter" },
+            { question: "A measuring tape marked with centimeters and millimeters is used to measure:", options: ["Temperature", "Distance", "Time", "Speed"], correct: "Distance" },
+            { question: "What is the smallest unit usually marked on a ruler?", options: ["Meter", "Kilometer", "Millimeter", "Hour"], correct: "Millimeter" },
+            { question: "Distance is defined as:", options: ["The weight of an object", "The length between two points", "The color of an object", "The temperature of an object"], correct: "The length between two points" },
+            { question: "Which unit is commonly used to measure classroom length?", options: ["Meter", "Gram", "Second", "Newton"], correct: "Meter" },
+            { question: "What tool can measure the length of a desk?", options: ["Stopwatch", "Measuring tape", "Thermometer", "Spring scale"], correct: "Measuring tape" },
+            { question: "When measuring with a ruler, you should:", options: ["Guess the value", "Ignore the scale", "Read the markings carefully", "Close your eyes"], correct: "Read the markings carefully" },
+            { question: "When using a measuring tape, you should be careful to avoid:", options: ["Writing", "Collisions", "Talking", "Reading"], correct: "Reading" },
+            { question: "Which of the following could you measure with a ruler?", options: ["Length of a small block", "Temperature of water", "Weight of a stone", "Time taken to run"], correct: "Length of a small block" },
+            { question: "What unit is smaller than a centimeter?", options: ["Meter", "Kilometer", "Millimeter", "Gram"], correct: "Millimeter" },
+            { question: "Scientific notation helps us:", options: ["Write large or small numbers easily", "Draw graphs", "Measure weight", "Measure temperature"], correct: "Write large or small numbers easily" },
+            { question: "Mass is:", options: ["The amount of matter in an object", "The speed of an object", "The color of an object", "The temperature of an object"], correct: "The amount of matter in an object" },
+            { question: "Mass does not depend on:", options: ["Location", "Size", "Shape", "Color"], correct: "Location" },
+            { question: "Weight is:", options: ["The amount of matter in an object", "The force of gravity acting on mass", "The speed of an object", "The distance traveled"], correct: "The force of gravity acting on mass" },
+            { question: "A digital scale measures:", options: ["Weight", "Mass", "Distance", "Speed"], correct: "Mass" },
+            { question: "Mass is usually measured in:", options: ["Grams", "Seconds", "Meters", "Newtons"], correct: "Grams" },
+            { question: "A spring scale measures:", options: ["Mass", "Weight", "Volume", "Speed"], correct: "Weight" },
+            { question: "Weight is measured in:", options: ["Grams", "Newtons", "Seconds", "Liters"], correct: "Newtons" },
+            { question: "Before using a digital scale, you should:", options: ["Drop it", "Turn it upside down", "Zero or tare it", "Shake it"], correct: "Zero or tare it" },
+            { question: "When using a spring scale, the object is:", options: ["Placed on top", "Hung from a hook", "Put in water", "Measured with a ruler"], correct: "Hung from a hook" },
+            { question: "The value of gravitational acceleration on Earth is about:", options: ["1 m/s²", "5 m/s²", "9.8 m/s²", "20 m/s²"], correct: "9.8 m/s²" },
+            { question: "Volume is the:", options: ["Color of an object", "Amount of space an object occupies", "Speed of an object", "Weight of an object"], correct: "Amount of space an object occupies" },
+            { question: "Liquids are often measured in:", options: ["Liters or milliliters", "Seconds", "Newtons", "Kilometers"], correct: "Liters or milliliters" },
+            { question: "The displacement method is used to measure volume of:", options: ["Liquids only", "Regular objects", "Irregular objects", "Paper"], correct: "Irregular objects" },
+            { question: "A measuring cylinder is used to measure:", options: ["Temperature", "Volume", "Distance", "Speed"], correct: "Volume" },
+            { question: "One milliliter (mL) is equal to:", options: ["1 cm³", "10 cm³", "100 cm³", "1000 cm³"], correct: "1 cm³" },
+            { question: "In the displacement method, the object must be:", options: ["Floating", "Completely submerged", "Broken", "Dry"], correct: "Completely submerged" },
+            { question: "The volume of the object is found by:", options: ["Adding water", "Subtracting initial volume from final volume", "Multiplying volumes", "Guessing"], correct: "Subtracting initial volume from final volume" },
+            { question: "Why should the object not touch the sides of the cylinder?", options: ["It looks better", "It may affect the reading", "It breaks the cylinder", "It changes color"], correct: "It may affect the reading" },
+            { question: "Why should water not spill on the floor?", options: ["It makes the floor shiny", "It can cause slipping", "It cools the room", "It cleans the floor"], correct: "It can cause slipping" },
+            { question: "Motion means:", options: ["Staying still", "Change in position", "Changing color", "Changing shape"], correct: "Change in position" },
+            { question: "Distance traveled tells us:", options: ["The path length an object moved", "The weight of the object", "The color of the object", "The temperature"], correct: "The path length an object moved" },
+            { question: "Displacement describes:", options: ["The path taken", "The starting point only", "The change in position from start", "The speed of an object"], correct: "The change in position from start" },
+            { question: "Speed describes:", options: ["How quickly an object moves", "The mass of an object", "The color of an object", "The temperature"], correct: "How quickly an object moves" },
+            { question: "Speed is calculated using:", options: ["Distance and time", "Mass and time", "Weight and height", "Temperature and distance"], correct: "Distance and time" },
+            { question: "The unit for speed is usually:", options: ["m/s", "kg", "N", "cm"], correct: "m/s" },
+            { question: "A stopwatch is used to measure:", options: ["Time", "Distance", "Weight", "Volume"], correct: "Time" },
+            { question: "To measure speed in an experiment, you must measure:", options: ["Time and distance", "Mass and distance", "Weight and volume", "Temperature and speed"], correct: "Time and distance" },
+            { question: "Repeating trials helps:", options: ["Increase accuracy", "Waste time", "Make the experiment harder", "Change the distance"], correct: "Increase accuracy" },
+            { question: "A scatter graph shows:", options: ["Data points", "Pictures", "Stories", "Colors"], correct: "Data points" },
+            { question: "A line of best fit shows:", options: ["The general trend in data", "Only one data point", "No information", "Random numbers"], correct: "The general trend in data" },
+            { question: "A positive trend means:", options: ["Both variables increase together", "Both decrease together", "One stays the same", "There is no pattern"], correct: "Both variables increase together" },
+            { question: "The horizontal axis usually shows:", options: ["Independent variable", "Dependent variable", "Color", "Title"], correct: "Independent variable" },
+            { question: "The vertical axis usually shows:", options: ["Independent variable", "Dependent variable", "Temperature only", "Distance only"], correct: "Dependent variable" },
+            { question: "The independent variable is the one you:", options: ["Measure", "Control", "Ignore", "Erase"], correct: "Control" },
+            { question: "The dependent variable is the one that:", options: ["Changes in response", "Never changes", "Is always time", "Is always distance"], correct: "Changes in response" },
+            { question: "Data points in a scatter graph should be:", options: ["Connected with lines", "Plotted as individual points", "Erased", "Colored randomly"], correct: "Plotted as individual points" },
+            { question: "A line of best fit should:", options: ["Touch every point", "Pass through the center of the data", "Avoid all points", "Be curved"], correct: "Pass through the center of the data" },
+            { question: "A graph helps scientists:", options: ["Organize and understand data", "Measure weight", "Cook food", "Paint pictures"], correct: "Organize and understand data" },
+            { question: "If study hours increase and scores increase, the trend is:", options: ["Negative", "Positive", "Random", "Zero"], correct: "Positive" },
+            { question: "A point far from others is called:", options: ["A label", "An outlier", "A line", "A scale"], correct: "An outlier" },
+            { question: "A line of best fit can help us:", options: ["Make predictions", "Change results", "Remove data", "Ignore data"], correct: "Make predictions" },
+            { question: "Graphs are useful because they help us:", options: ["See patterns in data", "Increase weight", "Change experiments", "Measure temperature"], correct: "See patterns in data" }
+        ];
 
+        let currentQuestion = 0;
+        let answers = new Array(questions.length).fill(null);
+        let timeLeft = 40 * 60; // 40 minutes in seconds
+        let timerInterval;
+
+        function startQuiz() {
+            const enteredCode = document.getElementById("accessCode").value;
+            const errorMsg = document.getElementById("errorMsg");
+
+            // Check if access code is correct
+            if (enteredCode === EXAMINER_CODE) {
+                errorMsg.style.display = "none";
+                document.getElementById("intro").classList.add("hidden");
+                document.getElementById("quiz").classList.remove("hidden");
+                startTimer();
+                showQuestion();
+            } else {
+                errorMsg.style.display = "block";
+            }
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                document.getElementById("timer").textContent = `Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitQuiz();
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${q.question}`;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            
+            q.options.forEach((option) => {
+                const label = document.createElement("label");
+                const radio = document.createElement("input");
+                radio.type = "radio";
+                radio.name = "option";
+                radio.value = option;
+                radio.checked = answers[currentQuestion] === option;
+                radio.onclick = () => answers[currentQuestion] = option;
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(` ${option}`));
+                optionsDiv.appendChild(label);
+            });
+
+            document.getElementById("backBtn").classList.toggle("hidden", currentQuestion === 0);
+            document.getElementById("nextBtn").classList.toggle("hidden", currentQuestion === questions.length - 1);
+            document.getElementById("submitBtn").classList.toggle("hidden", currentQuestion !== questions.length - 1);
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                showQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            let score = 0;
+            answers.forEach((answer, index) => {
+                if (answer === questions[index].correct) score++;
+            });
+            
+            document.getElementById("quiz").classList.add("hidden");
+            const resultDiv = document.getElementById("result");
+            resultDiv.classList.remove("hidden");
+            resultDiv.innerHTML = `Examination Complete!<br>Your Score: ${score} / ${questions.length}`;
+        }
+    </script>
 </body>
 </html>

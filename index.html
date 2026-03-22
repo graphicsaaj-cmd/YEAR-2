@@ -3,285 +3,265 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Physics Practical Exam - Royal Wunderkind</title>
+    <title>RWMS - HISTORY EXAM (YEAR 2)</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Georgia', serif;
+            max-width: 850px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fdf6e3;
+            color: #5c4033;
+        }
+        .header {
+            text-align: center;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-bottom: 8px solid #8b4513;
+            margin-bottom: 30px;
+        }
+        h1 { color: #8b4513; margin: 0; font-size: 1.8em; text-transform: uppercase; }
+        
+        /* New Entry Screen Styles */
+        .entry-container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            margin: 50px auto;
+            border: 2px solid #8b4513;
+        }
+        .entry-container input {
+            padding: 15px;
+            width: 80%;
+            font-size: 1.1em;
+            border: 2px solid #d3b8ae;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            outline-color: #8b4513;
+        }
+
+        .timer-container {
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background-color: #e9ecef;
-        }
-        .quiz-container {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-            max-width: 700px;
-            width: 90%;
-            position: relative;
-        }
-        /* Security Input Styling */
-        .security-section {
-            margin: 20px 0;
-            padding: 15px;
-            background: #f1f3f5;
-            border-radius: 8px;
-        }
-        input[type="password"] {
-            padding: 10px;
-            width: 200px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            margin-bottom: 10px;
-            font-size: 1em;
-            text-align: center;
+            margin-bottom: 20px;
         }
         #timer {
-            font-size: 1.2em;
+            background: #b22222;
+            color: white;
+            padding: 12px 35px;
+            border-radius: 5px;
             font-weight: bold;
-            color: #dc3545;
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 2px solid #dc3545;
+            font-size: 1.4em;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            border: 2px solid #fff;
+        }
+        .question-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
             border-radius: 8px;
-            display: inline-block;
+            border: 1px solid #d3b8ae;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
-        .question {
-            margin-bottom: 25px;
-            font-size: 1.3em;
-            color: #333;
-            font-weight: 600;
-        }
-        .options {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            text-align: left;
-        }
-        .options label {
-            cursor: pointer;
+        .options-group label {
+            display: block;
+            margin: 10px 0;
             padding: 12px;
-            background: #f8f9fa;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            background: #fffaf0;
+            border: 1px solid #eaddca;
+            border-radius: 5px;
+            cursor: pointer;
             transition: 0.2s;
         }
-        .options label:hover {
-            background: #e2e6ea;
+        .options-group label:hover { background: #f5f5dc; }
+        input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
+        
+        .answer-text {
+            margin-top: 15px;
+            padding: 10px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 5px;
+            font-weight: bold;
+            display: none;
+            border-left: 5px solid #28a745;
         }
-        .buttons {
-            margin-top: 30px;
-        }
-        button {
-            padding: 12px 25px;
-            margin: 0 10px;
-            font-size: 1em;
-            cursor: pointer;
-            background-color: #28a745;
+        
+        button#start-btn, button#submit-btn {
+            display: block;
+            width: 100%;
+            max-width: 320px;
+            padding: 20px;
+            background: #8b4513;
             color: white;
             border: none;
             border-radius: 5px;
-            transition: 0.3s;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 20px auto;
+            font-weight: bold;
+            text-transform: uppercase;
         }
-        button:hover {
-            background-color: #218838;
-        }
-        #backBtn { background-color: #6c757d; }
-        #backBtn:hover { background-color: #5a6268; }
+        button#start-btn:hover, button#submit-btn:hover { background: #5d2e0a; }
         
         .hidden { display: none; }
-        #result { font-size: 1.8em; font-weight: bold; color: #007bff; }
+
+        #result-display {
+            display: none;
+            text-align: center;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            border: 4px solid #8b4513;
+            margin-top: 30px;
+        }
+        .final-score { font-size: 3.5em; color: #8b4513; font-weight: bold; }
+        #student-name-display { font-size: 1.5em; color: #5c4033; margin-bottom: 10px; }
     </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <div id="intro">
-            <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-            <h2 style="color: #007BFF;">PHYSICS PRACTICAL EXAMINATION</h2>
-            <p><strong>Tutor:</strong> Mr. Alade Julius Ayodeji</p>
-            <p><strong>Date:</strong> March, 2026</p>
-            <hr>
-            <p><strong>Instructions:</strong> Attempt All Questions. <br> You have <strong>40 Minutes</strong> to complete this exam.</p>
-            
-            <div class="security-section">
-                <p style="font-weight: bold; color: #495057;">Examiner Access Only:</p>
-                <input type="password" id="accessCode" placeholder="Enter Access Code">
-                <p id="errorMsg" style="color: red; font-size: 0.9em; display: none;">Invalid Access Code!</p>
-            </div>
 
-            <button onclick="startQuiz()">Start Examination</button>
-        </div>
+<div class="header">
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <p><strong>TERM TWO EXAMINATION, 2025/2026 SESSION</strong></p>
+    <p>Class: Key Stage 1 (Year 2) | Subject: HISTORY</p>
+    <p>Duration: 45 Minutes</p>
+</div>
 
-        <div id="quiz" class="hidden">
-            <div id="timer">Time Remaining: 40:00</div>
-            <div id="question" class="question"></div>
-            <div id="options" class="options"></div>
-            <div class="buttons">
-                <button id="backBtn" onclick="prevQuestion()">Back</button>
-                <button id="nextBtn" onclick="nextQuestion()">Next</button>
-                <button id="submitBtn" class="hidden" onclick="submitQuiz()">Submit Examination</button>
-            </div>
-        </div>
+<div id="entry-screen" class="entry-container">
+    <h2>Student Login</h2>
+    <p>Please enter your full name to begin the exam:</p>
+    <input type="text" id="studentName" placeholder="Full Name" required>
+    <button id="start-btn" onclick="startExam()">Begin Examination</button>
+</div>
 
-        <div id="result" class="hidden"></div>
+<div id="exam-content" class="hidden">
+    <div class="timer-container">
+        <div id="timer">45:00</div>
     </div>
 
-    <script>
-        // Set the required access code here
-        const EXAMINER_CODE = "RWMS2026";
+    <form id="historyForm"></form>
 
-        const questions = [
-            { question: "What is physics mainly based on?", options: ["Guessing", "Observation and experiment", "Stories", "Opinions"], correct: "Observation and experiment" },
-            { question: "Which of the following is commonly measured in physics?", options: ["Length", "Mass", "Temperature", "All of the above"], correct: "All of the above" },
-            { question: "What does accuracy mean?", options: ["How fast you measure", "How close a measurement is to the correct value", "The size of the object", "The color of the object"], correct: "How close a measurement is to the correct value" },
-            { question: "What does precision mean?", options: ["The spread of repeated measurements", "The exact value of an object", "The speed of measurement", "The type of instrument used"], correct: "The spread of repeated measurements" },
-            { question: "If three measurements are very close to each other, they are considered:", options: ["Precise", "Incorrect", "Random", "Impossible"], correct: "Precise" },
-            { question: "If measurements are close to the true value, they are:", options: ["Fast", "Accurate", "Precise", "Heavy"], correct: "Accurate" },
-            { question: "Which instrument is used to measure length?", options: ["Thermometer", "Ruler", "Stopwatch", "Scale"], correct: "Ruler" },
-            { question: "What is the SI unit for distance?", options: ["Meter", "Gram", "Second", "Liter"], correct: "Meter" },
-            { question: "A measuring tape marked with centimeters and millimeters is used to measure:", options: ["Temperature", "Distance", "Time", "Speed"], correct: "Distance" },
-            { question: "What is the smallest unit usually marked on a ruler?", options: ["Meter", "Kilometer", "Millimeter", "Hour"], correct: "Millimeter" },
-            { question: "Distance is defined as:", options: ["The weight of an object", "The length between two points", "The color of an object", "The temperature of an object"], correct: "The length between two points" },
-            { question: "Which unit is commonly used to measure classroom length?", options: ["Meter", "Gram", "Second", "Newton"], correct: "Meter" },
-            { question: "What tool can measure the length of a desk?", options: ["Stopwatch", "Measuring tape", "Thermometer", "Spring scale"], correct: "Measuring tape" },
-            { question: "When measuring with a ruler, you should:", options: ["Guess the value", "Ignore the scale", "Read the markings carefully", "Close your eyes"], correct: "Read the markings carefully" },
-            { question: "When using a measuring tape, you should be careful to avoid:", options: ["Writing", "Collisions", "Talking", "Reading"], correct: "Reading" },
-            { question: "Which of the following could you measure with a ruler?", options: ["Length of a small block", "Temperature of water", "Weight of a stone", "Time taken to run"], correct: "Length of a small block" },
-            { question: "What unit is smaller than a centimeter?", options: ["Meter", "Kilometer", "Millimeter", "Gram"], correct: "Millimeter" },
-            { question: "Scientific notation helps us:", options: ["Write large or small numbers easily", "Draw graphs", "Measure weight", "Measure temperature"], correct: "Write large or small numbers easily" },
-            { question: "Mass is:", options: ["The amount of matter in an object", "The speed of an object", "The color of an object", "The temperature of an object"], correct: "The amount of matter in an object" },
-            { question: "Mass does not depend on:", options: ["Location", "Size", "Shape", "Color"], correct: "Location" },
-            { question: "Weight is:", options: ["The amount of matter in an object", "The force of gravity acting on mass", "The speed of an object", "The distance traveled"], correct: "The force of gravity acting on mass" },
-            { question: "A digital scale measures:", options: ["Weight", "Mass", "Distance", "Speed"], correct: "Mass" },
-            { question: "Mass is usually measured in:", options: ["Grams", "Seconds", "Meters", "Newtons"], correct: "Grams" },
-            { question: "A spring scale measures:", options: ["Mass", "Weight", "Volume", "Speed"], correct: "Weight" },
-            { question: "Weight is measured in:", options: ["Grams", "Newtons", "Seconds", "Liters"], correct: "Newtons" },
-            { question: "Before using a digital scale, you should:", options: ["Drop it", "Turn it upside down", "Zero or tare it", "Shake it"], correct: "Zero or tare it" },
-            { question: "When using a spring scale, the object is:", options: ["Placed on top", "Hung from a hook", "Put in water", "Measured with a ruler"], correct: "Hung from a hook" },
-            { question: "The value of gravitational acceleration on Earth is about:", options: ["1 m/s²", "5 m/s²", "9.8 m/s²", "20 m/s²"], correct: "9.8 m/s²" },
-            { question: "Volume is the:", options: ["Color of an object", "Amount of space an object occupies", "Speed of an object", "Weight of an object"], correct: "Amount of space an object occupies" },
-            { question: "Liquids are often measured in:", options: ["Liters or milliliters", "Seconds", "Newtons", "Kilometers"], correct: "Liters or milliliters" },
-            { question: "The displacement method is used to measure volume of:", options: ["Liquids only", "Regular objects", "Irregular objects", "Paper"], correct: "Irregular objects" },
-            { question: "A measuring cylinder is used to measure:", options: ["Temperature", "Volume", "Distance", "Speed"], correct: "Volume" },
-            { question: "One milliliter (mL) is equal to:", options: ["1 cm³", "10 cm³", "100 cm³", "1000 cm³"], correct: "1 cm³" },
-            { question: "In the displacement method, the object must be:", options: ["Floating", "Completely submerged", "Broken", "Dry"], correct: "Completely submerged" },
-            { question: "The volume of the object is found by:", options: ["Adding water", "Subtracting initial volume from final volume", "Multiplying volumes", "Guessing"], correct: "Subtracting initial volume from final volume" },
-            { question: "Why should the object not touch the sides of the cylinder?", options: ["It looks better", "It may affect the reading", "It breaks the cylinder", "It changes color"], correct: "It may affect the reading" },
-            { question: "Why should water not spill on the floor?", options: ["It makes the floor shiny", "It can cause slipping", "It cools the room", "It cleans the floor"], correct: "It can cause slipping" },
-            { question: "Motion means:", options: ["Staying still", "Change in position", "Changing color", "Changing shape"], correct: "Change in position" },
-            { question: "Distance traveled tells us:", options: ["The path length an object moved", "The weight of the object", "The color of the object", "The temperature"], correct: "The path length an object moved" },
-            { question: "Displacement describes:", options: ["The path taken", "The starting point only", "The change in position from start", "The speed of an object"], correct: "The change in position from start" },
-            { question: "Speed describes:", options: ["How quickly an object moves", "The mass of an object", "The color of an object", "The temperature"], correct: "How quickly an object moves" },
-            { question: "Speed is calculated using:", options: ["Distance and time", "Mass and time", "Weight and height", "Temperature and distance"], correct: "Distance and time" },
-            { question: "The unit for speed is usually:", options: ["m/s", "kg", "N", "cm"], correct: "m/s" },
-            { question: "A stopwatch is used to measure:", options: ["Time", "Distance", "Weight", "Volume"], correct: "Time" },
-            { question: "To measure speed in an experiment, you must measure:", options: ["Time and distance", "Mass and distance", "Weight and volume", "Temperature and speed"], correct: "Time and distance" },
-            { question: "Repeating trials helps:", options: ["Increase accuracy", "Waste time", "Make the experiment harder", "Change the distance"], correct: "Increase accuracy" },
-            { question: "A scatter graph shows:", options: ["Data points", "Pictures", "Stories", "Colors"], correct: "Data points" },
-            { question: "A line of best fit shows:", options: ["The general trend in data", "Only one data point", "No information", "Random numbers"], correct: "The general trend in data" },
-            { question: "A positive trend means:", options: ["Both variables increase together", "Both decrease together", "One stays the same", "There is no pattern"], correct: "Both variables increase together" },
-            { question: "The horizontal axis usually shows:", options: ["Independent variable", "Dependent variable", "Color", "Title"], correct: "Independent variable" },
-            { question: "The vertical axis usually shows:", options: ["Independent variable", "Dependent variable", "Temperature only", "Distance only"], correct: "Dependent variable" },
-            { question: "The independent variable is the one you:", options: ["Measure", "Control", "Ignore", "Erase"], correct: "Control" },
-            { question: "The dependent variable is the one that:", options: ["Changes in response", "Never changes", "Is always time", "Is always distance"], correct: "Changes in response" },
-            { question: "Data points in a scatter graph should be:", options: ["Connected with lines", "Plotted as individual points", "Erased", "Colored randomly"], correct: "Plotted as individual points" },
-            { question: "A line of best fit should:", options: ["Touch every point", "Pass through the center of the data", "Avoid all points", "Be curved"], correct: "Pass through the center of the data" },
-            { question: "A graph helps scientists:", options: ["Organize and understand data", "Measure weight", "Cook food", "Paint pictures"], correct: "Organize and understand data" },
-            { question: "If study hours increase and scores increase, the trend is:", options: ["Negative", "Positive", "Random", "Zero"], correct: "Positive" },
-            { question: "A point far from others is called:", options: ["A label", "An outlier", "A line", "A scale"], correct: "An outlier" },
-            { question: "A line of best fit can help us:", options: ["Make predictions", "Change results", "Remove data", "Ignore data"], correct: "Make predictions" },
-            { question: "Graphs are useful because they help us:", options: ["See patterns in data", "Increase weight", "Change experiments", "Measure temperature"], correct: "See patterns in data" }
-        ];
+    <button id="submit-btn" onclick="processResults()">Finish and Submit</button>
+</div>
 
-        let currentQuestion = 0;
-        let answers = new Array(questions.length).fill(null);
-        let timeLeft = 40 * 60; // 40 minutes in seconds
-        let timerInterval;
+<div id="result-display">
+    <h2>History Exam Result</h2>
+    <div id="student-name-display"></div>
+    <div class="final-score" id="scoreValue">0 / 30</div>
+    <p id="percentValue" style="font-size: 1.4em;"></p>
+    <p>Great effort! Review the correct historical facts below.</p>
+</div>
 
-        function startQuiz() {
-            const enteredCode = document.getElementById("accessCode").value;
-            const errorMsg = document.getElementById("errorMsg");
+<script>
+const quizData = [
+    { q: "Heroes and heroines contribute to the development of", o: ["toys", "society", "games", "food"], c: 1, t: "society" },
+    { q: "Taiwo Akinkunmi designed the", o: ["Nigerian flag", "school uniform", "national food", "coat of arms"], c: 0, t: "Nigerian flag" },
+    { q: "Nnamdi Azikiwe became the first", o: ["teacher", "president", "farmer", "trader"], c: 1, t: "president" },
+    { q: "Obafemi Awolowo introduced", o: ["free primary education", "private education", "foreign education", "military education"], c: 0, t: "free primary education" },
+    { q: "Anthony Enahoro moved the motion for Nigeria’s", o: ["independence", "football", "farming", "trading"], c: 0, t: "independence" },
+    { q: "Olufunmilayo Ransome-Kuti fought for", o: ["children’s rights", "women’s rights", "animal rights", "student rights"], c: 1, t: "women’s rights" },
+    { q: "Ameyo Adadevoh helped stop the spread of", o: ["malaria", "Ebola", "flu", "cholera"], c: 1, t: "Ebola" },
+    { q: "Gani Fawehinmi fought for", o: ["justice", "farming", "dancing", "sports"], c: 0, t: "justice" },
+    { q: "Herbert Macaulay helped promote Nigerian", o: ["nationalism", "music", "sports", "farming"], c: 0, t: "nationalism" },
+    { q: "Abdulsalami Abubakar handed power to a", o: ["military government", "civilian government", "village government", "school government"], c: 1, t: "civilian government" },
+    { q: "A town is a place where many people", o: ["sleep", "live and work", "travel", "hide"], c: 1, t: "live and work" },
+    { q: "Abeokuta is located in", o: ["Ogun State", "Lagos State", "Oyo State", "Ekiti State"], c: 0, t: "Ogun State" },
+    { q: "Ile-Ife is located in", o: ["Osun State", "Edo State", "Kano State", "Lagos State"], c: 0, t: "Osun State" },
+    { q: "Ilorin is the capital of", o: ["Kwara State", "Ekiti State", "Niger State", "Oyo State"], c: 0, t: "Kwara State" },
+    { q: "Warri is located in", o: ["Delta State", "Rivers State", "Bayelsa State", "Edo State"], c: 0, t: "Delta State" },
+    { q: "Lokoja is located in", o: ["Kogi State", "Ondo State", "Benue State", "Nasarawa State"], c: 0, t: "Kogi State" },
+    { q: "Maiduguri is the capital of", o: ["Borno State", "Yobe State", "Kano State", "Kaduna State"], c: 0, t: "Borno State" },
+    { q: "Onitsha is located in", o: ["Anambra State", "Abia State", "Imo State", "Ebonyi State"], c: 0, t: "Anambra State" },
+    { q: "Sokoto is the capital of", o: ["Sokoto State", "Kebbi State", "Zamfara State", "Kano State"], c: 0, t: "Sokoto State" },
+    { q: "Zaria is located in", o: ["Kaduna State", "Niger State", "Jigawa State", "Kano State"], c: 0, t: "Kaduna State" },
+    { q: "A map is a drawing of a place on a", o: ["flat surface", "round surface", "wall", "stone"], c: 0, t: "flat surface" },
+    { q: "A globe is a model of the", o: ["earth", "classroom", "school", "house"], c: 0, t: "earth" },
+    { q: "Population density means the number of people in a", o: ["particular area", "house", "classroom", "market"], c: 0, t: "particular area" },
+    { q: "A city is a", o: ["large settlement", "small settlement", "farm", "road"], c: 0, t: "large settlement" },
+    { q: "Culture is the", o: ["way of life", "road system", "building", "school rule"], c: 0, t: "way of life" },
+    { q: "A landmark is a", o: ["famous place", "dirty place", "small house", "road sign"], c: 0, t: "famous place" },
+    { q: "The Eiffel Tower is in", o: ["France", "Nigeria", "Ghana", "Brazil"], c: 0, t: "France" },
+    { q: "Climate is the general", o: ["weather condition", "food supply", "transport system", "school activity"], c: 0, t: "weather condition" },
+    { q: "A desert is a very", o: ["dry place", "wet place", "cold place", "snowy place"], c: 0, t: "dry place" },
+    { q: "A plain is a large area of", o: ["flat land", "rocky land", "sandy land", "watery land"], c: 0, t: "flat land" }
+];
 
-            // Check if access code is correct
-            if (enteredCode === EXAMINER_CODE) {
-                errorMsg.style.display = "none";
-                document.getElementById("intro").classList.add("hidden");
-                document.getElementById("quiz").classList.remove("hidden");
-                startTimer();
-                showQuestion();
-            } else {
-                errorMsg.style.display = "block";
-            }
+const form = document.getElementById('historyForm');
+let timeLeft = 45 * 60;
+let clock;
+
+// Function to start the exam
+function startExam() {
+    const name = document.getElementById('studentName').value.trim();
+    if (name === "") {
+        alert("Please enter your name to begin.");
+        return;
+    }
+
+    // Hide entry, show exam
+    document.getElementById('entry-screen').classList.add('hidden');
+    document.getElementById('exam-content').classList.remove('hidden');
+
+    // Initialize Timer
+    const timerEl = document.getElementById('timer');
+    clock = setInterval(() => {
+        let m = Math.floor(timeLeft / 60);
+        let s = timeLeft % 60;
+        timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        if (timeLeft <= 0) {
+            clearInterval(clock);
+            processResults();
         }
+        timeLeft--;
+    }, 1000);
+}
 
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                let minutes = Math.floor(timeLeft / 60);
-                let seconds = timeLeft % 60;
-                document.getElementById("timer").textContent = `Time Remaining: ${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    submitQuiz();
-                }
-                timeLeft--;
-            }, 1000);
+// Render Questions
+quizData.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'question-box';
+    div.innerHTML = `
+        <h3>${i + 1}. ${item.q}</h3>
+        <div class="options-group">
+            ${item.o.map((opt, idx) => `
+                <label><input type="radio" name="h${i}" value="${idx}"> ${String.fromCharCode(97 + idx)}. ${opt}</label>
+            `).join('')}
+        </div>
+        <div class="answer-text" id="ans-${i}">The correct answer is: "${item.t}"</div>
+    `;
+    form.appendChild(div);
+});
+
+function processResults() {
+    clearInterval(clock);
+    const name = document.getElementById('studentName').value;
+    document.getElementById('submit-btn').disabled = true;
+    let score = 0;
+
+    quizData.forEach((item, i) => {
+        const selected = document.querySelector(`input[name="h${i}"]:checked`);
+        document.getElementById(`ans-${i}`).style.display = 'block';
+        if (selected && parseInt(selected.value) === item.c) {
+            score++;
         }
+    });
 
-        function showQuestion() {
-            const q = questions[currentQuestion];
-            document.getElementById("question").textContent = `Question ${currentQuestion + 1}: ${q.question}`;
-            const optionsDiv = document.getElementById("options");
-            optionsDiv.innerHTML = "";
-            
-            q.options.forEach((option) => {
-                const label = document.createElement("label");
-                const radio = document.createElement("input");
-                radio.type = "radio";
-                radio.name = "option";
-                radio.value = option;
-                radio.checked = answers[currentQuestion] === option;
-                radio.onclick = () => answers[currentQuestion] = option;
-                label.appendChild(radio);
-                label.appendChild(document.createTextNode(` ${option}`));
-                optionsDiv.appendChild(label);
-            });
-
-            document.getElementById("backBtn").classList.toggle("hidden", currentQuestion === 0);
-            document.getElementById("nextBtn").classList.toggle("hidden", currentQuestion === questions.length - 1);
-            document.getElementById("submitBtn").classList.toggle("hidden", currentQuestion !== questions.length - 1);
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                showQuestion();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                showQuestion();
-            }
-        }
-
-        function submitQuiz() {
-            clearInterval(timerInterval);
-            let score = 0;
-            answers.forEach((answer, index) => {
-                if (answer === questions[index].correct) score++;
-            });
-            
-            document.getElementById("quiz").classList.add("hidden");
-            const resultDiv = document.getElementById("result");
-            resultDiv.classList.remove("hidden");
-            resultDiv.innerHTML = `Examination Complete!<br>Your Score: ${score} / ${questions.length}`;
-        }
-    </script>
+    document.getElementById('exam-content').classList.add('hidden');
+    document.getElementById('result-display').style.display = 'block';
+    document.getElementById('student-name-display').innerText = "Student Name: " + name;
+    document.getElementById('scoreValue').innerText = `${score} / 30`;
+    document.getElementById('percentValue').innerText = "Percentage: " + Math.round((score/30)*100) + "%";
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>

@@ -3,265 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RWMS - HISTORY EXAM (YEAR 2)</title>
+    <title>Royal Wunderkind Model School - Year 2 Math Exam</title>
     <style>
-        body {
-            font-family: 'Georgia', serif;
-            max-width: 850px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fdf6e3;
-            color: #5c4033;
-        }
-        .header {
-            text-align: center;
-            background: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-bottom: 8px solid #8b4513;
-            margin-bottom: 30px;
-        }
-        h1 { color: #8b4513; margin: 0; font-size: 1.8em; text-transform: uppercase; }
-        
-        /* New Entry Screen Styles */
-        .entry-container {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            max-width: 500px;
-            margin: 50px auto;
-            border: 2px solid #8b4513;
-        }
-        .entry-container input {
-            padding: 15px;
-            width: 80%;
-            font-size: 1.1em;
-            border: 2px solid #d3b8ae;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            outline-color: #8b4513;
-        }
-
-        .timer-container {
-            position: sticky;
-            top: 10px;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        #timer {
-            background: #b22222;
-            color: white;
-            padding: 12px 35px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.4em;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            border: 2px solid #fff;
-        }
-        .question-box {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            border: 1px solid #d3b8ae;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .options-group label {
-            display: block;
-            margin: 10px 0;
-            padding: 12px;
-            background: #fffaf0;
-            border: 1px solid #eaddca;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .options-group label:hover { background: #f5f5dc; }
-        input[type="radio"] { margin-right: 12px; transform: scale(1.2); }
-        
-        .answer-text {
-            margin-top: 15px;
-            padding: 10px;
-            background: #d4edda;
-            color: #155724;
-            border-radius: 5px;
-            font-weight: bold;
-            display: none;
-            border-left: 5px solid #28a745;
-        }
-        
-        button#start-btn, button#submit-btn {
-            display: block;
-            width: 100%;
-            max-width: 320px;
-            padding: 20px;
-            background: #8b4513;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            margin: 20px auto;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        button#start-btn:hover, button#submit-btn:hover { background: #5d2e0a; }
-        
-        .hidden { display: none; }
-
-        #result-display {
-            display: none;
-            text-align: center;
-            background: #fff;
-            padding: 30px;
-            border-radius: 15px;
-            border: 4px solid #8b4513;
-            margin-top: 30px;
-        }
-        .final-score { font-size: 3.5em; color: #8b4513; font-weight: bold; }
-        #student-name-display { font-size: 1.5em; color: #5c4033; margin-bottom: 10px; }
+        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 20px; background: #f4f4f4; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1, h2 { text-align: center; color: #002060; }
+        .timer { font-size: 20px; color: red; font-weight: bold; text-align: center; position: sticky; top: 0; background: #fff; padding: 10px; border-bottom: 2px solid #ccc; z-index: 10; }
+        .question { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .options label { display: block; margin: 5px 0; cursor: pointer; }
+        .correct { color: green; font-weight: bold; background: #e8f5e9; padding: 5px; border-radius: 3px; }
+        .wrong { color: red; font-weight: bold; background: #ffebee; padding: 5px; border-radius: 3px; }
+        button { padding: 10px 20px; cursor: pointer; background: #002060; color: white; border: none; border-radius: 5px; width: 100%; font-size: 16px; }
+        #quiz-screen, #result-screen { display: none; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <p><strong>TERM TWO EXAMINATION, 2025/2026 SESSION</strong></p>
-    <p>Class: Key Stage 1 (Year 2) | Subject: HISTORY</p>
-    <p>Duration: 45 Minutes</p>
-</div>
-
-<div id="entry-screen" class="entry-container">
-    <h2>Student Login</h2>
-    <p>Please enter your full name to begin the exam:</p>
-    <input type="text" id="studentName" placeholder="Full Name" required>
-    <button id="start-btn" onclick="startExam()">Begin Examination</button>
-</div>
-
-<div id="exam-content" class="hidden">
-    <div class="timer-container">
-        <div id="timer">45:00</div>
+<div class="container">
+    <div id="start-screen">
+        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+        <h2>TERM THREE EXAMINATION (2025/2026)</h2>
+        <p><strong>Class:</strong> Key Stage 1 (Year 2)</p>
+        <input type="text" id="student-name" placeholder="Enter Your Full Name" style="width: 95%; padding: 10px; margin: 20px 0;">
+        <button onclick="startExam()">Start Examination</button>
     </div>
 
-    <form id="historyForm"></form>
+    <div id="quiz-screen">
+        <div id="timer" class="timer">Time Remaining: 30:00</div>
+        <form id="exam-form"></form>
+        <button onclick="submitExam()">Submit Examination</button>
+    </div>
 
-    <button id="submit-btn" onclick="processResults()">Finish and Submit</button>
-</div>
-
-<div id="result-display">
-    <h2>History Exam Result</h2>
-    <div id="student-name-display"></div>
-    <div class="final-score" id="scoreValue">0 / 30</div>
-    <p id="percentValue" style="font-size: 1.4em;"></p>
-    <p>Great effort! Review the correct historical facts below.</p>
+    <div id="result-screen">
+        <h2>Examination Results</h2>
+        <div id="score-display"></div>
+        <div id="corrections"></div>
+    </div>
 </div>
 
 <script>
-const quizData = [
-    { q: "Heroes and heroines contribute to the development of", o: ["toys", "society", "games", "food"], c: 1, t: "society" },
-    { q: "Taiwo Akinkunmi designed the", o: ["Nigerian flag", "school uniform", "national food", "coat of arms"], c: 0, t: "Nigerian flag" },
-    { q: "Nnamdi Azikiwe became the first", o: ["teacher", "president", "farmer", "trader"], c: 1, t: "president" },
-    { q: "Obafemi Awolowo introduced", o: ["free primary education", "private education", "foreign education", "military education"], c: 0, t: "free primary education" },
-    { q: "Anthony Enahoro moved the motion for Nigeria’s", o: ["independence", "football", "farming", "trading"], c: 0, t: "independence" },
-    { q: "Olufunmilayo Ransome-Kuti fought for", o: ["children’s rights", "women’s rights", "animal rights", "student rights"], c: 1, t: "women’s rights" },
-    { q: "Ameyo Adadevoh helped stop the spread of", o: ["malaria", "Ebola", "flu", "cholera"], c: 1, t: "Ebola" },
-    { q: "Gani Fawehinmi fought for", o: ["justice", "farming", "dancing", "sports"], c: 0, t: "justice" },
-    { q: "Herbert Macaulay helped promote Nigerian", o: ["nationalism", "music", "sports", "farming"], c: 0, t: "nationalism" },
-    { q: "Abdulsalami Abubakar handed power to a", o: ["military government", "civilian government", "village government", "school government"], c: 1, t: "civilian government" },
-    { q: "A town is a place where many people", o: ["sleep", "live and work", "travel", "hide"], c: 1, t: "live and work" },
-    { q: "Abeokuta is located in", o: ["Ogun State", "Lagos State", "Oyo State", "Ekiti State"], c: 0, t: "Ogun State" },
-    { q: "Ile-Ife is located in", o: ["Osun State", "Edo State", "Kano State", "Lagos State"], c: 0, t: "Osun State" },
-    { q: "Ilorin is the capital of", o: ["Kwara State", "Ekiti State", "Niger State", "Oyo State"], c: 0, t: "Kwara State" },
-    { q: "Warri is located in", o: ["Delta State", "Rivers State", "Bayelsa State", "Edo State"], c: 0, t: "Delta State" },
-    { q: "Lokoja is located in", o: ["Kogi State", "Ondo State", "Benue State", "Nasarawa State"], c: 0, t: "Kogi State" },
-    { q: "Maiduguri is the capital of", o: ["Borno State", "Yobe State", "Kano State", "Kaduna State"], c: 0, t: "Borno State" },
-    { q: "Onitsha is located in", o: ["Anambra State", "Abia State", "Imo State", "Ebonyi State"], c: 0, t: "Anambra State" },
-    { q: "Sokoto is the capital of", o: ["Sokoto State", "Kebbi State", "Zamfara State", "Kano State"], c: 0, t: "Sokoto State" },
-    { q: "Zaria is located in", o: ["Kaduna State", "Niger State", "Jigawa State", "Kano State"], c: 0, t: "Kaduna State" },
-    { q: "A map is a drawing of a place on a", o: ["flat surface", "round surface", "wall", "stone"], c: 0, t: "flat surface" },
-    { q: "A globe is a model of the", o: ["earth", "classroom", "school", "house"], c: 0, t: "earth" },
-    { q: "Population density means the number of people in a", o: ["particular area", "house", "classroom", "market"], c: 0, t: "particular area" },
-    { q: "A city is a", o: ["large settlement", "small settlement", "farm", "road"], c: 0, t: "large settlement" },
-    { q: "Culture is the", o: ["way of life", "road system", "building", "school rule"], c: 0, t: "way of life" },
-    { q: "A landmark is a", o: ["famous place", "dirty place", "small house", "road sign"], c: 0, t: "famous place" },
-    { q: "The Eiffel Tower is in", o: ["France", "Nigeria", "Ghana", "Brazil"], c: 0, t: "France" },
-    { q: "Climate is the general", o: ["weather condition", "food supply", "transport system", "school activity"], c: 0, t: "weather condition" },
-    { q: "A desert is a very", o: ["dry place", "wet place", "cold place", "snowy place"], c: 0, t: "dry place" },
-    { q: "A plain is a large area of", o: ["flat land", "rocky land", "sandy land", "watery land"], c: 0, t: "flat land" }
-];
+    const questions = [
+        { q: "A school starts at 8:00 a.m. and closes at 2:00 p.m. How many hours is the school open?", opt: ["4 hours", "5 hours", "6 hours", "7 hours"], ans: 2 },
+        { q: "What is the digital form of the time shown as 3 o'clock?", opt: ["3:30", "3:00", "12:03", "30:00"], ans: 1 },
+        { q: "Half past 7 means:", opt: ["7:15", "7:00", "7:45", "7:30"], ans: 3 },
+        { q: "Which container can hold the most water?", opt: ["Cup", "Spoon", "Bucket", "Bottle cap"], ans: 2 },
+        { q: "Which shape has 4 equal sides?", opt: ["Triangle", "Circle", "Square", "Oval"], ans: 2 },
+        { q: "Which of these is a three-dimensional (3D) shape?", opt: ["Rectangle", "Triangle", "Cube", "Square"], ans: 2 },
+        { q: "Which shape can roll easily?", opt: ["Cube", "Cuboid", "Sphere", "Rectangle"], ans: 2 },
+        { q: "A table top covers more space than a book. The table top has a:", opt: ["Smaller area", "Larger area", "Equal area", "No area"], ans: 1 },
+        { q: "The number of pupils who like football in a class is an example of:", opt: ["Weight", "Capacity", "Statistics", "Time"], ans: 2 },
+        { q: "Which is lighter?", opt: ["Car", "Bicycle", "Truck", "Bus"], ans: 1 },
+        { q: "Which is heavier?", opt: ["Feather", "Cotton wool", "Stone", "Leaf"], ans: 2 },
+        { q: "Statistics help us compare:", opt: ["Information", "Weight only", "Time only", "Shapes only"], ans: 0 },
+        { q: "Which shape looks like a ball?", opt: ["Cube", "Sphere", "Rectangle", "Triangle"], ans: 1 },
+        { q: "How many days are in January?", opt: ["28", "29", "30", "31"], ans: 3 },
+        { q: "8 × 9 =", opt: ["56", "72", "84", "74"], ans: 1 },
+        { q: "289 + 346 =", opt: ["636", "645", "635", "645"], ans: 1 },
+        { q: "____ + 175 = 205", opt: ["30", "35", "40", "45"], ans: 0 },
+        { q: "635 - 455 =", opt: ["230", "190", "195", "180"], ans: 3 },
+        { q: "½ of 30 is", opt: ["20", "15", "25", "10"], ans: 1 },
+        { q: "45 divided by 5 =", opt: ["9", "10", "8", "7"], ans: 0 }
+    ];
 
-const form = document.getElementById('historyForm');
-let timeLeft = 45 * 60;
-let clock;
+    let timeLeft = 30 * 60;
+    let timerInterval;
 
-// Function to start the exam
-function startExam() {
-    const name = document.getElementById('studentName').value.trim();
-    if (name === "") {
-        alert("Please enter your name to begin.");
-        return;
+    function startExam() {
+        if(!document.getElementById('student-name').value) return alert("Please enter your name.");
+        document.getElementById('start-screen').style.display = 'none';
+        document.getElementById('quiz-screen').style.display = 'block';
+        
+        const form = document.getElementById('exam-form');
+        questions.forEach((item, index) => {
+            let html = `<div class="question"><p>${index + 1}. ${item.q}</p><div class="options">`;
+            item.opt.forEach((o, i) => {
+                html += `<label><input type="radio" name="q${index}" value="${i}"> ${o}</label>`;
+            });
+            html += `</div><div id="feed${index}"></div></div>`;
+            form.innerHTML += html;
+        });
+
+        timerInterval = setInterval(() => {
+            timeLeft--;
+            let m = Math.floor(timeLeft/60), s = timeLeft % 60;
+            document.getElementById('timer').innerText = `Time Remaining: ${m}:${s < 10 ? '0'+s : s}`;
+            if(timeLeft <= 0) submitExam();
+        }, 1000);
     }
 
-    // Hide entry, show exam
-    document.getElementById('entry-screen').classList.add('hidden');
-    document.getElementById('exam-content').classList.remove('hidden');
-
-    // Initialize Timer
-    const timerEl = document.getElementById('timer');
-    clock = setInterval(() => {
-        let m = Math.floor(timeLeft / 60);
-        let s = timeLeft % 60;
-        timerEl.innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
-        if (timeLeft <= 0) {
-            clearInterval(clock);
-            processResults();
-        }
-        timeLeft--;
-    }, 1000);
-}
-
-// Render Questions
-quizData.forEach((item, i) => {
-    const div = document.createElement('div');
-    div.className = 'question-box';
-    div.innerHTML = `
-        <h3>${i + 1}. ${item.q}</h3>
-        <div class="options-group">
-            ${item.o.map((opt, idx) => `
-                <label><input type="radio" name="h${i}" value="${idx}"> ${String.fromCharCode(97 + idx)}. ${opt}</label>
-            `).join('')}
-        </div>
-        <div class="answer-text" id="ans-${i}">The correct answer is: "${item.t}"</div>
-    `;
-    form.appendChild(div);
-});
-
-function processResults() {
-    clearInterval(clock);
-    const name = document.getElementById('studentName').value;
-    document.getElementById('submit-btn').disabled = true;
-    let score = 0;
-
-    quizData.forEach((item, i) => {
-        const selected = document.querySelector(`input[name="h${i}"]:checked`);
-        document.getElementById(`ans-${i}`).style.display = 'block';
-        if (selected && parseInt(selected.value) === item.c) {
-            score++;
-        }
-    });
-
-    document.getElementById('exam-content').classList.add('hidden');
-    document.getElementById('result-display').style.display = 'block';
-    document.getElementById('student-name-display').innerText = "Student Name: " + name;
-    document.getElementById('scoreValue').innerText = `${score} / 30`;
-    document.getElementById('percentValue').innerText = "Percentage: " + Math.round((score/30)*100) + "%";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-}
+    function submitExam() {
+        clearInterval(timerInterval);
+        let score = 0;
+        questions.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            const feedback = document.getElementById(`feed${index}`);
+            if (selected && parseInt(selected.value) === item.ans) {
+                score++;
+                feedback.innerHTML = '<p class="correct">Correct!</p>';
+            } else {
+                feedback.innerHTML = `<p class="wrong">Wrong. Correct answer: ${item.opt[item.ans]}</p>`;
+            }
+        });
+        document.getElementById('quiz-screen').style.display = 'none';
+        document.getElementById('result-screen').style.display = 'block';
+        document.getElementById('score-display').innerHTML = `<h3>Final Score: ${score} / ${questions.length}</h3>`;
+    }
 </script>
 </body>
 </html>

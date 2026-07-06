@@ -3,111 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royal Wunderkind Model School - Year 2 Math Exam</title>
+    <title>Key Stage 1 (Year 2) Religious Studies Examination</title>
     <style>
-        body { font-family: sans-serif; line-height: 1.6; max-width: 800px; margin: 20px auto; padding: 20px; background: #f4f4f4; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        h1, h2 { text-align: center; color: #002060; }
-        .timer { font-size: 20px; color: red; font-weight: bold; text-align: center; position: sticky; top: 0; background: #fff; padding: 10px; border-bottom: 2px solid #ccc; z-index: 10; }
-        .question { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
-        .options label { display: block; margin: 5px 0; cursor: pointer; }
-        .correct { color: green; font-weight: bold; background: #e8f5e9; padding: 5px; border-radius: 3px; }
-        .wrong { color: red; font-weight: bold; background: #ffebee; padding: 5px; border-radius: 3px; }
-        button { padding: 10px 20px; cursor: pointer; background: #002060; color: white; border: none; border-radius: 5px; width: 100%; font-size: 16px; }
-        #quiz-screen, #result-screen { display: none; }
+        :root {
+            --primary-color: #002060;
+            --secondary-color: #D4AF37;
+            --success-color: #28a745;
+            --fail-color: #dc3545;
+            --light-bg: #f4f6f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+            border-bottom: 5px solid var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        header h2 {
+            margin: 6px 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
+        }
+
+        header h3 {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+
+        #timer-banner {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--fail-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            display: none;
+            border: 2px solid white;
+        }
+
+        #login-screen {
+            text-align: center;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .input-gate {
+            width: 85%;
+            padding: 14px 20px;
+            margin: 20px 0;
+            font-size: 16px;
+            border: 2px solid #bdc3c7;
+            border-radius: 8px;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-gate:focus {
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #001238;
+        }
+
+        #quiz-screen, #result-screen {
+            display: none;
+        }
+
+        .section-header {
+            background: #eef2f7;
+            color: var(--primary-color);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-left: 5px solid var(--secondary-color);
+            font-size: 16px;
+        }
+
+        .meta-info-strip {
+            font-size: 16px;
+            background: #eef2f7;
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .question-box {
+            border-left: 5px solid var(--primary-color);
+            background: #fafafa;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .question-text {
+            font-size: 17px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+        }
+
+        .option-node {
+            display: flex;
+            align-items: center;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .option-node:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .option-node input {
+            margin-right: 12px;
+            transform: scale(1.2);
+        }
+
+        /* Auto-Marking UI State Classes */
+        .option-node.correct-state {
+            background-color: #d4edda !important;
+            border-color: var(--success-color) !important;
+            color: #155724;
+            font-weight: bold;
+        }
+
+        .option-node.wrong-state {
+            background-color: #f8d7da !important;
+            border-color: var(--fail-color) !important;
+            color: #721c24;
+        }
+
+        .correction-box {
+            margin-top: 12px;
+            font-weight: bold;
+            color: #c0392b;
+            font-size: 14px;
+            display: none;
+            padding: 5px 0;
+        }
+
+        .summary-dashboard {
+            text-align: center;
+            background: #e8f8f5;
+            border: 2px solid var(--success-color);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .summary-dashboard h2 {
+            margin: 0 0 10px 0;
+            color: #117a65;
+            font-size: 24px;
+        }
     </style>
 </head>
 <body>
 
+<div id="timer-banner">Time Left: 30:00</div>
+
+<header>
+    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
+    <h2>TERM THREE EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
+    <h3>CLASS: KEY STAGE 1 (YEAR 2)</h3>
+</header>
+
 <div class="container">
-    <div id="start-screen">
-        <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-        <h2>TERM THREE EXAMINATION (2025/2026)</h2>
-        <p><strong>Class:</strong> Key Stage 1 (Year 2)</p>
-        <input type="text" id="student-name" placeholder="Enter Your Full Name" style="width: 95%; padding: 10px; margin: 20px 0;">
-        <button onclick="startExam()">Start Examination</button>
+    
+    <div id="login-screen" class="card">
+        <h2 style="margin-top:0; color: var(--primary-color);">Candidate Login</h2>
+        <p>Please enter your full name below to start your CBT exam.</p>
+        <input type="text" id="candidate-fullname" class="input-gate" placeholder="Surname & First Name" autocomplete="off">
+        <br>
+        <button class="btn" onclick="startAssessment()">Begin Examination</button>
     </div>
 
     <div id="quiz-screen">
-        <div id="timer" class="timer">Time Remaining: 30:00</div>
-        <form id="exam-form"></form>
-        <button onclick="submitExam()">Submit Examination</button>
-    </div>
+        <div class="meta-info-strip" id="student-details"></div>
+        
+        <div id="result-screen" class="summary-dashboard">
+            <h2 id="total-score-text"></h2>
+            <p>Please scroll down to review your automated corrections carefully.</p>
+        </div>
 
-    <div id="result-screen">
-        <h2>Examination Results</h2>
-        <div id="score-display"></div>
-        <div id="corrections"></div>
+        <form id="cbt-form">
+            <div id="questions-outlet"></div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button type="button" id="submit-exam-btn" class="btn" style="background-color: var(--success-color);" onclick="gradeAssessment()">Submit Examination</button>
+            </div>
+        </form>
     </div>
 </div>
 
 <script>
-    const questions = [
-        { q: "A school starts at 8:00 a.m. and closes at 2:00 p.m. How many hours is the school open?", opt: ["4 hours", "5 hours", "6 hours", "7 hours"], ans: 2 },
-        { q: "What is the digital form of the time shown as 3 o'clock?", opt: ["3:30", "3:00", "12:03", "30:00"], ans: 1 },
-        { q: "Half past 7 means:", opt: ["7:15", "7:00", "7:45", "7:30"], ans: 3 },
-        { q: "Which container can hold the most water?", opt: ["Cup", "Spoon", "Bucket", "Bottle cap"], ans: 2 },
-        { q: "Which shape has 4 equal sides?", opt: ["Triangle", "Circle", "Square", "Oval"], ans: 2 },
-        { q: "Which of these is a three-dimensional (3D) shape?", opt: ["Rectangle", "Triangle", "Cube", "Square"], ans: 2 },
-        { q: "Which shape can roll easily?", opt: ["Cube", "Cuboid", "Sphere", "Rectangle"], ans: 2 },
-        { q: "A table top covers more space than a book. The table top has a:", opt: ["Smaller area", "Larger area", "Equal area", "No area"], ans: 1 },
-        { q: "The number of pupils who like football in a class is an example of:", opt: ["Weight", "Capacity", "Statistics", "Time"], ans: 2 },
-        { q: "Which is lighter?", opt: ["Car", "Bicycle", "Truck", "Bus"], ans: 1 },
-        { q: "Which is heavier?", opt: ["Feather", "Cotton wool", "Stone", "Leaf"], ans: 2 },
-        { q: "Statistics help us compare:", opt: ["Information", "Weight only", "Time only", "Shapes only"], ans: 0 },
-        { q: "Which shape looks like a ball?", opt: ["Cube", "Sphere", "Rectangle", "Triangle"], ans: 1 },
-        { q: "How many days are in January?", opt: ["28", "29", "30", "31"], ans: 3 },
-        { q: "8 × 9 =", opt: ["56", "72", "84", "74"], ans: 1 },
-        { q: "289 + 346 =", opt: ["636", "645", "635", "645"], ans: 1 },
-        { q: "____ + 175 = 205", opt: ["30", "35", "40", "45"], ans: 0 },
-        { q: "635 - 455 =", opt: ["230", "190", "195", "180"], ans: 3 },
-        { q: "½ of 30 is", opt: ["20", "15", "25", "10"], ans: 1 },
-        { q: "45 divided by 5 =", opt: ["9", "10", "8", "7"], ans: 0 }
+    // Examination Bank Structure
+    const questionsDatabase = [
+        { q: "God supplies our __________.", o: ["toys", "needs", "games", "clothes only"], a: "B", section: "SECTION A - Instructions: Answer all questions" },
+        { q: "God gives us __________ to wash and bathe.", o: ["sand", "water", "stones", "dust"], a: "B" },
+        { q: "God gives us the __________ to dry our clothes.", o: ["moon", "sun", "star", "cloud"], a: "B" },
+        { q: "God sent His __________ to the world.", o: ["servant", "Son", "friend", "angel"], a: "B" },
+        { q: "Jesus is the __________ of God.", o: ["brother", "Son", "teacher", "servant"], a: "B" },
+        { q: "Jesus and God are __________.", o: ["far apart", "enemies", "one", "strangers"], a: "C" },
+        { q: "As children of God, we must __________ others.", o: ["fight", "help", "ignore", "disturb"], a: "B" },
+        { q: "At home, we help our parents by doing __________.", o: ["nothing", "housework", "fighting", "sleeping"], a: "B" },
+        { q: "At school, we must not __________ in class.", o: ["read", "listen", "disturb", "write"], a: "C" },
+        { q: "God gives us good __________.", o: ["sickness", "health", "weakness", "fear"], a: "B" },
+        { q: "We can thank God by __________.", o: ["fighting", "praying", "shouting", "crying"], a: "B" },
+        { q: "Saying “thank you” shows we are __________.", o: ["happy", "ungrateful", "angry", "lazy"], a: "A" },
+        { q: "We can praise God by __________ our hands.", o: ["closing", "clapping", "hiding", "folding"], a: "B" },
+        { q: "David was a man who __________ God.", o: ["praised", "hated", "ignored", "forgot"], a: "A" },
+        { q: "Praising God makes Him __________.", o: ["angry", "happy", "tired", "sad"], a: "B" },
+        { q: "Abraham’s nephew was __________.", o: ["David", "Lot", "Moses", "John"], a: "B" },
+        { q: "God promised Abraham __________.", o: ["war", "sickness", "blessings", "punishment"], a: "C" },
+        { q: "God changed Abram’s name to __________.", o: ["Jacob", "Abraham", "Isaac", "Joseph"], a: "B" },
+        { q: "Joseph was sold for __________ pieces of silver.", o: ["ten", "twenty", "thirty", "forty"], a: "B" },
+        { q: "Joseph was taken to __________.", o: ["Canaan", "Egypt", "Haran", "Jerusalem"], a: "B" },
+        { q: "Joseph was sold to __________.", o: ["Pharaoh", "Potiphar", "Lot", "Isaac"], a: "B" },
+        { q: "Moses was from the tribe of __________.", o: ["Judah", "Levi", "Benjamin", "Dan"], a: "B" },
+        { q: "Moses was found in the __________.", o: ["river", "desert", "house", "palace"], a: "A" },
+        { q: "Pharaoh’s daughter named him __________.", o: ["Jacob", "Moses", "Aaron", "David"], a: "B" },
+        { q: "Judges are people who __________ disputes.", o: ["create", "settle", "break", "hide"], a: "B" },
+        { q: "One of the judges is __________.", o: ["Abraham", "Ehud", "Joseph", "Noah"], a: "B" },
+        { q: "God used judges to __________ Israel.", o: ["punish", "save", "sell", "forget"], a: "B" },
+        { q: "Saul was from the tribe of __________.", o: ["Judah", "Benjamin", "Levi", "Dan"], a: "B" },
+        { q: "Samuel anointed __________ as king after Saul.", o: ["Moses", "David", "Joshua", "Aaron"], a: "B" },
+        { q: "Saul spared __________.", o: ["Noah", "Agag", "Abraham", "Isaac"], a: "B" }
     ];
 
-    let timeLeft = 30 * 60;
-    let timerInterval;
+    let countdownTracker;
+    let timeRemainingSeconds = 30 * 60; // 30 Minutes allocation
+    const lettersMap = ["A", "B", "C", "D"];
 
-    function startExam() {
-        if(!document.getElementById('student-name').value) return alert("Please enter your name.");
-        document.getElementById('start-screen').style.display = 'none';
+    function startAssessment() {
+        const inputName = document.getElementById('candidate-fullname').value.trim();
+        if (inputName === "") {
+            alert("Access Denied: Please fill in the candidate's complete name setup.");
+            return;
+        }
+
+        // View Toggling
+        document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
+        document.getElementById('timer-banner').style.display = 'block';
         
-        const form = document.getElementById('exam-form');
-        questions.forEach((item, index) => {
-            let html = `<div class="question"><p>${index + 1}. ${item.q}</p><div class="options">`;
-            item.opt.forEach((o, i) => {
-                html += `<label><input type="radio" name="q${index}" value="${i}"> ${o}</label>`;
-            });
-            html += `</div><div id="feed${index}"></div></div>`;
-            form.innerHTML += html;
-        });
+        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: KEY STAGE 1 (YEAR 2) | INSTRUCTIONS: ANSWER ALL QUESTIONS`;
 
-        timerInterval = setInterval(() => {
-            timeLeft--;
-            let m = Math.floor(timeLeft/60), s = timeLeft % 60;
-            document.getElementById('timer').innerText = `Time Remaining: ${m}:${s < 10 ? '0'+s : s}`;
-            if(timeLeft <= 0) submitExam();
+        buildQuizSheet();
+        runClockCounter();
+    }
+
+    function buildQuizSheet() {
+        const targetContainer = document.getElementById('questions-outlet');
+        targetContainer.innerHTML = "";
+
+        questionsDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+
+            // Generate structural headers if defined
+            if (questionItem.section) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section-header';
+                sectionDiv.innerText = questionItem.section;
+                targetContainer.appendChild(sectionDiv);
+            }
+
+            const block = document.createElement('div');
+            block.className = 'card question-box';
+
+            let structuralOptionsMarkup = "";
+            questionItem.o.forEach((optionValue, oIndex) => {
+                const currentLetter = lettersMap[oIndex];
+                structuralOptionsMarkup += `
+                    <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
+                        <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
+                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
+                    </label>
+                `;
+            });
+
+            block.innerHTML = `
+                <div class="question-text">${displayIndex}. ${questionItem.q}</div>
+                <div class="options-grid">${structuralOptionsMarkup}</div>
+                <div class="correction-box" id="feedback-id-${displayIndex}"></div>
+            `;
+            targetContainer.appendChild(block);
+        });
+    }
+
+    function runClockCounter() {
+        countdownTracker = setInterval(() => {
+            timeRemainingSeconds--;
+            let computedMinutes = Math.floor(timeRemainingSeconds / 60);
+            let computedSeconds = timeRemainingSeconds % 60;
+
+            computedMinutes = computedMinutes < 10 ? "0" + computedMinutes : computedMinutes;
+            computedSeconds = computedSeconds < 10 ? "0" + computedSeconds : computedSeconds;
+
+            document.getElementById('timer-banner').innerText = `Time Left: ${computedMinutes}:${computedSeconds}`;
+
+            if (timeRemainingSeconds <= 0) {
+                clearInterval(countdownTracker);
+                alert("Time Limit Expired! Running automated system submission configuration.");
+                gradeAssessment();
+            }
         }, 1000);
     }
 
-    function submitExam() {
-        clearInterval(timerInterval);
-        let score = 0;
-        questions.forEach((item, index) => {
-            const selected = document.querySelector(`input[name="q${index}"]:checked`);
-            const feedback = document.getElementById(`feed${index}`);
-            if (selected && parseInt(selected.value) === item.ans) {
-                score++;
-                feedback.innerHTML = '<p class="correct">Correct!</p>';
+    function gradeAssessment() {
+        clearInterval(countdownTracker);
+        document.getElementById('timer-banner').style.display = 'none';
+        document.getElementById('submit-exam-btn').style.display = 'none';
+
+        let accurateAnswersTally = 0;
+        const completeCount = questionsDatabase.length;
+
+        questionsDatabase.forEach((questionItem, qIndex) => {
+            const displayIndex = qIndex + 1;
+            const checkedRadio = document.querySelector(`input[name="question-id-${displayIndex}"]:checked`);
+            const checkedLetter = checkedRadio ? checkedRadio.value : null;
+            const targetCorrectLetter = questionItem.a;
+
+            // Freeze UI choices
+            const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
+            choicesElements.forEach(input => input.disabled = true);
+
+            if (checkedLetter === targetCorrectLetter) {
+                accurateAnswersTally++;
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
             } else {
-                feedback.innerHTML = `<p class="wrong">Wrong. Correct answer: ${item.opt[item.ans]}</p>`;
+                if (checkedLetter) {
+                    document.getElementById(`node-box-${displayIndex}-${checkedLetter}`).classList.add('wrong-state');
+                }
+                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+                
+                // Expose corrective text notification configurations
+                const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
+                const explicitSolutionString = questionItem.o[solutionIndex];
+                const notificationDiv = document.getElementById('feedback-id-' + displayIndex);
+                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
+                notificationDiv.style.display = "block";
             }
         });
-        document.getElementById('quiz-screen').style.display = 'none';
+
+        const calculationPercentage = Math.round((accurateAnswersTally / completeCount) * 100);
+        document.getElementById('total-score-text').innerText = `Examination Completed! Total Score: ${accurateAnswersTally} / ${completeCount} (${calculationPercentage}%)`;
         document.getElementById('result-screen').style.display = 'block';
-        document.getElementById('score-display').innerHTML = `<h3>Final Score: ${score} / ${questions.length}</h3>`;
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
+
 </body>
 </html>

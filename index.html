@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 (Year 2) Literacy Examination - Part B</title>
+    <title>Key Stage 1 (Year 2) Cultural and Creative Art Examination</title>
     <style>
         :root {
             --primary-color: #002060;
@@ -188,7 +188,7 @@
             transform: scale(1.2);
         }
 
-        /* Auto-Marking State Classes */
+        /* Auto-Marking UI State Modifiers */
         .option-node.correct-state {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -234,7 +234,7 @@
 <header>
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
     <h2>TERM THREE EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>CLASS: KEY STAGE 1 (YEAR 2)</h3>
+    <h3>SUBJECT: CULTURAL AND CREATIVE ART | CLASS: KEY STAGE 1 (YEAR 2)</h3>
 </header>
 
 <div class="container">
@@ -271,35 +271,40 @@
 <script>
     // Examination Bank Structure
     const questionsDatabase = [
-        { 
-            q: "An _________ is a word used to described a noun or pronoun", 
-            o: ["Antonyms", "syllable", "adjective", "vocabulary"], 
-            a: "C",
-            section: "PART B - Choose the correct answers from the options."
-        },
-        { q: "Yesterday, Tola _____ to school.", o: ["go", "goes", "went", "going"], a: "C" },
-        { q: "Mum _____ rice last night.", o: ["cook", "cooked", "cooking", "cooks"], a: "B" },
-        { q: "The boys _____ football yesterday.", o: ["play", "plays", "played", "playing"], a: "C" },
-        { q: "What do we use to say what someone did or what happened in the past?", o: ["present tense", "continuous tense", "simple past tense", "Adverb"], a: "C" },
-        { q: "An antonym is a word that has _____________ meaning to another word.", o: ["an opposite", "the same", "a similar", "no"], a: "A" },
-        { q: "What is the antonym of “man”", o: ["child", "boy", "woman", "girl"], a: "C" },
-        { q: "________ is the opposite of “last”", o: ["End", "Beginning", "Forward", "First"], a: "D" },
-        { q: "Which of these is a noun?", o: ["Run", "Happy", "Table", "Quickly"], a: "C" },
-        { q: "A noun is the name of a:", o: ["Colour", "Person, place, animal or thing", "Action", "Number"], a: "B" },
-        { q: "This book belongs to you. It is _____.", o: ["mine", "yours", "ours", "theirs"], a: "B" },
-        { q: "The toys belong to them. They are _____.", o: ["ours", "mine", "theirs", "yours"], a: "C" },
-        { q: "The classroom belongs to us. It is _____.", o: ["ours", "mine", "yours", "theirs"], a: "A" },
-        { q: "Which of these is an uncountable noun?", o: ["Chair", "Book", "Water", "Pencil"], a: "C" },
-        { q: "We drink _____ every day.", o: ["apples", "water", "chairs", "pens"], a: "B" },
-        { q: "Which noun cannot be counted one by one?", o: ["Rice", "Orange", "Egg", "Book"], a: "A" },
-        { q: "The toy of the child is the _____ toy.", o: ["childs", "child's", "childs'", "child"], a: "B" },
-        { q: "The bicycle of John is _____ bicycle.", o: ["Johns", "John's", "Johns'", "John"], a: "B" },
-        { q: "The bicycle belongs to her. It is _____.", o: ["mine", "hers", "ours", "theirs"], a: "B" },
-        { q: "The pen belongs to Tunde. It is _____ pen.", o: ["Tunde", "Tundes", "Tunde's", "Tunde'"], a: "C" }
+        { q: "Storytelling is the act of __________ a story.", o: ["telling", "drawing", "hiding", "tearing"], a: "A", section: "SECTION A - Instructions: Answer all questions" },
+        { q: "The person who tells a story is called the __________", o: ["audience", "narrator", "singer", "dancer"], a: "B" },
+        { q: "The people who listen to a story are called the __________.", o: ["audience", "actors", "farmers", "traders"], a: "A" },
+        { q: "Storytelling helps to teach good __________", o: ["morals", "noise", "quarrels", "laziness"], a: "A" },
+        { q: "Melody is the __________ of a song", o: ["tune", "colour", "shape", "size"], a: "A" },
+        { q: "The tonic solfa is made up of __________ notes", o: ["5", "6", "8", "10"], a: "C" },
+        { q: "Another name for tonic solfa is __________.", o: ["octave", "chorus", "rhythm", "verse"], a: "A" },
+        { q: "Traditional festivals help to preserve __________.", o: ["culture", "littering", "fighting", "laziness"], a: "A" },
+        { q: "Drums are used during traditional __________.", o: ["festivals", "examinations", "lessons", "shopping"], a: "A" },
+        { q: "The note after RE is __________.", o: ["SO", "MI", "FA", "LA"], a: "B" },
+        { q: "The short form of DO is __________", o: ["r", "m", "d", "f"], a: "C" },
+        { q: "Melody is the __________ of a song", o: ["tune", "colour", "shape", "size"], a: "A" },
+        { q: "The Kakaki is common among the __________ people.", o: ["Hausa", "Igbo", "Yoruba", "Efik"], a: "A" },
+        { q: "The Shekere is used to support __________.", o: ["drums", "books", "pencils", "tables"], a: "A" },
+        { q: "Musical instruments are used for __________.", o: ["entertainment", "fighting", "sleeping", "hiding"], a: "A" },
+        { q: "The Atilogwu dance is common among the __________ people.", o: ["Yoruba", "Igbo", "Fulani", "Kanuri"], a: "B" },
+        { q: "Traditional dances are used for __________.", o: ["entertainment", "fighting", "sleeping", "hiding"], a: "A" },
+        { q: "The Koroso dance is common among the __________ people.", o: ["Igbo", "Yoruba", "Fulani", "Efik"], a: "C" },
+        { q: "Songs used to make babies sleep are called __________. ", o: ["lullabies", "pop songs", "rap songs", "school songs"], a: "A" },
+        { q: "Folk songs can be used during __________.", o: ["weddings", "football", "exams", "shopping"], a: "A" },
+        { q: "Folk songs help preserve our __________.", o: ["money", "culture", "games", "books"], a: "B" },
+        { q: "Temporary make-up can be __________.", o: ["broken", "washed away", "hidden", "eaten"], a: "B" },
+        { q: "Local make-up materials are mostly used by __________ women.", o: ["European", "African", "American", "Asian"], a: "B" },
+        { q: "Body make-up makes us look __________.", o: ["ugly", "dirty", "beautiful", "weak"], a: "C" },
+        { q: "A motif is made by __________ shapes.", o: ["hiding", "repeating", "breaking", "cutting"], a: "B" },
+        { q: "We should use at least __________ colours.", o: ["one", "two", "three", "four"], a: "B" },
+        { q: "Good colouring makes the pattern __________.", o: ["dirty", "ugly", "beautiful", "bad"], a: "C" },
+        { q: "Music has __________ letters.", o: ["five", "six", "seven", "eight"], a: "C" },
+        { q: "The letters of music include __________.", o: ["X", "Y", "A", "Z"], a: "C" },
+        { q: "Music is pleasant to __________.", o: ["eat", "hear", "see", "touch"], a: "B" }
     ];
 
     let countdownTracker;
-    let timeRemainingSeconds = 30 * 60; // 30 Minutes allocation
+    let timeRemainingSeconds = 30 * 60; // 30 Minutes
     const lettersMap = ["A", "B", "C", "D"];
 
     function startAssessment() {
@@ -309,7 +314,7 @@
             return;
         }
 
-        // Display Toggle
+        // View Toggling
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
         document.getElementById('timer-banner').style.display = 'block';
@@ -327,7 +332,7 @@
         questionsDatabase.forEach((questionItem, qIndex) => {
             const displayIndex = qIndex + 1;
 
-            // Insert sub-section structural header
+            // Generate structural headers if defined
             if (questionItem.section) {
                 const sectionDiv = document.createElement('div');
                 sectionDiv.className = 'section-header';
@@ -344,7 +349,7 @@
                 structuralOptionsMarkup += `
                     <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
                         <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter}.</strong> ${optionValue}</span>
+                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
                     </label>
                 `;
             });
@@ -391,7 +396,7 @@
             const checkedLetter = checkedRadio ? checkedRadio.value : null;
             const targetCorrectLetter = questionItem.a;
 
-            // Freeze UI choices
+            // Freeze all operational radio targets
             const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
             choicesElements.forEach(input => input.disabled = true);
 
@@ -404,11 +409,11 @@
                 }
                 document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
                 
-                // Expose corrective panel under skipped/wrong answers
+                // Expose corrective text notification configurations
                 const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
                 const explicitSolutionString = questionItem.o[solutionIndex];
                 const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
-                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter}</strong> (${explicitSolutionString})`;
+                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
                 notificationDiv.style.display = "block";
             }
         });

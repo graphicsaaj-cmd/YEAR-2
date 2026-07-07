@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 (Year 2) Religious Studies Examination</title>
+    <title>Key Stage 1 (Year 2) Literacy Examination - Part B</title>
     <style>
         :root {
             --primary-color: #002060;
@@ -188,7 +188,7 @@
             transform: scale(1.2);
         }
 
-        /* Auto-Marking UI State Classes */
+        /* Auto-Marking State Classes */
         .option-node.correct-state {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -239,6 +239,7 @@
 
 <div class="container">
     
+    <!-- Step 1: Candidate Verification Gate -->
     <div id="login-screen" class="card">
         <h2 style="margin-top:0; color: var(--primary-color);">Candidate Login</h2>
         <p>Please enter your full name below to start your CBT exam.</p>
@@ -247,9 +248,11 @@
         <button class="btn" onclick="startAssessment()">Begin Examination</button>
     </div>
 
+    <!-- Step 2: Main CBT Sheet -->
     <div id="quiz-screen">
         <div class="meta-info-strip" id="student-details"></div>
         
+        <!-- Score Feedback View Panel -->
         <div id="result-screen" class="summary-dashboard">
             <h2 id="total-score-text"></h2>
             <p>Please scroll down to review your automated corrections carefully.</p>
@@ -268,36 +271,31 @@
 <script>
     // Examination Bank Structure
     const questionsDatabase = [
-        { q: "God supplies our __________.", o: ["toys", "needs", "games", "clothes only"], a: "B", section: "SECTION A - Instructions: Answer all questions" },
-        { q: "God gives us __________ to wash and bathe.", o: ["sand", "water", "stones", "dust"], a: "B" },
-        { q: "God gives us the __________ to dry our clothes.", o: ["moon", "sun", "star", "cloud"], a: "B" },
-        { q: "God sent His __________ to the world.", o: ["servant", "Son", "friend", "angel"], a: "B" },
-        { q: "Jesus is the __________ of God.", o: ["brother", "Son", "teacher", "servant"], a: "B" },
-        { q: "Jesus and God are __________.", o: ["far apart", "enemies", "one", "strangers"], a: "C" },
-        { q: "As children of God, we must __________ others.", o: ["fight", "help", "ignore", "disturb"], a: "B" },
-        { q: "At home, we help our parents by doing __________.", o: ["nothing", "housework", "fighting", "sleeping"], a: "B" },
-        { q: "At school, we must not __________ in class.", o: ["read", "listen", "disturb", "write"], a: "C" },
-        { q: "God gives us good __________.", o: ["sickness", "health", "weakness", "fear"], a: "B" },
-        { q: "We can thank God by __________.", o: ["fighting", "praying", "shouting", "crying"], a: "B" },
-        { q: "Saying “thank you” shows we are __________.", o: ["happy", "ungrateful", "angry", "lazy"], a: "A" },
-        { q: "We can praise God by __________ our hands.", o: ["closing", "clapping", "hiding", "folding"], a: "B" },
-        { q: "David was a man who __________ God.", o: ["praised", "hated", "ignored", "forgot"], a: "A" },
-        { q: "Praising God makes Him __________.", o: ["angry", "happy", "tired", "sad"], a: "B" },
-        { q: "Abraham’s nephew was __________.", o: ["David", "Lot", "Moses", "John"], a: "B" },
-        { q: "God promised Abraham __________.", o: ["war", "sickness", "blessings", "punishment"], a: "C" },
-        { q: "God changed Abram’s name to __________.", o: ["Jacob", "Abraham", "Isaac", "Joseph"], a: "B" },
-        { q: "Joseph was sold for __________ pieces of silver.", o: ["ten", "twenty", "thirty", "forty"], a: "B" },
-        { q: "Joseph was taken to __________.", o: ["Canaan", "Egypt", "Haran", "Jerusalem"], a: "B" },
-        { q: "Joseph was sold to __________.", o: ["Pharaoh", "Potiphar", "Lot", "Isaac"], a: "B" },
-        { q: "Moses was from the tribe of __________.", o: ["Judah", "Levi", "Benjamin", "Dan"], a: "B" },
-        { q: "Moses was found in the __________.", o: ["river", "desert", "house", "palace"], a: "A" },
-        { q: "Pharaoh’s daughter named him __________.", o: ["Jacob", "Moses", "Aaron", "David"], a: "B" },
-        { q: "Judges are people who __________ disputes.", o: ["create", "settle", "break", "hide"], a: "B" },
-        { q: "One of the judges is __________.", o: ["Abraham", "Ehud", "Joseph", "Noah"], a: "B" },
-        { q: "God used judges to __________ Israel.", o: ["punish", "save", "sell", "forget"], a: "B" },
-        { q: "Saul was from the tribe of __________.", o: ["Judah", "Benjamin", "Levi", "Dan"], a: "B" },
-        { q: "Samuel anointed __________ as king after Saul.", o: ["Moses", "David", "Joshua", "Aaron"], a: "B" },
-        { q: "Saul spared __________.", o: ["Noah", "Agag", "Abraham", "Isaac"], a: "B" }
+        { 
+            q: "An _________ is a word used to described a noun or pronoun", 
+            o: ["Antonyms", "syllable", "adjective", "vocabulary"], 
+            a: "C",
+            section: "PART B - Choose the correct answers from the options."
+        },
+        { q: "Yesterday, Tola _____ to school.", o: ["go", "goes", "went", "going"], a: "C" },
+        { q: "Mum _____ rice last night.", o: ["cook", "cooked", "cooking", "cooks"], a: "B" },
+        { q: "The boys _____ football yesterday.", o: ["play", "plays", "played", "playing"], a: "C" },
+        { q: "What do we use to say what someone did or what happened in the past?", o: ["present tense", "continuous tense", "simple past tense", "Adverb"], a: "C" },
+        { q: "An antonym is a word that has _____________ meaning to another word.", o: ["an opposite", "the same", "a similar", "no"], a: "A" },
+        { q: "What is the antonym of “man”", o: ["child", "boy", "woman", "girl"], a: "C" },
+        { q: "________ is the opposite of “last”", o: ["End", "Beginning", "Forward", "First"], a: "D" },
+        { q: "Which of these is a noun?", o: ["Run", "Happy", "Table", "Quickly"], a: "C" },
+        { q: "A noun is the name of a:", o: ["Colour", "Person, place, animal or thing", "Action", "Number"], a: "B" },
+        { q: "This book belongs to you. It is _____.", o: ["mine", "yours", "ours", "theirs"], a: "B" },
+        { q: "The toys belong to them. They are _____.", o: ["ours", "mine", "theirs", "yours"], a: "C" },
+        { q: "The classroom belongs to us. It is _____.", o: ["ours", "mine", "yours", "theirs"], a: "A" },
+        { q: "Which of these is an uncountable noun?", o: ["Chair", "Book", "Water", "Pencil"], a: "C" },
+        { q: "We drink _____ every day.", o: ["apples", "water", "chairs", "pens"], a: "B" },
+        { q: "Which noun cannot be counted one by one?", o: ["Rice", "Orange", "Egg", "Book"], a: "A" },
+        { q: "The toy of the child is the _____ toy.", o: ["childs", "child's", "childs'", "child"], a: "B" },
+        { q: "The bicycle of John is _____ bicycle.", o: ["Johns", "John's", "Johns'", "John"], a: "B" },
+        { q: "The bicycle belongs to her. It is _____.", o: ["mine", "hers", "ours", "theirs"], a: "B" },
+        { q: "The pen belongs to Tunde. It is _____ pen.", o: ["Tunde", "Tundes", "Tunde's", "Tunde'"], a: "C" }
     ];
 
     let countdownTracker;
@@ -311,7 +309,7 @@
             return;
         }
 
-        // View Toggling
+        // Display Toggle
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
         document.getElementById('timer-banner').style.display = 'block';
@@ -329,7 +327,7 @@
         questionsDatabase.forEach((questionItem, qIndex) => {
             const displayIndex = qIndex + 1;
 
-            // Generate structural headers if defined
+            // Insert sub-section structural header
             if (questionItem.section) {
                 const sectionDiv = document.createElement('div');
                 sectionDiv.className = 'section-header';
@@ -346,7 +344,7 @@
                 structuralOptionsMarkup += `
                     <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
                         <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
+                        <span><strong>${currentLetter}.</strong> ${optionValue}</span>
                     </label>
                 `;
             });
@@ -406,11 +404,11 @@
                 }
                 document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
                 
-                // Expose corrective text notification configurations
+                // Expose corrective panel under skipped/wrong answers
                 const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
                 const explicitSolutionString = questionItem.o[solutionIndex];
-                const notificationDiv = document.getElementById('feedback-id-' + displayIndex);
-                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
+                const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
+                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter}</strong> (${explicitSolutionString})`;
                 notificationDiv.style.display = "block";
             }
         });

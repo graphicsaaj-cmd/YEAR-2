@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 (Year 2) Cultural and Creative Art Examination</title>
+    <title>Key Stage 1 (Year 2) PHE Examination</title>
     <style>
         :root {
             --primary-color: #002060;
@@ -33,7 +33,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 24px;
+            font-size: 26px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -125,17 +125,6 @@
             display: none;
         }
 
-        .section-header {
-            background: #eef2f7;
-            color: var(--primary-color);
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 25px 0 15px 0;
-            border-left: 5px solid var(--secondary-color);
-            font-size: 16px;
-        }
-
         .meta-info-strip {
             font-size: 16px;
             background: #eef2f7;
@@ -188,7 +177,7 @@
             transform: scale(1.2);
         }
 
-        /* Auto-Marking UI State Modifiers */
+        /* Auto-Marking State Classes */
         .option-node.correct-state {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -234,12 +223,11 @@
 <header>
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
     <h2>TERM THREE EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>SUBJECT: CULTURAL AND CREATIVE ART | CLASS: KEY STAGE 1 (YEAR 2)</h3>
+    <h3>SUBJECT: PHYSICAL AND HEALTH EDUCATION | CLASS: KEY STAGE 1 (YEAR 2)</h3>
 </header>
 
 <div class="container">
     
-    <!-- Step 1: Candidate Verification Gate -->
     <div id="login-screen" class="card">
         <h2 style="margin-top:0; color: var(--primary-color);">Candidate Login</h2>
         <p>Please enter your full name below to start your CBT exam.</p>
@@ -248,11 +236,9 @@
         <button class="btn" onclick="startAssessment()">Begin Examination</button>
     </div>
 
-    <!-- Step 2: Main CBT Sheet -->
     <div id="quiz-screen">
         <div class="meta-info-strip" id="student-details"></div>
         
-        <!-- Score Feedback View Panel -->
         <div id="result-screen" class="summary-dashboard">
             <h2 id="total-score-text"></h2>
             <p>Please scroll down to review your automated corrections carefully.</p>
@@ -271,40 +257,40 @@
 <script>
     // Examination Bank Structure
     const questionsDatabase = [
-        { q: "Storytelling is the act of __________ a story.", o: ["telling", "drawing", "hiding", "tearing"], a: "A", section: "SECTION A - Instructions: Answer all questions" },
-        { q: "The person who tells a story is called the __________", o: ["audience", "narrator", "singer", "dancer"], a: "B" },
-        { q: "The people who listen to a story are called the __________.", o: ["audience", "actors", "farmers", "traders"], a: "A" },
-        { q: "Storytelling helps to teach good __________", o: ["morals", "noise", "quarrels", "laziness"], a: "A" },
-        { q: "Melody is the __________ of a song", o: ["tune", "colour", "shape", "size"], a: "A" },
-        { q: "The tonic solfa is made up of __________ notes", o: ["5", "6", "8", "10"], a: "C" },
-        { q: "Another name for tonic solfa is __________.", o: ["octave", "chorus", "rhythm", "verse"], a: "A" },
-        { q: "Traditional festivals help to preserve __________.", o: ["culture", "littering", "fighting", "laziness"], a: "A" },
-        { q: "Drums are used during traditional __________.", o: ["festivals", "examinations", "lessons", "shopping"], a: "A" },
-        { q: "The note after RE is __________.", o: ["SO", "MI", "FA", "LA"], a: "B" },
-        { q: "The short form of DO is __________", o: ["r", "m", "d", "f"], a: "C" },
-        { q: "Melody is the __________ of a song", o: ["tune", "colour", "shape", "size"], a: "A" },
-        { q: "The Kakaki is common among the __________ people.", o: ["Hausa", "Igbo", "Yoruba", "Efik"], a: "A" },
-        { q: "The Shekere is used to support __________.", o: ["drums", "books", "pencils", "tables"], a: "A" },
-        { q: "Musical instruments are used for __________.", o: ["entertainment", "fighting", "sleeping", "hiding"], a: "A" },
-        { q: "The Atilogwu dance is common among the __________ people.", o: ["Yoruba", "Igbo", "Fulani", "Kanuri"], a: "B" },
-        { q: "Traditional dances are used for __________.", o: ["entertainment", "fighting", "sleeping", "hiding"], a: "A" },
-        { q: "The Koroso dance is common among the __________ people.", o: ["Igbo", "Yoruba", "Fulani", "Efik"], a: "C" },
-        { q: "Songs used to make babies sleep are called __________. ", o: ["lullabies", "pop songs", "rap songs", "school songs"], a: "A" },
-        { q: "Folk songs can be used during __________.", o: ["weddings", "football", "exams", "shopping"], a: "A" },
-        { q: "Folk songs help preserve our __________.", o: ["money", "culture", "games", "books"], a: "B" },
-        { q: "Temporary make-up can be __________.", o: ["broken", "washed away", "hidden", "eaten"], a: "B" },
-        { q: "Local make-up materials are mostly used by __________ women.", o: ["European", "African", "American", "Asian"], a: "B" },
-        { q: "Body make-up makes us look __________.", o: ["ugly", "dirty", "beautiful", "weak"], a: "C" },
-        { q: "A motif is made by __________ shapes.", o: ["hiding", "repeating", "breaking", "cutting"], a: "B" },
-        { q: "We should use at least __________ colours.", o: ["one", "two", "three", "four"], a: "B" },
-        { q: "Good colouring makes the pattern __________.", o: ["dirty", "ugly", "beautiful", "bad"], a: "C" },
-        { q: "Music has __________ letters.", o: ["five", "six", "seven", "eight"], a: "C" },
-        { q: "The letters of music include __________.", o: ["X", "Y", "A", "Z"], a: "C" },
-        { q: "Music is pleasant to __________.", o: ["eat", "hear", "see", "touch"], a: "B" }
+        { q: "Personal hygiene means", o: ["Playing", "Keeping the body clean", "Sleeping", "Eating"], a: "B" },
+        { q: "We brush our teeth to keep them", o: ["Dirty", "Strong and clean", "Broken", "Weak"], a: "B" },
+        { q: "Which of these is used for bathing?", o: ["Book", "Soap", "Pencil", "Chair"], a: "B" },
+        { q: "We use our eyes to __________.", o: ["hear", "see", "walk", "eat"], a: "B" },
+        { q: "We use our ears to __________.", o: ["see", "hear", "run", "smell"], a: "B" },
+        { q: "We use our nose to __________.", o: ["smell", "write", "jump", "eat"], a: "A" },
+        { q: "Fingers are used for __________ things.", o: ["breaking", "picking", "throwing", "hiding"], a: "B" },
+        { q: "Toes help us to keep __________.", o: ["balance", "sleep", "jump", "talk"], a: "A" },
+        { q: "The neck helps us to __________ the head.", o: ["cut", "turn", "hold", "push"], a: "B" },
+        { q: "The liver __________ the blood.", o: ["colours", "cleans", "cuts", "breaks"], a: "B" },
+        { q: "The kidneys remove __________ from the body.", o: ["food", "waste", "water", "air"], a: "B" },
+        { q: "The bladder stores __________.", o: ["blood", "air", "urine", "food"], a: "C" },
+        { q: "Cleanliness means keeping the body __________.", o: ["dirty", "neat", "rough", "wet"], a: "B" },
+        { q: "We should brush our teeth __________.", o: ["once a week", "every day", "once a month", "never"], a: "B" },
+        { q: "Washing hands helps to remove __________.", o: ["toys", "germs", "pencils", "books"], a: "B" },
+        { q: "First aid is the __________ help given to an injured person.", o: ["late", "immediate", "slow", "poor"], a: "B" },
+        { q: "First aid helps to __________ life.", o: ["waste", "save", "lose", "spoil"], a: "B" },
+        { q: "First aid can reduce __________.", o: ["joy", "pain", "play", "food"], a: "B" },
+        { q: "Scissors are used to cut __________.", o: ["food", "bandage", "books", "toys"], a: "B" },
+        { q: "A first aid box helps during __________.", o: ["games", "emergencies", "reading", "dancing"], a: "B" },
+        { q: "We should tell an __________ when someone is injured.", o: ["adult", "baby", "friend", "pupil"], a: "A" },
+        { q: "Burns can be caused by __________.", o: ["fire", "book", "toy", "chalk"], a: "A" },
+        { q: "Nose bleeding means blood comes from the __________.", o: ["ear", "nose", "mouth", "eye"], a: "B" },
+        { q: "Bruises may happen after a __________.", o: ["fall", "meal", "prayer", "sleep"], a: "A" },
+        { q: "Egg comes from __________.", o: ["animal", "plant", "tree", "road"], a: "A" },
+        { q: "Food gives us __________.", o: ["weakness", "energy", "sickness", "pain"], a: "B" },
+        { q: "Fruits come from __________.", o: ["animals", "plants", "roads", "houses"], a: "B" },
+        { q: "Generator noise is an example of __________ pollution.", o: ["water", "air", "land", "noise"], a: "D" },
+        { q: "We should throw waste into a __________.", o: ["road", "dustbin", "river", "classroom"], a: "B" },
+        { q: "Clean surroundings help prevent __________.", o: ["pollution", "games", "school", "reading"], a: "A" }
     ];
 
     let countdownTracker;
-    let timeRemainingSeconds = 30 * 60; // 30 Minutes
+    let timeRemainingSeconds = 30 * 60; // 30 Minutes allocation
     const lettersMap = ["A", "B", "C", "D"];
 
     function startAssessment() {
@@ -314,7 +300,7 @@
             return;
         }
 
-        // View Toggling
+        // Display Toggle
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
         document.getElementById('timer-banner').style.display = 'block';
@@ -331,15 +317,6 @@
 
         questionsDatabase.forEach((questionItem, qIndex) => {
             const displayIndex = qIndex + 1;
-
-            // Generate structural headers if defined
-            if (questionItem.section) {
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'section-header';
-                sectionDiv.innerText = questionItem.section;
-                targetContainer.appendChild(sectionDiv);
-            }
-
             const block = document.createElement('div');
             block.className = 'card question-box';
 
@@ -349,7 +326,7 @@
                 structuralOptionsMarkup += `
                     <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
                         <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
+                        <span><strong>${currentLetter}.</strong> ${optionValue}</span>
                     </label>
                 `;
             });
@@ -396,7 +373,7 @@
             const checkedLetter = checkedRadio ? checkedRadio.value : null;
             const targetCorrectLetter = questionItem.a;
 
-            // Freeze all operational radio targets
+            // Freeze UI inputs
             const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
             choicesElements.forEach(input => input.disabled = true);
 
@@ -409,11 +386,11 @@
                 }
                 document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
                 
-                // Expose corrective text notification configurations
+                // Expose corrective text instruction line underneath
                 const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
                 const explicitSolutionString = questionItem.o[solutionIndex];
                 const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
-                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
+                notificationDiv.innerText = `Correction: The correct answer is ${targetCorrectLetter} (${explicitSolutionString})`;
                 notificationDiv.style.display = "block";
             }
         });

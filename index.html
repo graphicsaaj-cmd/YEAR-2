@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 (Year 2) PHE Examination</title>
+    <title>Key Stage 1 (Year 2) Social Studies Examination</title>
     <style>
         :root {
             --primary-color: #002060;
@@ -33,7 +33,7 @@
 
         header h1 {
             margin: 0;
-            font-size: 26px;
+            font-size: 24px;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -125,6 +125,17 @@
             display: none;
         }
 
+        .section-header {
+            background: #eef2f7;
+            color: var(--primary-color);
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-weight: bold;
+            margin: 25px 0 15px 0;
+            border-left: 5px solid var(--secondary-color);
+            font-size: 16px;
+        }
+
         .meta-info-strip {
             font-size: 16px;
             background: #eef2f7;
@@ -177,7 +188,7 @@
             transform: scale(1.2);
         }
 
-        /* Auto-Marking State Classes */
+        /* Auto-Marking UI Classes */
         .option-node.correct-state {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -223,7 +234,7 @@
 <header>
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
     <h2>TERM THREE EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>SUBJECT: PHYSICAL AND HEALTH EDUCATION | CLASS: KEY STAGE 1 (YEAR 2)</h3>
+    <h3>CLASS: KEY STAGE 1 (YEAR 2)</h3>
 </header>
 
 <div class="container">
@@ -257,36 +268,36 @@
 <script>
     // Examination Bank Structure
     const questionsDatabase = [
-        { q: "Personal hygiene means", o: ["Playing", "Keeping the body clean", "Sleeping", "Eating"], a: "B" },
-        { q: "We brush our teeth to keep them", o: ["Dirty", "Strong and clean", "Broken", "Weak"], a: "B" },
-        { q: "Which of these is used for bathing?", o: ["Book", "Soap", "Pencil", "Chair"], a: "B" },
-        { q: "We use our eyes to __________.", o: ["hear", "see", "walk", "eat"], a: "B" },
-        { q: "We use our ears to __________.", o: ["see", "hear", "run", "smell"], a: "B" },
-        { q: "We use our nose to __________.", o: ["smell", "write", "jump", "eat"], a: "A" },
-        { q: "Fingers are used for __________ things.", o: ["breaking", "picking", "throwing", "hiding"], a: "B" },
-        { q: "Toes help us to keep __________.", o: ["balance", "sleep", "jump", "talk"], a: "A" },
-        { q: "The neck helps us to __________ the head.", o: ["cut", "turn", "hold", "push"], a: "B" },
-        { q: "The liver __________ the blood.", o: ["colours", "cleans", "cuts", "breaks"], a: "B" },
-        { q: "The kidneys remove __________ from the body.", o: ["food", "waste", "water", "air"], a: "B" },
-        { q: "The bladder stores __________.", o: ["blood", "air", "urine", "food"], a: "C" },
-        { q: "Cleanliness means keeping the body __________.", o: ["dirty", "neat", "rough", "wet"], a: "B" },
-        { q: "We should brush our teeth __________.", o: ["once a week", "every day", "once a month", "never"], a: "B" },
-        { q: "Washing hands helps to remove __________.", o: ["toys", "germs", "pencils", "books"], a: "B" },
-        { q: "First aid is the __________ help given to an injured person.", o: ["late", "immediate", "slow", "poor"], a: "B" },
-        { q: "First aid helps to __________ life.", o: ["waste", "save", "lose", "spoil"], a: "B" },
-        { q: "First aid can reduce __________.", o: ["joy", "pain", "play", "food"], a: "B" },
-        { q: "Scissors are used to cut __________.", o: ["food", "bandage", "books", "toys"], a: "B" },
-        { q: "A first aid box helps during __________.", o: ["games", "emergencies", "reading", "dancing"], a: "B" },
-        { q: "We should tell an __________ when someone is injured.", o: ["adult", "baby", "friend", "pupil"], a: "A" },
-        { q: "Burns can be caused by __________.", o: ["fire", "book", "toy", "chalk"], a: "A" },
-        { q: "Nose bleeding means blood comes from the __________.", o: ["ear", "nose", "mouth", "eye"], a: "B" },
-        { q: "Bruises may happen after a __________.", o: ["fall", "meal", "prayer", "sleep"], a: "A" },
-        { q: "Egg comes from __________.", o: ["animal", "plant", "tree", "road"], a: "A" },
-        { q: "Food gives us __________.", o: ["weakness", "energy", "sickness", "pain"], a: "B" },
-        { q: "Fruits come from __________.", o: ["animals", "plants", "roads", "houses"], a: "B" },
-        { q: "Generator noise is an example of __________ pollution.", o: ["water", "air", "land", "noise"], a: "D" },
-        { q: "We should throw waste into a __________.", o: ["road", "dustbin", "river", "classroom"], a: "B" },
-        { q: "Clean surroundings help prevent __________.", o: ["pollution", "games", "school", "reading"], a: "A" }
+        { q: "Traditional title holders are __________.", o: ["farmers", "leaders", "pupils", "traders"], a: "B", section: "SECTION A - Instructions: Answer all questions" },
+        { q: "They are given __________ titles.", o: ["small", "special", "bad", "weak"], a: "B" },
+        { q: "An example of a traditional ruler is __________.", o: ["teacher", "Oba", "driver", "nurse"], a: "B" },
+        { q: "States help to bring __________ to the people.", o: ["trouble", "development", "hunger", "sickness"], a: "B" },
+        { q: "State creation gives people a sense of __________.", o: ["fear", "belonging", "anger", "sadness"], a: "B" },
+        { q: "State creation helps to reduce __________.", o: ["peace", "joy", "conflicts", "unity"], a: "C" },
+        { q: "The capital of Kano State is __________.", o: ["Kaduna", "Kano", "Katsina", "Sokoto"], a: "B" },
+        { q: "The capital of Anambra State is __________.", o: ["Awka", "Onitsha", "Enugu", "Aba"], a: "A" },
+        { q: "The capital of Ogun State is __________.", o: ["Abeokuta", "Lagos", "Ibadan", "Akure"], a: "A" },
+        { q: "Local government provides __________ centres.", o: ["shopping", "health", "game", "farm"], a: "B" },
+        { q: "Local government helps to maintain __________.", o: ["trouble", "noise", "peace", "fight"], a: "C" },
+        { q: "Local government is created to bring government __________ to the people.", o: ["far", "closer", "higher", "slower"], a: "B" },
+        { q: "The chairman oversees __________.", o: ["markets", "houses", "farms", "rivers"], a: "A" },
+        { q: "The chairman helps to provide __________ centres.", o: ["shopping", "health", "game", "play"], a: "B" },
+        { q: "The chairman maintains __________ in the community.", o: ["trouble", "peace", "noise", "fight"], a: "B" },
+        { q: "Heavy rainfall can cause __________.", o: ["erosion", "happiness", "games", "reading"], a: "A" },
+        { q: "Strong __________ can cause erosion.", o: ["wind", "food", "toys", "pencils"], a: "A" },
+        { q: "Planting trees helps to __________ erosion.", o: ["increase", "prevent", "start", "create"], a: "B" },
+        { q: "Strong wind and rain can cause a __________.", o: ["drought", "storm", "game", "festival"], a: "B" },
+        { q: "An earthquake causes the __________ to shake.", o: ["sky", "earth", "water", "cloud"], a: "B" },
+        { q: "A long period without rain is called __________.", o: ["flood", "drought", "storm", "wind"], a: "B" },
+        { q: "A volcanic eruption happens when hot __________ comes out.", o: ["water", "lava", "sand", "soil"], a: "B" },
+        { q: "Mountains can be formed when plates __________.", o: ["push together", "disappear", "stop moving", "melt"], a: "A" },
+        { q: "The Earth's plates move very __________.", o: ["fast", "slowly", "loudly", "badly"], a: "B" },
+        { q: "A desert ecosystem receives little __________.", o: ["sunlight", "rainfall", "air", "wind"], a: "B" },
+        { q: "Fish are found in an __________ ecosystem.", o: ["aquatic", "forest", "desert", "grassland"], a: "A" },
+        { q: "Water is a __________ thing.", o: ["living", "non-living", "growing", "breathing"], a: "B" },
+        { q: "The dry season is usually __________.", o: ["cold", "wet", "hot", "rainy"], a: "C" },
+        { q: "Windy weather is characterized by strong __________.", o: ["water", "air", "soil", "rocks"], a: "B" },
+        { q: "Plants grow well during the __________ season.", o: ["dry", "rainy", "dusty", "windy"], a: "B" }
     ];
 
     let countdownTracker;
@@ -300,7 +311,7 @@
             return;
         }
 
-        // Display Toggle
+        // View Toggling
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
         document.getElementById('timer-banner').style.display = 'block';
@@ -317,6 +328,14 @@
 
         questionsDatabase.forEach((questionItem, qIndex) => {
             const displayIndex = qIndex + 1;
+
+            if (questionItem.section) {
+                const sectionDiv = document.createElement('div');
+                sectionDiv.className = 'section-header';
+                sectionDiv.innerText = questionItem.section;
+                targetContainer.appendChild(sectionDiv);
+            }
+
             const block = document.createElement('div');
             block.className = 'card question-box';
 
@@ -326,7 +345,7 @@
                 structuralOptionsMarkup += `
                     <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
                         <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter}.</strong> ${optionValue}</span>
+                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
                     </label>
                 `;
             });
@@ -373,7 +392,7 @@
             const checkedLetter = checkedRadio ? checkedRadio.value : null;
             const targetCorrectLetter = questionItem.a;
 
-            // Freeze UI inputs
+            // Freeze option nodes
             const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
             choicesElements.forEach(input => input.disabled = true);
 
@@ -386,11 +405,11 @@
                 }
                 document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
                 
-                // Expose corrective text instruction line underneath
+                // Expose corrective text blocks
                 const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
                 const explicitSolutionString = questionItem.o[solutionIndex];
-                const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
-                notificationDiv.innerText = `Correction: The correct answer is ${targetCorrectLetter} (${explicitSolutionString})`;
+                const notificationDiv = document.getElementById('feedback-id-' + displayIndex);
+                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
                 notificationDiv.style.display = "block";
             }
         });

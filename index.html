@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 (Year 2) Basic Science Examination</title>
+    <title>Key Stage 1 Digital Art Promotional Examination</title>
     <style>
         :root {
             --primary-color: #002060;
@@ -163,7 +163,7 @@
 
         .options-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 12px;
         }
 
@@ -188,7 +188,7 @@
             transform: scale(1.2);
         }
 
-        /* Auto-Marking UI Classes */
+        /* Auto-Marking UI State Rules */
         .option-node.correct-state {
             background-color: #d4edda !important;
             border-color: var(--success-color) !important;
@@ -233,8 +233,8 @@
 
 <header>
     <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <h2>TERM THREE EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>SUBJECT: BASIC SCIENCE | CLASS: KEY STAGE 1 (YEAR 2)</h3>
+    <h2>TERM 3 PROMOTIONAL EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
+    <h3>SUBJECT: DIGITAL ART | CLASS: KEY STAGE 1</h3>
 </header>
 
 <div class="container">
@@ -268,41 +268,41 @@
 <script>
     // Examination Bank Structure
     const questionsDatabase = [
-        { q: "A horse __________.", o: ["meows", "neighs", "buzzes", "clucks"], a: "B", section: "SECTION A - Instructions: Answer all questions" },
-        { q: "A mosquito __________.", o: ["chirps", "whines", "roars", "moos"], a: "B" },
-        { q: "A pig __________.", o: ["grunts", "roars", "chirps", "quacks"], a: "A" },
-        { q: "Petrol is used in __________.", o: ["vehicles", "classrooms", "farms", "rivers"], a: "A" },
-        { q: "Wind can help to __________ clothes.", o: ["wash", "dry", "sew", "fold"], a: "B" },
-        { q: "Water can help generate __________.", o: ["electricity", "books", "sand", "pencils"], a: "A" },
-        { q: "A __________ is used to make music.", o: ["drum", "ruler", "desk", "chalk"], a: "A" },
-        { q: "Radio produces __________.", o: ["sound", "water", "light", "heat"], a: "A" },
-        { q: "Bell helps to call __________.", o: ["attention", "water", "food", "books"], a: "A" },
-        { q: "Sources of energy are places where energy __________.", o: ["sleeps", "comes from", "hides", "stops"], a: "B" },
-        { q: "The sun is a source of __________.", o: ["energy", "water", "sand", "food"], a: "A" },
-        { q: "Renewable energy sources can be __________.", o: ["broken", "replaced", "hidden", "burnt"], a: "B" },
-        { q: "Drum produces __________ energy.", o: ["sound", "heat", "electrical", "water"], a: "A" },
-        { q: "Television uses __________ energy.", o: ["electrical", "sound", "heat", "wind"], a: "A" },
-        { q: "Plants need __________ energy to grow.", o: ["sun", "sand", "stone", "paper"], a: "A" },
-        { q: "Clay should not be put in the __________.", o: ["tray", "hand", "mouth", "water"], a: "C" },
-        { q: "We should __________ our hands after moulding.", o: ["wash", "dirty", "hide", "paint"], a: "A" },
-        { q: "Moulding helps us become __________.", o: ["lazy", "creative", "sick", "weak"], a: "B" },
-        { q: "A simple machine is a tool that makes work __________.", o: ["harder", "easier", "slower", "longer"], a: "B" },
-        { q: "A hoe is used for __________.", o: ["cooking", "digging", "sleeping", "washing"], a: "B" },
-        { q: "A cutlass is used for __________.", o: ["cutting", "writing", "reading", "eating"], a: "A" },
-        { q: "Goat is a __________.", o: ["carnivore", "herbivore", "omnivore", "insect"], a: "B" },
-        { q: "Carnivores eat __________.", o: ["grass", "meat", "leaves", "fruits"], a: "B" },
-        { q: "Lion is a __________.", o: ["herbivore", "omnivore", "carnivore", "bird"], a: "C" },
-        { q: "Sound energy helps us to __________.", o: ["see", "hear", "smell", "touch"], a: "B" },
-        { q: "A __________ produces sound.", o: ["bell", "stone", "book", "pencil"], a: "A" },
-        { q: "Drum is a __________ instrument.", o: ["cooking", "musical", "farming", "school"], a: "B" },
-        { q: "One example of energy is __________.", o: ["light", "pencil", "chair", "ruler"], a: "A" },
-        { q: "Electrical energy is used in __________ appliances.", o: ["wooden", "electrical", "farming", "cooking pots"], a: "B" },
-        { q: "A plant kept in darkness may __________. ", o: ["grow well", "die", "dance", "sing"], a: "B" }
+        { q: "Computers have ______ generations.", o: ["Three", "Five", "Ten"], a: "B", section: "SECTION A: OBJECTIVE QUESTIONS - Instruction: Choose the correct answer from the options A–C." },
+        { q: "The first generation of computers used ______.", o: ["Vacuum tubes", "Microchips", "Robots"], a: "A" },
+        { q: "The first generation computers were as big as ______.", o: ["A classroom", "A whole room", "A book"], a: "B" },
+        { q: "The second generation of computers became ______.", o: ["Bigger", "Smaller", "Slower"], a: "B" },
+        { q: "The third generation of computers used ______.", o: ["Stones", "Integrated circuits", "Paper"], a: "B" },
+        { q: "The fourth generation is known as the ______.", o: ["Giant computer", "Personal computer", "Stone computer"], a: "B" },
+        { q: "The fifth generation is called the ______.", o: ["Smart future", "Iron Age", "Giant Age"], a: "A" },
+        { q: "Artificial Intelligence (AI) belongs to the ______ generation.", o: ["First", "Third", "Fifth"], a: "C" },
+        { q: "Booting means ______.", o: ["Drawing", "Switching on the computer", "Printing"], a: "B" },
+        { q: "What should you press first to switch on a computer?", o: ["Start button", "Power button", "Mouse"], a: "B" },
+        { q: "After pressing the power button, you should ______.", o: ["Press all the keys", "Wait patiently", "Turn off the computer"], a: "B" },
+        { q: "What appears after the computer starts?", o: ["Television", "Desktop", "Calculator"], a: "B" },
+        { q: "To shut down a computer, click the ______ button first.", o: ["Save", "Start", "Print"], a: "B" },
+        { q: "After clicking Start, click ______.", o: ["Restart", "Shut Down", "Paint"], a: "B" },
+        { q: "Which of these should you NOT do?", o: ["Ask your teacher for help", "Switch off from the wall socket", "Wait patiently"], a: "B" },
+        { q: "The desktop is the ______ screen we see after the computer starts.", o: ["Last", "First", "Middle"], a: "B" },
+        { q: "Icons are ______.", o: ["Small pictures that open programs", "Books", "Speakers"], a: "A" },
+        { q: "The taskbar is found at the ______ of the screen.", o: ["Top", "Bottom", "Side"], a: "B" },
+        { q: "Wallpaper is the ______ picture on the desktop.", o: ["Background", "Front", "Hidden"], a: "A" },
+        { q: "Which of these can be used as wallpaper?", o: ["Nature picture", "Cartoon picture", "Both A and B"], a: "C" },
+        { q: "Which program helps us draw pictures?", o: ["Microsoft Word", "Paint", "Calculator"], a: "B" },
+        { q: "Before opening Paint, click the ______ button.", o: ["Close", "Start", "Stop"], a: "B" },
+        { q: "The blank space where we draw in Paint is called the ______.", o: ["Canvas", "Keyboard", "Folder"], a: "A" },
+        { q: "Which of these is NOT a shape?", o: ["Circle", "Triangle", "Keyboard"], a: "C" },
+        { q: "Which shape has four equal sides?", o: ["Square", "Circle", "Triangle"], a: "A" },
+        { q: "Microsoft Word is mainly used for ______.", o: ["Typing documents", "Playing football", "Listening to music"], a: "A" },
+        { q: "Which Microsoft Office program is used for presentations?", o: ["Microsoft Excel", "Microsoft PowerPoint", "Microsoft Paint"], a: "B" },
+        { q: "Which feature is found in Microsoft Word?", o: ["Font Tools", "Steering Wheel", "Engine"], a: "A" },
+        { q: "Microsoft PowerPoint uses ______ to present information.", o: ["Slides", "Keys", "Tables"], a: "A" },
+        { q: "One importance of Microsoft PowerPoint is that it ______.", o: ["Makes learning interesting", "Washes clothes", "Repairs computers"], a: "A" }
     ];
 
     let countdownTracker;
     let timeRemainingSeconds = 30 * 60; // 30 Minutes
-    const lettersMap = ["A", "B", "C", "D"];
+    const lettersMap = ["A", "B", "C"];
 
     function startAssessment() {
         const inputName = document.getElementById('candidate-fullname').value.trim();
@@ -311,12 +311,12 @@
             return;
         }
 
-        // Display Toggles
+        // Display Toggle
         document.getElementById('login-screen').style.display = 'none';
         document.getElementById('quiz-screen').style.display = 'block';
         document.getElementById('timer-banner').style.display = 'block';
         
-        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: KEY STAGE 1 (YEAR 2) | INSTRUCTIONS: ANSWER ALL QUESTIONS`;
+        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: KEY STAGE 1 | INSTRUCTIONS: ANSWER ALL QUESTIONS`;
 
         buildQuizSheet();
         runClockCounter();
@@ -345,7 +345,7 @@
                 structuralOptionsMarkup += `
                     <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
                         <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter.toLowerCase()}.</strong> ${optionValue}</span>
+                        <span><strong>${currentLetter.toLowerCase()})</strong> ${optionValue}</span>
                     </label>
                 `;
             });

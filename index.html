@@ -3,422 +3,706 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Stage 1 Digital Art Promotional Examination</title>
+    <title>Royal Wunderkind Model School - Exam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        :root {
-            --primary-color: #002060;
-            --secondary-color: #D4AF37;
-            --success-color: #28a745;
-            --fail-color: #dc3545;
-            --light-bg: #f4f6f9;
-            --text-color: #333;
-        }
-
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@700&display=swap');
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light-bg);
-            color: var(--text-color);
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .header-font {
+            font-family: 'Playfair Display', serif;
         }
 
-        header {
-            background-color: var(--primary-color);
-            color: white;
-            text-align: center;
-            padding: 25px 15px;
-            border-bottom: 5px solid var(--secondary-color);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .question-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 24px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        .option-label {
+            transition: all 0.2s ease;
+        }
+        
+        .option-label:hover {
+            background-color: #f3f4f6;
+        }
+        
+        .selected {
+            background-color: #dbeafe;
+            border-color: #3b82f6;
         }
 
-        header h2 {
-            margin: 6px 0;
-            font-size: 16px;
-            font-weight: normal;
-            color: #e0e0e0;
-            letter-spacing: 0.5px;
-        }
-
-        header h3 {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            font-weight: bold;
-            color: var(--secondary-color);
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            padding: 30px;
-            margin-bottom: 25px;
-        }
-
-        #timer-banner {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: var(--fail-color);
-            color: white;
-            padding: 12px 24px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            z-index: 1000;
-            display: none;
-            border: 2px solid white;
-        }
-
-        #login-screen {
-            text-align: center;
-            max-width: 500px;
-            margin: 50px auto;
-        }
-
-        .input-gate {
-            width: 85%;
-            padding: 14px 20px;
-            margin: 20px 0;
-            font-size: 16px;
-            border: 2px solid #bdc3c7;
-            border-radius: 8px;
-            text-align: center;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .input-gate:focus {
-            border-color: var(--primary-color);
-        }
-
-        .btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px 40px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #001238;
-        }
-
-        #quiz-screen, #result-screen {
-            display: none;
-        }
-
-        .section-header {
-            background: #eef2f7;
-            color: var(--primary-color);
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            margin: 25px 0 15px 0;
-            border-left: 5px solid var(--secondary-color);
-            font-size: 16px;
-        }
-
-        .meta-info-strip {
-            font-size: 16px;
-            background: #eef2f7;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            font-weight: bold;
-            border-left: 5px solid var(--secondary-color);
-        }
-
-        .question-box {
-            border-left: 5px solid var(--primary-color);
-            background: #fafafa;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .question-text {
-            font-size: 17px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-        }
-
-        .option-node {
-            display: flex;
-            align-items: center;
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            padding: 12px 15px;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .option-node:hover {
-            background: #f1f5f9;
-            border-color: #cbd5e1;
-        }
-
-        .option-node input {
-            margin-right: 12px;
-            transform: scale(1.2);
-        }
-
-        /* Auto-Marking UI State Rules */
-        .option-node.correct-state {
-            background-color: #d4edda !important;
-            border-color: var(--success-color) !important;
-            color: #155724;
-            font-weight: bold;
-        }
-
-        .option-node.wrong-state {
-            background-color: #f8d7da !important;
-            border-color: var(--fail-color) !important;
-            color: #721c24;
-        }
-
-        .correction-box {
-            margin-top: 12px;
-            font-weight: bold;
-            color: #c0392b;
-            font-size: 14px;
-            display: none;
-            padding: 5px 0;
-        }
-
-        .summary-dashboard {
-            text-align: center;
-            background: #e8f8f5;
-            border: 2px solid var(--success-color);
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-        }
-
-        .summary-dashboard h2 {
-            margin: 0 0 10px 0;
-            color: #117a65;
-            font-size: 24px;
+        .timer {
+            font-variant-numeric: tabular-nums;
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50">
+    <!-- Landing Screen -->
+    <div id="landing" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900">
+        <div class="max-w-2xl w-full mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <!-- Header -->
+            <div class="bg-[#1e3a8a] text-white p-8 text-center">
+                <div class="flex justify-center mb-4">
+                    <div class="w-20 h-20 bg-white rounded-2xl flex items-center justify-center text-4xl shadow-inner">
+                        👩‍🎓
+                    </div>
+                </div>
+                <h1 class="header-font text-4xl font-bold tracking-tight">Royal Wunderkind Model School</h1>
+                <p class="text-blue-200 mt-2">Term Three Examination 2025/2026</p>
+            </div>
+            
+            <div class="p-10">
+                <div class="text-center mb-8">
+                    <p class="text-xl font-semibold text-gray-800">Key Stage 1 (Year 2)</p>
+                    <p class="text-2xl font-bold text-indigo-700 mt-1">SOCIAL AND CITIZENSHIP STUDIES</p>
+                    <div class="flex justify-center gap-8 mt-6 text-sm">
+                        <div>
+                            <span class="block text-gray-500">Duration</span>
+                            <span class="font-mono font-bold text-xl text-amber-600">30 Minutes</span>
+                        </div>
+                        <div>
+                            <span class="block text-gray-500">Questions</span>
+                            <span class="font-mono font-bold text-xl text-amber-600">30</span>
+                        </div>
+                    </div>
+                </div>
 
-<div id="timer-banner">Time Left: 30:00</div>
+                <div class="mb-8">
+                    <label class="block text-gray-700 text-lg font-medium mb-3">Candidate's Full Name</label>
+                    <input id="studentName" 
+                           type="text" 
+                           placeholder="Enter your full name here"
+                           class="w-full px-6 py-4 border border-gray-300 rounded-2xl focus:outline-none focus:border-indigo-500 text-lg">
+                </div>
 
-<header>
-    <h1>ROYAL WUNDERKIND MODEL SCHOOL</h1>
-    <h2>TERM 3 PROMOTIONAL EXAMINATION, 2025/2026 ACADEMIC SESSION</h2>
-    <h3>SUBJECT: DIGITAL ART | CLASS: KEY STAGE 1</h3>
-</header>
-
-<div class="container">
-    
-    <div id="login-screen" class="card">
-        <h2 style="margin-top:0; color: var(--primary-color);">Candidate Login</h2>
-        <p>Please enter your full name below to start your CBT exam.</p>
-        <input type="text" id="candidate-fullname" class="input-gate" placeholder="Surname & First Name" autocomplete="off">
-        <br>
-        <button class="btn" onclick="startAssessment()">Begin Examination</button>
+                <button onclick="startExam()" 
+                        class="w-full bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-700 hover:to-blue-700 text-white font-semibold text-xl py-5 rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-3">
+                    <i class="fas fa-play"></i>
+                    START EXAMINATION
+                </button>
+                
+                <p class="text-center text-gray-500 text-sm mt-6">All questions are compulsory • Auto-marked</p>
+            </div>
+        </div>
     </div>
 
-    <div id="quiz-screen">
-        <div class="meta-info-strip" id="student-details"></div>
-        
-        <div id="result-screen" class="summary-dashboard">
-            <h2 id="total-score-text"></h2>
-            <p>Please scroll down to review your automated corrections carefully.</p>
+    <!-- Exam Screen -->
+    <div id="examScreen" class="hidden min-h-screen bg-gray-100">
+        <!-- Top Bar -->
+        <div class="bg-white border-b sticky top-0 z-50">
+            <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="bg-blue-100 text-blue-700 px-4 py-2 rounded-xl font-medium text-sm">SOCIAL &amp; CITIZENSHIP STUDIES</div>
+                    <div class="text-gray-500 text-sm">Year 2 • Term 3</div>
+                </div>
+                
+                <div class="flex items-center gap-6">
+                    <div id="timer" 
+                         class="timer bg-red-50 text-red-700 font-mono text-3xl font-bold px-8 py-3 rounded-2xl border border-red-200 flex items-center gap-2">
+                        <i class="fas fa-clock"></i>
+                        <span id="timeLeft">30:00</span>
+                    </div>
+                    
+                    <div onclick="submitExam()" 
+                         class="cursor-pointer bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-2xl font-semibold flex items-center gap-2 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>SUBMIT</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <form id="cbt-form">
-            <div id="questions-outlet"></div>
-            
-            <div style="text-align: center; margin-top: 40px;">
-                <button type="button" id="submit-exam-btn" class="btn" style="background-color: var(--success-color);" onclick="gradeAssessment()">Submit Examination</button>
+        <div class="max-w-5xl mx-auto px-6 py-8">
+            <div class="mb-8 bg-white rounded-3xl p-8 shadow">
+                <div id="studentInfo" class="text-center mb-6 text-lg font-medium text-gray-700"></div>
+                
+                <!-- Questions Container -->
+                <div id="questionsContainer" class="space-y-8"></div>
             </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<script>
-    // Examination Bank Structure
-    const questionsDatabase = [
-        { q: "Computers have ______ generations.", o: ["Three", "Five", "Ten"], a: "B", section: "SECTION A: OBJECTIVE QUESTIONS - Instruction: Choose the correct answer from the options A–C." },
-        { q: "The first generation of computers used ______.", o: ["Vacuum tubes", "Microchips", "Robots"], a: "A" },
-        { q: "The first generation computers were as big as ______.", o: ["A classroom", "A whole room", "A book"], a: "B" },
-        { q: "The second generation of computers became ______.", o: ["Bigger", "Smaller", "Slower"], a: "B" },
-        { q: "The third generation of computers used ______.", o: ["Stones", "Integrated circuits", "Paper"], a: "B" },
-        { q: "The fourth generation is known as the ______.", o: ["Giant computer", "Personal computer", "Stone computer"], a: "B" },
-        { q: "The fifth generation is called the ______.", o: ["Smart future", "Iron Age", "Giant Age"], a: "A" },
-        { q: "Artificial Intelligence (AI) belongs to the ______ generation.", o: ["First", "Third", "Fifth"], a: "C" },
-        { q: "Booting means ______.", o: ["Drawing", "Switching on the computer", "Printing"], a: "B" },
-        { q: "What should you press first to switch on a computer?", o: ["Start button", "Power button", "Mouse"], a: "B" },
-        { q: "After pressing the power button, you should ______.", o: ["Press all the keys", "Wait patiently", "Turn off the computer"], a: "B" },
-        { q: "What appears after the computer starts?", o: ["Television", "Desktop", "Calculator"], a: "B" },
-        { q: "To shut down a computer, click the ______ button first.", o: ["Save", "Start", "Print"], a: "B" },
-        { q: "After clicking Start, click ______.", o: ["Restart", "Shut Down", "Paint"], a: "B" },
-        { q: "Which of these should you NOT do?", o: ["Ask your teacher for help", "Switch off from the wall socket", "Wait patiently"], a: "B" },
-        { q: "The desktop is the ______ screen we see after the computer starts.", o: ["Last", "First", "Middle"], a: "B" },
-        { q: "Icons are ______.", o: ["Small pictures that open programs", "Books", "Speakers"], a: "A" },
-        { q: "The taskbar is found at the ______ of the screen.", o: ["Top", "Bottom", "Side"], a: "B" },
-        { q: "Wallpaper is the ______ picture on the desktop.", o: ["Background", "Front", "Hidden"], a: "A" },
-        { q: "Which of these can be used as wallpaper?", o: ["Nature picture", "Cartoon picture", "Both A and B"], a: "C" },
-        { q: "Which program helps us draw pictures?", o: ["Microsoft Word", "Paint", "Calculator"], a: "B" },
-        { q: "Before opening Paint, click the ______ button.", o: ["Close", "Start", "Stop"], a: "B" },
-        { q: "The blank space where we draw in Paint is called the ______.", o: ["Canvas", "Keyboard", "Folder"], a: "A" },
-        { q: "Which of these is NOT a shape?", o: ["Circle", "Triangle", "Keyboard"], a: "C" },
-        { q: "Which shape has four equal sides?", o: ["Square", "Circle", "Triangle"], a: "A" },
-        { q: "Microsoft Word is mainly used for ______.", o: ["Typing documents", "Playing football", "Listening to music"], a: "A" },
-        { q: "Which Microsoft Office program is used for presentations?", o: ["Microsoft Excel", "Microsoft PowerPoint", "Microsoft Paint"], a: "B" },
-        { q: "Which feature is found in Microsoft Word?", o: ["Font Tools", "Steering Wheel", "Engine"], a: "A" },
-        { q: "Microsoft PowerPoint uses ______ to present information.", o: ["Slides", "Keys", "Tables"], a: "A" },
-        { q: "One importance of Microsoft PowerPoint is that it ______.", o: ["Makes learning interesting", "Washes clothes", "Repairs computers"], a: "A" }
-    ];
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="hidden min-h-screen bg-gradient-to-br from-emerald-50 to-sky-50">
+        <div class="max-w-4xl mx-auto px-6 py-12">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <!-- Header -->
+                <div class="bg-emerald-700 text-white p-10 text-center">
+                    <h2 class="text-5xl font-bold header-font">Examination Complete!</h2>
+                    <p id="resultName" class="mt-4 text-xl text-emerald-100"></p>
+                </div>
 
-    let countdownTracker;
-    let timeRemainingSeconds = 30 * 60; // 30 Minutes
-    const lettersMap = ["A", "B", "C"];
+                <div class="p-10">
+                    <div class="flex justify-center mb-10">
+                        <div class="text-center">
+                            <div id="scoreCircle" 
+                                 class="w-48 h-48 mx-auto rounded-full border-8 border-emerald-200 flex items-center justify-center text-center relative">
+                                <div class="text-center">
+                                    <div id="scorePercent" class="text-7xl font-bold text-emerald-700">85</div>
+                                    <div class="text-sm uppercase tracking-widest text-emerald-600">Score</div>
+                                </div>
+                            </div>
+                            <div id="scoreText" class="mt-4 text-2xl font-semibold text-gray-700"></div>
+                        </div>
+                    </div>
 
-    function startAssessment() {
-        const inputName = document.getElementById('candidate-fullname').value.trim();
-        if (inputName === "") {
-            alert("Access Denied: Please fill in the candidate's complete name setup.");
-            return;
+                    <div class="grid grid-cols-2 gap-8 mb-12">
+                        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold text-emerald-600" id="correctCount">26</div>
+                            <div class="text-gray-600">Correct Answers</div>
+                        </div>
+                        <div class="bg-gray-50 rounded-2xl p-6 text-center">
+                            <div class="text-4xl font-bold text-amber-600" id="wrongCount">4</div>
+                            <div class="text-gray-600">Incorrect Answers</div>
+                        </div>
+                    </div>
+
+                    <!-- Review -->
+                    <div class="mb-8">
+                        <h3 class="font-semibold text-xl mb-6 flex items-center gap-3">
+                            <i class="fas fa-list-check"></i>
+                            Detailed Review
+                        </h3>
+                        <div id="reviewContainer" class="space-y-6"></div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="restartExam()" 
+                                class="flex-1 bg-white border-2 border-gray-300 hover:border-gray-400 py-6 rounded-2xl font-semibold text-lg">
+                            RETAKE EXAM
+                        </button>
+                        <button onclick="window.location.reload()" 
+                                class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-6 rounded-2xl font-semibold text-lg">
+                            FINISH
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Correct answers
+        const correctAnswers = {
+            1: 'b',
+            2: 'a',
+            3: 'c',
+            4: 'b',
+            5: 'a',
+            6: 'a',
+            7: 'a',
+            8: 'a',
+            9: 'b',
+            10: 'a',
+            11: 'a',
+            12: 'b',
+            13: 'b',
+            14: 'c',
+            15: 'c',
+            16: 'b',
+            17: 'b',
+            18: 'b',
+            19: 'b',
+            20: 'c',
+            21: 'c',
+            22: 'c',
+            23: 'c',
+            24: 'b',
+            25: 'b',
+            26: 'b',
+            27: 'a',
+            28: 'b',
+            29: 'b',
+            30: 'b'
+        };
+
+        const questions = [
+            {
+                num: 1,
+                text: "Road Safety officers help to control __________.",
+                options: {
+                    a: "games",
+                    b: "traffic",
+                    c: "food",
+                    d: "farms"
+                }
+            },
+            {
+                num: 2,
+                text: "Civil Defence helps to protect __________ property.",
+                options: {
+                    a: "public",
+                    b: "private",
+                    c: "old",
+                    d: "broken"
+                }
+            },
+            {
+                num: 3,
+                text: "We should avoid __________.",
+                options: {
+                    a: "friends",
+                    b: "teachers",
+                    c: "strangers",
+                    d: "parents"
+                }
+            },
+            {
+                num: 4,
+                text: "Broken electrical wires can cause __________.",
+                options: {
+                    a: "safety",
+                    b: "danger",
+                    c: "happiness",
+                    d: "games"
+                }
+            },
+            {
+                num: 5,
+                text: "One source of insecurity is __________.",
+                options: {
+                    a: "flooding",
+                    b: "reading",
+                    c: "singing",
+                    d: "writing"
+                }
+            },
+            {
+                num: 6,
+                text: "We should report suspicious activities to __________.",
+                options: {
+                    a: "adults",
+                    b: "strangers",
+                    c: "visitors",
+                    d: "nobody"
+                }
+            },
+            {
+                num: 7,
+                text: "We use water for __________ food.",
+                options: {
+                    a: "cooking",
+                    b: "drawing",
+                    c: "hiding",
+                    d: "throwing"
+                }
+            },
+            {
+                num: 8,
+                text: "Clean water helps us stay __________.",
+                options: {
+                    a: "healthy",
+                    b: "dirty",
+                    c: "weak",
+                    d: "hungry"
+                }
+            },
+            {
+                num: 9,
+                text: "Passing water through cloth is called __________.",
+                options: {
+                    a: "boiling",
+                    b: "filtering",
+                    c: "washing",
+                    d: "stirring"
+                }
+            },
+            {
+                num: 10,
+                text: "Water helps plants to __________.",
+                options: {
+                    a: "grow",
+                    b: "sleep",
+                    c: "hide",
+                    d: "jump"
+                }
+            },
+            {
+                num: 11,
+                text: "A __________ is a source of water.",
+                options: {
+                    a: "stream",
+                    b: "table",
+                    c: "ruler",
+                    d: "shoe"
+                }
+            },
+            {
+                num: 12,
+                text: "Water helps us stay __________.",
+                options: {
+                    a: "weak",
+                    b: "healthy",
+                    c: "dirty",
+                    d: "hungry"
+                }
+            },
+            {
+                num: 13,
+                text: "Drugs should be taken only when prescribed by a __________.",
+                options: {
+                    a: "friend",
+                    b: "doctor",
+                    c: "child",
+                    d: "driver"
+                }
+            },
+            {
+                num: 14,
+                text: "Sour or spoiled food is __________.",
+                options: {
+                    a: "good",
+                    b: "safe",
+                    c: "harmful",
+                    d: "clean"
+                }
+            },
+            {
+                num: 15,
+                text: "We should not pick food from the __________.",
+                options: {
+                    a: "table",
+                    b: "plate",
+                    c: "floor",
+                    d: "pot"
+                }
+            },
+            {
+                num: 16,
+                text: "Smoking cigarette affects the __________.",
+                options: {
+                    a: "legs",
+                    b: "lungs",
+                    c: "hands",
+                    d: "head"
+                }
+            },
+            {
+                num: 17,
+                text: "Too much alcohol can cause __________.",
+                options: {
+                    a: "joy",
+                    b: "accident",
+                    c: "play",
+                    d: "sleep"
+                }
+            },
+            {
+                num: 18,
+                text: "We should drink __________ water.",
+                options: {
+                    a: "dirty",
+                    b: "clean",
+                    c: "bad",
+                    d: "hot"
+                }
+            },
+            {
+                num: 19,
+                text: "Drugs should be taken with advice from a __________.",
+                options: {
+                    a: "friend",
+                    b: "doctor",
+                    c: "child",
+                    d: "teacher"
+                }
+            },
+            {
+                num: 20,
+                text: "We should not buy drugs from __________ sellers.",
+                options: {
+                    a: "registered",
+                    b: "clean",
+                    c: "unregistered",
+                    d: "good"
+                }
+            },
+            {
+                num: 21,
+                text: "We should avoid __________ friends.",
+                options: {
+                    a: "good",
+                    b: "kind",
+                    c: "bad",
+                    d: "happy"
+                }
+            },
+            {
+                num: 22,
+                text: "Addiction means __________.",
+                options: {
+                    a: "stopping drugs",
+                    b: "not taking drugs",
+                    c: "cannot stop taking drugs",
+                    d: "eating food"
+                }
+            },
+            {
+                num: 23,
+                text: "Drug abuse can make a pupil __________ school.",
+                options: {
+                    a: "love",
+                    b: "enjoy",
+                    c: "drop out of",
+                    d: "attend"
+                }
+            },
+            {
+                num: 24,
+                text: "We should take drugs only when __________.",
+                options: {
+                    a: "playing",
+                    b: "told by doctor",
+                    c: "running",
+                    d: "eating"
+                }
+            },
+            {
+                num: 25,
+                text: "Bad food can make us __________.",
+                options: {
+                    a: "strong",
+                    b: "sick",
+                    c: "tall",
+                    d: "happy"
+                }
+            },
+            {
+                num: 26,
+                text: "Adding wrong things to food is called __________.",
+                options: {
+                    a: "mixing",
+                    b: "adulteration",
+                    c: "cooking",
+                    d: "cleaning"
+                }
+            },
+            {
+                num: 27,
+                text: "Changing food and selling it as original is __________.",
+                options: {
+                    a: "fraud",
+                    b: "play",
+                    c: "cooking",
+                    d: "farming"
+                }
+            },
+            {
+                num: 28,
+                text: "Food safety means __________.",
+                options: {
+                    a: "playing",
+                    b: "eating safe food",
+                    c: "sleeping",
+                    d: "running"
+                }
+            },
+            {
+                num: 29,
+                text: "Food that is mixed with wrong things is called __________.",
+                options: {
+                    a: "clean food",
+                    b: "adulterated food",
+                    c: "fresh food",
+                    d: "good food"
+                }
+            },
+            {
+                num: 30,
+                text: "Food with bad smell is __________.",
+                options: {
+                    a: "good",
+                    b: "bad",
+                    c: "fresh",
+                    d: "clean"
+                }
+            }
+        ];
+
+        let studentName = "";
+        let timerInterval;
+        let timeLeft = 30 * 60; // 30 minutes in seconds
+        let selectedAnswers = {};
+        let isSubmitted = false;
+
+        function startExam() {
+            studentName = document.getElementById('studentName').value.trim();
+            if (!studentName) {
+                alert("Please enter your full name to begin the examination.");
+                return;
+            }
+
+            document.getElementById('landing').classList.add('hidden');
+            document.getElementById('examScreen').classList.remove('hidden');
+            
+            document.getElementById('studentInfo').innerHTML = `
+                <span class="font-semibold">${studentName}</span> • Year 2 Social &amp; Citizenship Studies
+            `;
+
+            renderQuestions();
+            startTimer();
         }
 
-        // Display Toggle
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('quiz-screen').style.display = 'block';
-        document.getElementById('timer-banner').style.display = 'block';
-        
-        document.getElementById('student-details').innerText = `CANDIDATE: ${inputName.toUpperCase()} | CLASS: KEY STAGE 1 | INSTRUCTIONS: ANSWER ALL QUESTIONS`;
+        function startTimer() {
+            const timerEl = document.getElementById('timeLeft');
+            
+            timerInterval = setInterval(() => {
+                if (isSubmitted) return;
+                
+                timeLeft--;
+                
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerEl.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                
+                if (timeLeft <= 300) {
+                    timerEl.parentElement.classList.add('animate-pulse');
+                }
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    submitExam(true);
+                }
+            }, 1000);
+        }
 
-        buildQuizSheet();
-        runClockCounter();
-    }
+        function renderQuestions() {
+            const container = document.getElementById('questionsContainer');
+            container.innerHTML = '';
 
-    function buildQuizSheet() {
-        const targetContainer = document.getElementById('questions-outlet');
-        targetContainer.innerHTML = "";
+            questions.forEach((q, index) => {
+                const questionHTML = `
+                    <div class="question-card bg-white border border-gray-200 rounded-3xl p-8">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-indigo-100 text-indigo-700 font-bold rounded-2xl flex items-center justify-center flex-shrink-0">
+                                ${q.num}
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-lg leading-relaxed mb-6">${q.text}</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="options-${q.num}">
+                                    ${Object.keys(q.options).map(option => `
+                                        <label onclick="selectOption(${q.num}, '${option}')" 
+                                               class="option-label cursor-pointer flex items-center gap-3 border border-gray-200 hover:border-indigo-300 rounded-2xl px-6 py-4 text-lg">
+                                            <input type="radio" name="q${q.num}" value="${option}" class="w-5 h-5 accent-indigo-600">
+                                            <span class="font-medium">${option.toUpperCase()}. ${q.options[option]}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += questionHTML;
+            });
+        }
 
-        questionsDatabase.forEach((questionItem, qIndex) => {
-            const displayIndex = qIndex + 1;
+        function selectOption(questionNum, option) {
+            selectedAnswers[questionNum] = option;
+            
+            // Update UI to show selected
+            const optionsContainer = document.getElementById(`options-${questionNum}`);
+            const labels = optionsContainer.querySelectorAll('label');
+            
+            labels.forEach(label => {
+                const radio = label.querySelector('input');
+                if (radio.value === option) {
+                    label.classList.add('selected');
+                } else {
+                    label.classList.remove('selected');
+                }
+            });
+        }
 
-            if (questionItem.section) {
-                const sectionDiv = document.createElement('div');
-                sectionDiv.className = 'section-header';
-                sectionDiv.innerText = questionItem.section;
-                targetContainer.appendChild(sectionDiv);
-            }
-
-            const block = document.createElement('div');
-            block.className = 'card question-box';
-
-            let structuralOptionsMarkup = "";
-            questionItem.o.forEach((optionValue, oIndex) => {
-                const currentLetter = lettersMap[oIndex];
-                structuralOptionsMarkup += `
-                    <label class="option-node" id="node-box-${displayIndex}-${currentLetter}">
-                        <input type="radio" name="question-id-${displayIndex}" value="${currentLetter}">
-                        <span><strong>${currentLetter.toLowerCase()})</strong> ${optionValue}</span>
-                    </label>
+        function submitExam(timeUp = false) {
+            if (isSubmitted) return;
+            isSubmitted = true;
+            
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let score = 0;
+            let reviewHTML = '';
+            
+            questions.forEach(q => {
+                const userAnswer = selectedAnswers[q.num];
+                const correctAnswer = correctAnswers[q.num];
+                const isCorrect = userAnswer === correctAnswer;
+                
+                if (isCorrect) score++;
+                
+                reviewHTML += `
+                    <div class="border ${isCorrect ? 'border-emerald-300 bg-emerald-50' : 'border-red-300 bg-red-50'} rounded-2xl p-6">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 mt-1">
+                                ${isCorrect ? 
+                                    '<i class="fas fa-check-circle text-3xl text-emerald-500"></i>' : 
+                                    '<i class="fas fa-times-circle text-3xl text-red-500"></i>'}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex justify-between">
+                                    <p class="font-medium">Question ${q.num}</p>
+                                    <p class="text-sm font-mono ${isCorrect ? 'text-emerald-600' : 'text-red-600'}">
+                                        ${isCorrect ? 'Correct' : `Correct: ${correctAnswer.toUpperCase()}`}
+                                    </p>
+                                </div>
+                                <p class="mt-2 text-gray-700">${q.text}</p>
+                                <div class="mt-4 text-sm">
+                                    <span class="font-medium">Your answer:</span> 
+                                    ${userAnswer ? `<span class="${isCorrect ? 'text-emerald-600' : 'text-red-600'}">${userAnswer.toUpperCase()}. ${q.options[userAnswer]}</span>` : '<span class="text-gray-400">Not answered</span>'}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
             });
-
-            block.innerHTML = `
-                <div class="question-text">${displayIndex}. ${questionItem.q}</div>
-                <div class="options-grid">${structuralOptionsMarkup}</div>
-                <div class="correction-box" id="feedback-id-${displayIndex}"></div>
-            `;
-            targetContainer.appendChild(block);
-        });
-    }
-
-    function runClockCounter() {
-        countdownTracker = setInterval(() => {
-            timeRemainingSeconds--;
-            let computedMinutes = Math.floor(timeRemainingSeconds / 60);
-            let computedSeconds = timeRemainingSeconds % 60;
-
-            computedMinutes = computedMinutes < 10 ? "0" + computedMinutes : computedMinutes;
-            computedSeconds = computedSeconds < 10 ? "0" + computedSeconds : computedSeconds;
-
-            document.getElementById('timer-banner').innerText = `Time Left: ${computedMinutes}:${computedSeconds}`;
-
-            if (timeRemainingSeconds <= 0) {
-                clearInterval(countdownTracker);
-                alert("Time Limit Expired! Running automated system submission configuration.");
-                gradeAssessment();
-            }
-        }, 1000);
-    }
-
-    function gradeAssessment() {
-        clearInterval(countdownTracker);
-        document.getElementById('timer-banner').style.display = 'none';
-        document.getElementById('submit-exam-btn').style.display = 'none';
-
-        let accurateAnswersTally = 0;
-        const completeCount = questionsDatabase.length;
-
-        questionsDatabase.forEach((questionItem, qIndex) => {
-            const displayIndex = qIndex + 1;
-            const checkedRadio = document.querySelector(`input[name="question-id-${displayIndex}"]:checked`);
-            const checkedLetter = checkedRadio ? checkedRadio.value : null;
-            const targetCorrectLetter = questionItem.a;
-
-            const choicesElements = document.querySelectorAll(`input[name="question-id-${displayIndex}"]`);
-            choicesElements.forEach(input => input.disabled = true);
-
-            if (checkedLetter === targetCorrectLetter) {
-                accurateAnswersTally++;
-                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
+            
+            const percentage = Math.round((score / questions.length) * 100);
+            
+            // Show results
+            document.getElementById('examScreen').classList.add('hidden');
+            document.getElementById('resultsScreen').classList.remove('hidden');
+            
+            document.getElementById('resultName').textContent = studentName;
+            document.getElementById('scorePercent').textContent = percentage;
+            document.getElementById('scoreText').textContent = `${score} out of ${questions.length} correct`;
+            document.getElementById('correctCount').textContent = score;
+            document.getElementById('wrongCount').textContent = questions.length - score;
+            
+            // Color the score circle
+            const scoreCircle = document.getElementById('scoreCircle');
+            if (percentage >= 80) {
+                scoreCircle.style.borderColor = '#10b981';
+            } else if (percentage >= 60) {
+                scoreCircle.style.borderColor = '#eab308';
             } else {
-                if (checkedLetter) {
-                    document.getElementById(`node-box-${displayIndex}-${checkedLetter}`).classList.add('wrong-state');
-                }
-                document.getElementById(`node-box-${displayIndex}-${targetCorrectLetter}`).classList.add('correct-state');
-                
-                const solutionIndex = lettersMap.indexOf(targetCorrectLetter);
-                const explicitSolutionString = questionItem.o[solutionIndex];
-                const notificationDiv = document.getElementById(`feedback-id-${displayIndex}`);
-                notificationDiv.innerHTML = `Correction: The correct answer is <strong>${targetCorrectLetter.toLowerCase()}</strong> (${explicitSolutionString})`;
-                notificationDiv.style.display = "block";
+                scoreCircle.style.borderColor = '#ef4444';
             }
+            
+            document.getElementById('reviewContainer').innerHTML = reviewHTML;
+        }
+
+        function restartExam() {
+            // Reset everything
+            window.location.reload();
+        }
+
+        // Allow Enter key on name input
+        document.addEventListener('DOMContentLoaded', () => {
+            const nameInput = document.getElementById('studentName');
+            nameInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    startExam();
+                }
+            });
         });
-
-        const calculationPercentage = Math.round((accurateAnswersTally / completeCount) * 100);
-        document.getElementById('total-score-text').innerText = `Examination Completed! Total Score: ${accurateAnswersTally} / ${completeCount} (${calculationPercentage}%)`;
-        document.getElementById('result-screen').style.display = 'block';
-
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
-
+    </script>
 </body>
 </html>
